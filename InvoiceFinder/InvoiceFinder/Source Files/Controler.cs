@@ -22,8 +22,6 @@ namespace InvoiceFinder
 
             Finder myF = new Finder(ref sQueue);
 
-            List<Invoice> results = myF.execute();
-
             return;
 
 

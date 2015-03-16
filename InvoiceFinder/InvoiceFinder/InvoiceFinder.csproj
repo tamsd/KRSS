@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source Files\Results.cs" />
     <Compile Include="Source Files\Invoice.cs" />
     <Compile Include="Source Files\Search.cs" />
     <Compile Include="Source Files\Finder.cs" />
