@@ -19,8 +19,8 @@ namespace InvoiceFinder
             //adds the search s to the back of the queue
             public void addSearch(string s)
             {
-                Search temp = new Search(s);
-                searches.Add(temp);
+               Search temp = new Search(s);
+               searches.Add(temp);
             }
             //deletes the item at index
             public void deleteSearch(int index)
