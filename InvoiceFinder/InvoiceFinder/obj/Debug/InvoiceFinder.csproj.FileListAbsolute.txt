@@ -1,0 +1,5 @@
+c:\users\tamsd1\documents\visual studio 2012\Projects\InvoiceFinder\InvoiceFinder\bin\Debug\InvoiceFinder.exe.config
+C:\Users\tamsd1\Desktop\PPG Project\InvoiceFinder\InvoiceFinder\bin\Debug\InvoiceFinder.exe.config
+C:\Users\tamsd1\Desktop\PPG Project\InvoiceFinder\InvoiceFinder\obj\Debug\InvoiceFinder.csprojResolveAssemblyReference.cache
+C:\Users\tamsd1\Desktop\PPG Project\InvoiceFinder\InvoiceFinder\obj\Debug\InvoiceFinder.Properties.Resources.resources
+C:\Users\tamsd1\Desktop\PPG Project\InvoiceFinder\InvoiceFinder\obj\Debug\InvoiceFinder.csproj.GenerateResource.Cache
