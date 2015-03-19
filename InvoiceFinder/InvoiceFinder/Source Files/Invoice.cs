@@ -25,6 +25,11 @@ namespace InvoiceFinder
                     cust_id = value;
                 }
             }
+            private string reg_id;
+            public string Reg_id{
+                get { return reg_id; }
+                set { reg_id = value; }
+            }
             private string trans_id;    //the transaction id that they are searching
             public string Trans_id {
                 get {
@@ -85,15 +90,18 @@ namespace InvoiceFinder
                 final_destination = null;
                 copied_to_final_destination = false;
                 date = null;
+                reg_id = null;
                 cust_id = null;
                 trans_id = null;
                 discovered_path = null;
+                store_id = null;
             }
             //single arg constructor
             public Invoice(
-                string dt = null, string cst_id = null, string trns_id = null, string dscvrd_pth = null, 
-                bool dscvrd = false, bool cpd_to_fnl_dstntn = false, string fnl_dstntn = null
+                string rg_id = null, string dt = null, string cst_id = null, string trns_id = null, string dscvrd_pth = null, 
+                bool dscvrd = false, bool cpd_to_fnl_dstntn = false, string fnl_dstntn = null, string str_id = null
             ) {
+                reg_id = rg_id;
                 discovered = dscvrd;
                 final_destination = fnl_dstntn;
                 copied_to_final_destination = cpd_to_fnl_dstntn;
@@ -101,6 +109,7 @@ namespace InvoiceFinder
                 cust_id = cst_id;
                 trans_id = trns_id;
                 discovered_path = dscvrd_pth;
+                store_id = str_id;
             }
 
             //ToString override

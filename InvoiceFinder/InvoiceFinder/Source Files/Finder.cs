@@ -42,12 +42,26 @@ namespace InvoiceFinder
             }
 
 
-            private Invoice search(string p, Invoice inv) {
-                if (File.Exists(p)) {
-                    return inv;
+            private bool search(string p, ref Invoice inv) {
+                try {
+                    if(File.Exists(p)){
+                        string[] slash_split = p.Split(new Char[] { '\\' });
+                        string filename = slash_split[slash_split.Length - 1];
+                        string[] invoice_attributes = filename.Split(new Char[] { '.' });
+                        inv.Store_id = invoice_attributes[0];
+                        inv.Reg_id = invoice_attributes[1];
+                        inv.Trans_id = invoice_attributes[2];
+                        inv.Cust_id = invoice_attributes[3];
+                        inv.Date = invoice_attributes[4];
+                        return true;
+                    }
+                    else{
+                        return false;
+                    }
                 }
-                else {
-                    return null;
+                catch (Exception e) {
+                    Console.WriteLine(e);
+                    return false;
                 }
             }
 
@@ -59,11 +73,11 @@ namespace InvoiceFinder
                 path += ".";
                 path += searchObj.RegID;
                 path += ".";
-                path += searchObj.CustID;
-                path += ".";
                 path += searchObj.TransID;
                 path += ".";
-                path += searchObj.SDate;
+                path += searchObj.CustID;
+                path += ".";
+                path += searchObj.SDate; //needs to be fixed
                 path += ".pdf";
                 return path;
             }
@@ -71,13 +85,13 @@ namespace InvoiceFinder
             /*iterates through searchQ and executes each search object*/
             public List<Invoice> execute() {
                 Search currentSearch = null;
-                Invoice currentInvoice = new Invoice();
                 string path = "";
                 for (int i = 0; i < searchQ.searchCount(); i++) {
                     currentSearch = searchQ.getSearch(i);
                     path = construct_search_path(ref currentSearch, archive_1);
-                    currentInvoice = search(path, currentInvoice);
-                    if(currentInvoice != null){
+                    Invoice currentInvoice = new Invoice();
+                    if (search(path, ref currentInvoice))
+                    {
                         results.Add(currentInvoice);
                     }
                 }

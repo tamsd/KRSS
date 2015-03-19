@@ -21,6 +21,12 @@ namespace InvoiceFinder
             sQueue.addSearch(".....");
 
             Finder myF = new Finder(ref sQueue);
+            List<Invoice> r = myF.execute();
+            Results myR = new Results(ref r);
+            for (int i = 0; i < myR.Size; i++ )
+            {
+                Console.WriteLine(myR.getInvoice(i));
+            }
 
             return;
 
