@@ -36,6 +36,7 @@ namespace InvoiceFinder
 
             Console.Write(invoice);
 
+            sQueue.addSearch(invoice);
             //sQueue.addSearch("0.1.13.3.06262010.x");
             //sQueue.addSearch("0.1.69.9.01142012.x");
             //sQueue.addSearch("0.2.60.2.04162010.x");
