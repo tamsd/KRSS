@@ -11,38 +11,47 @@ namespace InvoiceFinder
         {
             private string archive_1;
             private string archive_2;
-            private string temp_folder1;
-            private string temp_folder2;
+            private List<string> other_folders; 
             private string stores_folder;
             private List<Invoice> results;  //List containing Invoice Objects created based on found path names
             private SearchQueue searchQ; //Work order of seach objects
+            private Settings sett; //file paths
+
 
             /*default constructor*/
             public Finder()
             {
                 searchQ = new SearchQueue();
                 results = new List<Invoice>();
-                archive_1 = @"C:\PPG\archives\archive_1"; //need to change these to get info from setting object
-                archive_2 = @"C:\PPG\archives\archive_2";
-                temp_folder1 = @"C:\PPG\temp_holders\temp_holder_1";
-                temp_folder2 = @"C:\PPG\temp_holders\temp_holder_2";
-                stores_folder = @"C:\PPG\stores";
+                    //these do not need to be set for now.
+                //archive_1 = @"C:\PPG\archives\archive_1"; //need to change these to get info from setting object
+                //archive_2 = @"C:\PPG\archives\archive_2";
+                //temp_folder1 = @"C:\PPG\temp_holders\temp_holder_1";
+                //temp_folder2 = @"C:\PPG\temp_holders\temp_holder_2";
+                //stores_folder = @"C:\PPG\stores";
             }
 
-            /*single arg constructor*/
-            public Finder(ref SearchQueue sq)
+            /*double arg constructor*/
+            public Finder(ref SearchQueue sq, ref Settings st)
             {
                 searchQ = sq;
+                sett = st;
                 results = new List<Invoice>();
-                archive_1 = @"C:\PPG\archives\archive_1";
-                archive_2 = @"C:\PPG\archives\archive_2";
-                temp_folder1 = @"C:\PPG\temp_holders\temp_holder_1";
-                temp_folder2 = @"C:\PPG\temp_holders\temp_holder_2";
-                stores_folder = @"C:\PPG\stores";
+                getFoldersFromSettings();
+                
             }
 
+            private void getFoldersFromSettings(){
+                stores_folder = sett.getFinalDestination();
+                archive_1 = sett.getArchiveA();
+                archive_2 = sett.getArchiveB();
+                for(int i=0; i<sett.otherPathCount(); i++){
+                    other_folders.Add(sett.getOtherPath(i));
+                }
+            }
 
-            private bool search(string p, ref Invoice inv) {
+            private bool search(string p, ref Invoice inv)
+            {
                 try {
                     if(File.Exists(p)){
                         string[] slash_split = p.Split(new Char[] { '\\' });
@@ -67,7 +76,7 @@ namespace InvoiceFinder
 
             private string construct_search_path(ref Search searchObj, string folder) {
                 string path = "";
-                path += archive_1;
+                path += folder;
                 path += "\\";
                 path += searchObj.StoreID;
                 path += ".";
@@ -84,11 +93,50 @@ namespace InvoiceFinder
 
             /*iterates through searchQ and executes each search object*/
             public List<Invoice> execute() {
+                //update all the search paths
+                getFoldersFromSettings();
+
                 Search currentSearch = null;
                 string path = "";
+                    //search the final destination first
                 for (int i = 0; i < searchQ.searchCount(); i++) {
                     currentSearch = searchQ.getSearch(i);
+                    path = construct_search_path(ref currentSearch, stores_folder);
+                    Invoice currentInvoice = new Invoice();
+                    if (search(path, ref currentInvoice))
+                    {
+                        results.Add(currentInvoice);
+                    }
+                }
+                    //search all the "other folders." The temp folders should be included in here
+                for (int k = 0; k < other_folders.Count; k++ )
+                {
+                    for (int i = 0; i < searchQ.searchCount(); i++)
+                    {
+                        currentSearch = searchQ.getSearch(i);
+                        path = construct_search_path(ref currentSearch, other_folders[k]);
+                        Invoice currentInvoice = new Invoice();
+                        if (search(path, ref currentInvoice))
+                        {
+                            results.Add(currentInvoice);
+                        }
+                    }
+                }
+                    //search the two archives last
+                for (int i = 0; i < searchQ.searchCount(); i++)
+                {
+                    currentSearch = searchQ.getSearch(i);
                     path = construct_search_path(ref currentSearch, archive_1);
+                    Invoice currentInvoice = new Invoice();
+                    if (search(path, ref currentInvoice))
+                    {
+                        results.Add(currentInvoice);
+                    }
+                }
+                for (int i = 0; i < searchQ.searchCount(); i++)
+                {
+                    currentSearch = searchQ.getSearch(i);
+                    path = construct_search_path(ref currentSearch, archive_2);
                     Invoice currentInvoice = new Invoice();
                     if (search(path, ref currentInvoice))
                     {
