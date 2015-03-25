@@ -11,3 +11,11 @@ C:\Users\tamsd1\Desktop\PPG Project\KRSS\InvoiceFinder\InvoiceFinder\bin\Debug\I
 C:\Users\tamsd1\Desktop\PPG Project\KRSS\InvoiceFinder\InvoiceFinder\bin\Debug\InvoiceFinder.pdb
 C:\Users\tamsd1\Desktop\PPG Project\KRSS\InvoiceFinder\InvoiceFinder\obj\Debug\InvoiceFinder.exe
 C:\Users\tamsd1\Desktop\PPG Project\KRSS\InvoiceFinder\InvoiceFinder\obj\Debug\InvoiceFinder.pdb
+C:\Users\tamsd1\Desktop\PPG\KRSS\InvoiceFinder\InvoiceFinder\bin\Debug\InvoiceFinder.exe.config
+C:\Users\tamsd1\Desktop\PPG\KRSS\InvoiceFinder\InvoiceFinder\obj\Debug\InvoiceFinder.exe
+C:\Users\tamsd1\Desktop\PPG\KRSS\InvoiceFinder\InvoiceFinder\obj\Debug\InvoiceFinder.pdb
+C:\Users\tamsd1\Desktop\PPG\KRSS\InvoiceFinder\InvoiceFinder\bin\Debug\InvoiceFinder.exe
+C:\Users\tamsd1\Desktop\PPG\KRSS\InvoiceFinder\InvoiceFinder\bin\Debug\InvoiceFinder.pdb
+C:\Users\tamsd1\Desktop\PPG\KRSS\InvoiceFinder\InvoiceFinder\obj\Debug\InvoiceFinder.csprojResolveAssemblyReference.cache
+C:\Users\tamsd1\Desktop\PPG\KRSS\InvoiceFinder\InvoiceFinder\obj\Debug\InvoiceFinder.Properties.Resources.resources
+C:\Users\tamsd1\Desktop\PPG\KRSS\InvoiceFinder\InvoiceFinder\obj\Debug\InvoiceFinder.csproj.GenerateResource.Cache

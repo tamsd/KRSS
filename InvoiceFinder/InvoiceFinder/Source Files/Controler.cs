@@ -19,22 +19,21 @@ namespace InvoiceFinder
             SearchQueue sQueue = new SearchQueue();
             Settings st = new Settings();
 
-            Console.Write("Please enter the transaction id: ");
-            trans_id = Console.ReadLine();
-            Console.Write("Please enter the customer id: ");
-            cust_id = Console.ReadLine();
             Console.Write("Please enter the store id: ");
             store_id = Console.ReadLine();
             Console.Write("Please enter the region id: ");
             reg_id = Console.ReadLine();
+            Console.Write("Please enter the transaction id: ");
+            trans_id = Console.ReadLine();
+            Console.Write("Please enter the customer id: ");
+            cust_id = Console.ReadLine();
             Console.Write("Please enter the starting date (in MMDDYYY format): ");
             s_date = Console.ReadLine();
             Console.Write("Please enter the ending date (x if it is not a range): ");
             e_date = Console.ReadLine();
 
-            string invoice = trans_id + "." + cust_id + "." + store_id + "." + reg_id + "." + s_date + "." + e_date;
-
-            Console.Write(invoice);
+            //store.region.trans.cust.date
+            string invoice = store_id + "." + reg_id + "." + trans_id + "." + cust_id + "." + s_date + "." + e_date;
 
             sQueue.addSearch(invoice);
             //sQueue.addSearch("0.1.13.3.06262010.x");
