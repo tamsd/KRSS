@@ -23,6 +23,7 @@ namespace InvoiceFinder
             {
                 searchQ = new SearchQueue();
                 results = new List<Invoice>();
+                other_folders = new List<string>();
                     //these do not need to be set for now.
                 //archive_1 = @"C:\PPG\archives\archive_1"; //need to change these to get info from setting object
                 //archive_2 = @"C:\PPG\archives\archive_2";
@@ -37,6 +38,7 @@ namespace InvoiceFinder
                 searchQ = sq;
                 sett = st;
                 results = new List<Invoice>();
+                other_folders = new List<string>();
                 getFoldersFromSettings();
                 
             }
@@ -109,7 +111,7 @@ namespace InvoiceFinder
                     }
                 }
                     //search all the "other folders." The temp folders should be included in here
-                for (int k = 0; k < other_folders.Count; k++ )
+                for (int k = 0; k < other_folders.Count; k++)
                 {
                     for (int i = 0; i < searchQ.searchCount(); i++)
                     {
