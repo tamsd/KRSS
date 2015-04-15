@@ -7,7 +7,7 @@ namespace InvoiceFinder
 {
     namespace BackEnd
     {
-        class Finder
+        public class Finder
         {
             private string archive_1;
             private string archive_2;

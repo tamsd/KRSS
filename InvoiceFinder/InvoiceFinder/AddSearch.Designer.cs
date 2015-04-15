@@ -168,7 +168,7 @@
             this.Invoice_Queue.Size = new System.Drawing.Size(229, 225);
             this.Invoice_Queue.TabIndex = 15;
             // 
-            // Settings
+            // AddSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -190,6 +190,7 @@
             this.Controls.Add(this.Cust_ID);
             this.Name = "AddSearch";
             this.Text = "Add Search";
+    
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -5,7 +5,7 @@ namespace InvoiceFinder
 {
     namespace BackEnd
     {
-        class Search
+        public class Search
         {
             //Data Declarations
             //Accessors and Mutators

@@ -15,7 +15,7 @@ namespace InvoiceFinder
     {
         public SearchQueue searchQueue;
         public Settings set;
-        public AddSearch(SearchQueue sQueue, Settings st)
+        public AddSearch(ref SearchQueue sQueue, ref Settings st)
         {
             InitializeComponent();
             searchQueue = sQueue;
@@ -38,5 +38,6 @@ namespace InvoiceFinder
             Start_Date.Clear();
             End_Date.Clear();
         }
+
     }
 }

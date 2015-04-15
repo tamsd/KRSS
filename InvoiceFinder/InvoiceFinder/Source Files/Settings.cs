@@ -10,7 +10,7 @@ namespace InvoiceFinder
     {
         //The Settings class
         //note: when ordering the input file pathes, lower keys are higher priority for the search, and it begins with 0.
-        class Settings
+        public class Settings
         {
             //constructor for the settings class, initializes the private variables
             public Settings()

@@ -5,7 +5,7 @@ namespace InvoiceFinder
 {
     namespace BackEnd
     {
-        class Invoice
+        public class Invoice
         {
             private string date;  //the date of the transaction
             public string Date {

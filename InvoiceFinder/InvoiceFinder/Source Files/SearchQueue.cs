@@ -9,7 +9,7 @@ namespace InvoiceFinder
 {
     namespace BackEnd
     {
-        class SearchQueue
+        public class SearchQueue
         {
             //class constructor
             public SearchQueue()

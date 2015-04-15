@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace InvoiceFinder
 {
     namespace BackEnd{
-        class Results
+        public class Results
         {
             private int size;
             public int Size{
