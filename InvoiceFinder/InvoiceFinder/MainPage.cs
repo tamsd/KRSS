@@ -17,33 +17,6 @@ namespace InvoiceFinder
         {
             InitializeComponent();
             CreateResultsTable();
-            
-            for (int i = 1; i < 5; i++ )
-            {
-                string text = i.ToString();
-                Label name = new Label();
-                name.Dock = DockStyle.Fill;
-                name.Text = text;
-                name.TextAlign = ContentAlignment.MiddleLeft;
-
-                text = "C:/" + i.ToString();
-                Label path = new Label();
-                path.Dock = DockStyle.Fill;
-                path.Text = text;
-                path.TextAlign = ContentAlignment.MiddleLeft;
-
-                RadioButton radio_button = new RadioButton();
-                radio_button.Dock = DockStyle.Fill;
-                radio_button.CheckAlign = ContentAlignment.MiddleCenter;
-                radio_button.Checked = true;
-
-                ResultsTable.Controls.Add(name, 0, i);
-                ResultsTable.Controls.Add(path, 1, i);
-                ResultsTable.Controls.Add(radio_button, 2, i);
-            }
-
-
-
         }
 
         public void CreateResultsTable()
@@ -73,6 +46,32 @@ namespace InvoiceFinder
             this.ResultsTable.Location = new System.Drawing.Point(0, 0);
             this.ResultsTable.Name = "ResultsTable";
             this.ResultsTable.TabIndex = 0;
+        }
+
+        public void AppendData(){
+            for (int i = 1; i < 5; i++ )
+            {
+                string text = i.ToString();
+                Label name = new Label();
+                name.Dock = DockStyle.Fill;
+                name.Text = text;
+                name.TextAlign = ContentAlignment.MiddleLeft;
+
+                text = "C:/" + i.ToString();
+                Label path = new Label();
+                path.Dock = DockStyle.Fill;
+                path.Text = text;
+                path.TextAlign = ContentAlignment.MiddleLeft;
+
+                RadioButton radio_button = new RadioButton();
+                radio_button.Dock = DockStyle.Fill;
+                radio_button.CheckAlign = ContentAlignment.MiddleCenter;
+                radio_button.Checked = true;
+
+                ResultsTable.Controls.Add(name, 0, i);
+                ResultsTable.Controls.Add(path, 1, i);
+                ResultsTable.Controls.Add(radio_button, 2, i);
+            }
         }
     }
 }
