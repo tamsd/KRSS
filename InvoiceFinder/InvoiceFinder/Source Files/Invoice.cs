@@ -66,6 +66,11 @@ namespace InvoiceFinder
                     discovered_path = value;
                 }
             }
+            private string parent;
+            public string Parent{
+                get { return parent; }
+                set { parent = value;}
+            }
             private string final_destination;   //if it is in the final destination or not
             public string Final_destination {
                 get {
