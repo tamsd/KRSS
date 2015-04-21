@@ -16,10 +16,17 @@ namespace InvoiceFinder
     {
         public class Exporter
         {
+            private string output_path;
+            private int output_type;
 
             public Exporter() { }
+            public Exporter(ref Settings settings)
+            {
+                output_path = settings.getOutputPath();
+                output_type = settings.getOutputType();
+            }
 
-            public void export(List<Invoice> results, string output_path, int output_type)//call Settings accessor for output type
+            public void export(List<Invoice> results)//call Settings accessor for output type
             {
                 if (output_type == 0)//Separate PDFs
                 {
@@ -30,8 +37,8 @@ namespace InvoiceFinder
 
                     for (int i = 0; i < results.Count; i++)
                     {
-                        string output = output_path + results[i].file_name;
-                        File.Copy(results[i].Discovered_path, output);
+                        string output = output_path + results[i].File_name;
+                        File.Copy(results[i].Final_destination, output);
                     }
 
 
@@ -44,7 +51,7 @@ namespace InvoiceFinder
 
                     for (int i = 0; i < results.Count; i++)
                     {
-                        pdfFileNames.Add(results[i].Discovered_path);
+                        pdfFileNames.Add(results[i].Final_destination);
                     }
 
                     _pdfUtility.ConcatenateFiles(pdfFileNames.ToArray(), output_path);
@@ -61,13 +68,12 @@ namespace InvoiceFinder
                     Console.WriteLine(folder_location);
                     for (int i = 0; i < results.Count; i++)
                     {
-                        string output = folder_location + results[i].file_name;
-                        File.Copy(results[i].Discovered_path, output);
+                        string output = folder_location + results[i].File_name;
+                        File.Copy(results[i].Final_destination, output);
                     }
 
                     string sourceDirectoryName = folder_location;
                     string destinationArchiveFileName = output_path + "output.zip";
-
                     ZipFile.CreateFromDirectory(sourceDirectoryName, destinationArchiveFileName);
                 }
             }

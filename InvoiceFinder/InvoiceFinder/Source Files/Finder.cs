@@ -63,6 +63,7 @@ namespace InvoiceFinder
                         inv.Parent = f; 
                         string[] slash_split = p.Split(new Char[] { '\\' });
                         string filename = slash_split[slash_split.Length - 1];
+                        inv.File_name = filename;
                         string[] invoice_attributes = filename.Split(new Char[] { '.' });
                         inv.Store_id = invoice_attributes[0];
                         inv.Reg_id = invoice_attributes[1];
