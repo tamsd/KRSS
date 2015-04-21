@@ -52,10 +52,15 @@ namespace InvoiceFinder
                 }
             }
 
-            private bool search(string p, ref Invoice inv)
+            //Takes a full path p leadng to a file, an invoice obj, and f - the parent of p
+            //If the the file is found the invoice object's attributes are set and the function returns true signaling success 
+            private bool search(string p, ref Invoice inv, string f)
             {
                 try {
                     if(File.Exists(p)){
+                        inv.Discovered_path = p;
+                        inv.Discovered = true;
+                        inv.Parent = f; 
                         string[] slash_split = p.Split(new Char[] { '\\' });
                         string filename = slash_split[slash_split.Length - 1];
                         string[] invoice_attributes = filename.Split(new Char[] { '.' });
@@ -105,7 +110,7 @@ namespace InvoiceFinder
                     currentSearch = searchQ.getSearch(i);
                     path = construct_search_path(ref currentSearch, stores_folder);
                     Invoice currentInvoice = new Invoice();
-                    if (search(path, ref currentInvoice))
+                    if (search(path, ref currentInvoice, stores_folder))
                     {
                         results.Add(currentInvoice);
                     }
@@ -118,7 +123,7 @@ namespace InvoiceFinder
                         currentSearch = searchQ.getSearch(i);
                         path = construct_search_path(ref currentSearch, other_folders[k]);
                         Invoice currentInvoice = new Invoice();
-                        if (search(path, ref currentInvoice))
+                        if (search(path, ref currentInvoice, other_folders[k]))
                         {
                             results.Add(currentInvoice);
                         }
@@ -130,7 +135,7 @@ namespace InvoiceFinder
                     currentSearch = searchQ.getSearch(i);
                     path = construct_search_path(ref currentSearch, archive_1);
                     Invoice currentInvoice = new Invoice();
-                    if (search(path, ref currentInvoice))
+                    if (search(path, ref currentInvoice, archive_1))
                     {
                         results.Add(currentInvoice);
                     }
@@ -140,7 +145,7 @@ namespace InvoiceFinder
                     currentSearch = searchQ.getSearch(i);
                     path = construct_search_path(ref currentSearch, archive_2);
                     Invoice currentInvoice = new Invoice();
-                    if (search(path, ref currentInvoice))
+                    if (search(path, ref currentInvoice, archive_2))
                     {
                         results.Add(currentInvoice);
                     }
