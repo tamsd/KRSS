@@ -13,10 +13,12 @@ namespace InvoiceFinder
 {
     public partial class MainPage : Form
     {
-        public MainPage()
+        public Results results;
+        public MainPage(ref Results r)
         {
             InitializeComponent();
             CreateResultsTable();
+            results = r;
         }
 
         public void CreateResultsTable()
@@ -48,7 +50,7 @@ namespace InvoiceFinder
             this.ResultsTable.TabIndex = 0;
         }
 
-        public void AppendData(){
+        public void FillTable(){
             for (int i = 1; i < 5; i++ )
             {
                 string text = i.ToString();
