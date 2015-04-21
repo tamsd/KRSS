@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.IO.Compression;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,11 +23,16 @@ namespace InvoiceFinder
             {
                 if (output_type == 0)//Separate PDFs
                 {
-                    PDFUtility _pdfUtility = new PDFUtility();
+                    //PDFUtility _pdfUtility = new PDFUtility();
+                    //List<string> pdfFileNames = new List<string>();
+                    //pdfFileNames.Add("C:\\Sample1.PDF");
+                    //pdfFileNames.Add("C:\\Sample2.PDF");
 
-                    List<string> pdfFileNames = new List<string>();
-                    pdfFileNames.Add("C:\\Sample1.PDF");
-                    pdfFileNames.Add("C:\\Sample2.PDF");
+                    for (int i = 0; i < results.Count; i++)
+                    {
+                        string output = output_path + results[i].file_name;
+                        File.Copy(results[i].Discovered_path, output);
+                    }
 
 
                 }
@@ -50,9 +57,16 @@ namespace InvoiceFinder
                     //destinationArchiveFileName: The path of the archive to be created, specified as a relative or absolute path. 
                     //                            A relative path is interpreted as relative to the current working directory.
 
+                    string folder_location = output_path + "temp'\'";
+                    Console.WriteLine(folder_location);
+                    for (int i = 0; i < results.Count; i++)
+                    {
+                        string output = folder_location + results[i].file_name;
+                        File.Copy(results[i].Discovered_path, output);
+                    }
 
-                    string sourceDirectoryName = "C:\\AFolderContainingTheFilesYouWantToZIP\\";
-                    string destinationArchiveFileName = "C:\\MyZIPFile.ZIP";
+                    string sourceDirectoryName = folder_location;
+                    string destinationArchiveFileName = output_path + "output.zip";
 
                     ZipFile.CreateFromDirectory(sourceDirectoryName, destinationArchiveFileName);
                 }
@@ -61,4 +75,5 @@ namespace InvoiceFinder
         }
     }
 }
+
 
