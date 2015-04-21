@@ -136,6 +136,7 @@ namespace InvoiceFinder
                 string s = "transID: " + trans_id + "\n";
                 s += "custID: " + cust_id + "\n";
                 s += "storeID: " + store_id + "\n";
+                s += "current location: " + discovered_path + "\n";
                 //s += "regID: " + regID + "\n";
                 //s += "sDate: " + sDate + "\n";
                // s += "eDate: " + eDate + "\n";

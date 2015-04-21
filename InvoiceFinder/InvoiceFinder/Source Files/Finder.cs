@@ -39,7 +39,7 @@ namespace InvoiceFinder
                 sett = st;
                 results = new Dictionary<string, Invoice>();
                 other_folders = new List<string>();
-                getFoldersFromSettings();
+               // getFoldersFromSettings(); *redundant call unless we implement a dictioranry for the "other_folders"
                 
             }
 
@@ -60,7 +60,7 @@ namespace InvoiceFinder
                     if(File.Exists(p)){
                         inv.Discovered_path = p;
                         inv.Discovered = true;
-                        inv.Parent = f;
+                        inv.Parent = f;                        
                         string[] slash_split = p.Split(new Char[] { '\\' });
                         string filename = slash_split[slash_split.Length - 1];
                         inv.File_name = filename;
@@ -70,6 +70,16 @@ namespace InvoiceFinder
                         inv.Trans_id = invoice_attributes[2];
                         inv.Cust_id = invoice_attributes[3];
                         inv.Date = invoice_attributes[4];
+                        if(f != stores_folder + "\\" + inv.Store_id){ //files parent is not a store folder aka final destination folder
+                            if (f == archive_1 || f == archive_2) //parent is an archive folder
+                            {
+                                //try to copy the folder to its corresponding folder, if the file already exists in the store older then do not copy
+                            }
+                            else{ //parent is n "other folder"
+                                //try to copy to store, catch duplicate errors and other errors
+                                //try to move to archive, catch duplicate error and other errors
+                            }
+                        }
                         return true;
                     }
                     else{
@@ -122,28 +132,8 @@ namespace InvoiceFinder
                         }
                     }
                 }
-                    //search all the "other folders." The temp folders should be included in here
-                for (int k = 0; k < other_folders.Count; k++)
-                {
-                    for (int i = 0; i < searchQ.searchCount(); i++)
-                    {
-                        currentSearch = searchQ.getSearch(i);
-                        path = construct_search_path(ref currentSearch, other_folders[k]);
-                        Invoice currentInvoice = new Invoice();
-                        if (search(path, ref currentInvoice, other_folders[k]))
-                        {
-                            try
-                            {
-                                results.Add(currentInvoice.File_name, currentInvoice);
-                            }
-                            catch (Exception e)
-                            {
-                                //key is either null or key laredy exists
-                            }
-                        }
-                    }
-                }
-                    //search the two archives last
+          
+                    //search the two archives
                 for (int i = 0; i < searchQ.searchCount(); i++)
                 {
                     currentSearch = searchQ.getSearch(i);
@@ -178,6 +168,29 @@ namespace InvoiceFinder
                         }
                     }
                 }
+
+                //search all the "other folders." The temp folders should be included in here
+                for (int k = 0; k < other_folders.Count; k++)
+                {
+                    for (int i = 0; i < searchQ.searchCount(); i++)
+                    {
+                        currentSearch = searchQ.getSearch(i);
+                        path = construct_search_path(ref currentSearch, other_folders[k]);
+                        Invoice currentInvoice = new Invoice();
+                        if (search(path, ref currentInvoice, other_folders[k]))
+                        {
+                            try
+                            {
+                                results.Add(currentInvoice.File_name, currentInvoice);
+                            }
+                            catch (Exception e)
+                            {
+                                //key is either null or key laredy exists
+                            }
+                        }
+                    }
+                }
+
                 return results;
             }
 
