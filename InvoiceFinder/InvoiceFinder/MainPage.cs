@@ -19,6 +19,7 @@ namespace InvoiceFinder
             InitializeComponent();
             CreateResultsTable();
             results = r;
+           // results.sortByStore();
             FillTable();
         }
 

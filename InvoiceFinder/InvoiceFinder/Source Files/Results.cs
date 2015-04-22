@@ -40,13 +40,30 @@ namespace InvoiceFinder
                 invoices = new Dictionary<string, Invoice>(dict);
             }
 
-            public IEnumerator<Invoice> GetEnumerator()
-            {
-                return invoices.Values.GetEnumerator();
+            /*Sort invoice Dictionary by store*/
+            public void sortByStore(){
+                var sortedDict = from entry in invoices orderby entry.Value.Store_id ascending select entry;
+                //copyDictionary(sortedDict);
             }
 
-            System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-            {
+            /*Sort Invoice Dictionary by Customer*/
+            public void sortByCustomer(){
+
+                //var sortedDict = from entry in invoices orderby entry.Value.Cust_id ascending select entry;
+                //copyDictionary(sortedDict);
+            }
+
+            /*Sort Invoice Dictionary by Date*/
+            public void sortByDate(){
+                //var sortedDict = from entry in invoices orderby entry.Value.Date ascending select entry; //*************Date needs to be changed from the format of 01281999
+                //copyDictionary(sortedDict);
+            }
+
+            /*Implement Ienumerable for invoices*/
+            public IEnumerator<Invoice> GetEnumerator() {
+                return invoices.Values.GetEnumerator();
+            }
+            System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
                 return this.GetEnumerator();
             }
         }
