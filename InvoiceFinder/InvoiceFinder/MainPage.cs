@@ -17,16 +17,20 @@ namespace InvoiceFinder
         public Results results;
         public SearchQueue searchQueue;
         public Settings set;
+        public Finder find;
         int index_of_selected;
 
-        public MainPage(ref Results r, ref SearchQueue sQueue, ref Settings st)
+        public MainPage(ref Results r, ref SearchQueue sQueue, ref Settings st, ref Finder finder)
         {
             InitializeComponent();
+
             searchQueue = sQueue;
             set = st;
-            index_of_selected = 0;
-            CreateResultsTable();
+            find = finder;
             results = r;
+            index_of_selected = 0;
+
+            CreateResultsTable();
             results.sortByStore("ascending");
             FillTable();
         }
@@ -163,5 +167,54 @@ namespace InvoiceFinder
             //send all the searches to the 
         }
         /***************End Search Tab***************/
+
+        /***************Settings Tab***************/        
+        private void List_CheckedChanged(object sender, EventArgs e)
+        {
+            //if (List.Checked == false)
+            //{
+            //    set.setOutputType(0);
+            //    List.Checked = true;
+            //}
+            //if (List.Checked == true)
+            //{
+            //    List.Checked = false;
+            //}
+            set.setOutputType(0);
+        }
+
+        private void ConcPDF_CheckedChanged(object sender, EventArgs e)
+        {
+            //if (ConcPDF.Checked == false)
+            //{
+            //    set.setOutputType(1);
+            //    ConcPDF.Checked = true;
+            //}
+            //else if (ConcPDF.Checked == true)
+            //{
+            //    ConcPDF.Checked = false;
+            //}
+            set.setOutputType(1);
+        }
+
+        private void ZipFolder_CheckedChanged(object sender, EventArgs e)
+        {
+            //if (ZipFolder.Checked == false)
+            //{
+            //    set.setOutputType(1);
+            //    ZipFolder.Checked = true;
+            //}
+            //else if (ZipFolder.Checked == true)
+            //{
+            //    ZipFolder.Checked = false;
+            //}
+            set.setOutputType(1);
+        }
+
+        private void SettingsInterface_Load(object sender, EventArgs e)
+        {
+            ZipFolder.Checked = true;
+        }
+        /***************End Settings Tab***************/
     }
 }

@@ -30,8 +30,6 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ResultsTable = new System.Windows.Forms.TableLayoutPanel();
             this.RemoveSearch = new System.Windows.Forms.Button();
             this.Add = new System.Windows.Forms.Button();
             this.Invoice_Queue = new System.Windows.Forms.ListBox();
@@ -48,15 +46,24 @@
             this.Region_ID = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ResultsTable = new System.Windows.Forms.TableLayoutPanel();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ZipFolder = new System.Windows.Forms.CheckBox();
+            this.ConcPDF = new System.Windows.Forms.CheckBox();
+            this.List = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -88,34 +95,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.ResultsTable);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(673, 635);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // ResultsTable
-            // 
-            this.ResultsTable.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.ResultsTable.ColumnCount = 6;
-            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.53192F));
-            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.76596F));
-            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.76596F));
-            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.2766F));
-            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.2766F));
-            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.382979F));
-            this.ResultsTable.Location = new System.Drawing.Point(6, 6);
-            this.ResultsTable.Name = "ResultsTable";
-            this.ResultsTable.RowCount = 1;
-            this.ResultsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 73F));
-            this.ResultsTable.Size = new System.Drawing.Size(661, 32);
-            this.ResultsTable.TabIndex = 0;
             // 
             // RemoveSearch
             // 
@@ -249,6 +228,86 @@
             this.label1.TabIndex = 24;
             this.label1.Text = "Customer ID";
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.ResultsTable);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(673, 635);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // ResultsTable
+            // 
+            this.ResultsTable.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.ResultsTable.ColumnCount = 6;
+            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.53192F));
+            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.76596F));
+            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.76596F));
+            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.2766F));
+            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.2766F));
+            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.382979F));
+            this.ResultsTable.Location = new System.Drawing.Point(6, 6);
+            this.ResultsTable.Name = "ResultsTable";
+            this.ResultsTable.RowCount = 1;
+            this.ResultsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
+            this.ResultsTable.Size = new System.Drawing.Size(661, 32);
+            this.ResultsTable.TabIndex = 0;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.textBox1);
+            this.tabPage3.Controls.Add(this.ZipFolder);
+            this.tabPage3.Controls.Add(this.ConcPDF);
+            this.tabPage3.Controls.Add(this.List);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(673, 635);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(66, 43);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 7;
+            this.textBox1.Text = "Output Type";
+            // 
+            // ZipFolder
+            // 
+            this.ZipFolder.AutoSize = true;
+            this.ZipFolder.Location = new System.Drawing.Point(86, 173);
+            this.ZipFolder.Name = "ZipFolder";
+            this.ZipFolder.Size = new System.Drawing.Size(70, 17);
+            this.ZipFolder.TabIndex = 6;
+            this.ZipFolder.Text = "ZipFolder";
+            this.ZipFolder.UseVisualStyleBackColor = true;
+            // 
+            // ConcPDF
+            // 
+            this.ConcPDF.AutoSize = true;
+            this.ConcPDF.Location = new System.Drawing.Point(86, 129);
+            this.ConcPDF.Name = "ConcPDF";
+            this.ConcPDF.Size = new System.Drawing.Size(136, 17);
+            this.ConcPDF.TabIndex = 5;
+            this.ConcPDF.Text = "Concatenated PDF File";
+            this.ConcPDF.UseVisualStyleBackColor = true;
+            // 
+            // List
+            // 
+            this.List.AutoSize = true;
+            this.List.Location = new System.Drawing.Point(86, 91);
+            this.List.Name = "List";
+            this.List.Size = new System.Drawing.Size(42, 17);
+            this.List.TabIndex = 4;
+            this.List.Text = "List";
+            this.List.UseVisualStyleBackColor = true;
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -261,6 +320,8 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -287,6 +348,11 @@
         private System.Windows.Forms.TextBox Region_ID;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckBox ZipFolder;
+        private System.Windows.Forms.CheckBox ConcPDF;
+        private System.Windows.Forms.CheckBox List;
     }
 }
 
