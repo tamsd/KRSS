@@ -13,16 +13,27 @@ namespace InvoiceFinder
 {
     public partial class MainPage : Form
     {
+        /***************General Variables and Cosntructor***************/
         public Results results;
-        public MainPage(ref Results r)
+        public SearchQueue searchQueue;
+        public Settings set;
+        int index_of_selected;
+
+        public MainPage(ref Results r, ref SearchQueue sQueue, ref Settings st)
         {
             InitializeComponent();
+            searchQueue = sQueue;
+            set = st;
+            index_of_selected = 0;
             CreateResultsTable();
             results = r;
-           // results.sortByStore();
+            results.sortByStore("ascending");
             FillTable();
         }
+        /***************End General Variables and Cosntructor***************/
 
+        /***************Results Tab***************/
+        /*sets the headers of the table columns*/
         public void CreateResultsTable()
         {
             //filename header
@@ -76,6 +87,7 @@ namespace InvoiceFinder
             this.ResultsTable.TabIndex = 0;
         }
 
+        /*Fills the table with the results passed in*/
         public void FillTable(){
             int row = 1;
             foreach(Invoice i in results){
@@ -118,5 +130,38 @@ namespace InvoiceFinder
                 row++;
             }
         }
+        /***************End Results Tab***************/
+
+        /***************Search Tab***************/
+        private void Add_Click(object sender, EventArgs e)
+        {
+            string temp_s = Store_ID.Text + "." +
+                            Region_ID.Text + "." +
+                            Transaction_ID.Text + "." +
+                            Cust_ID.Text + "." +
+                            Start_Date.Text + "." +
+                            End_Date.Text;
+            searchQueue.addSearch(temp_s);
+            Store_ID.Clear();
+            Region_ID.Clear();
+            Transaction_ID.Clear();
+            Cust_ID.Clear();
+            Start_Date.Clear();
+            End_Date.Clear();
+        }
+
+        private void AddSearch_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void update_GUI_queue() 
+        { 
+            //for(int i=0; i<; i++){
+            //    Invoice_Queue.SelectedIndex = i;
+            //}
+            //send all the searches to the 
+        }
+        /***************End Search Tab***************/
     }
 }

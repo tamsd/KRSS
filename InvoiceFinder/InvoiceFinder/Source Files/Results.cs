@@ -40,23 +40,69 @@ namespace InvoiceFinder
                 invoices = new Dictionary<string, Invoice>(dict);
             }
 
-            /*Sort invoice Dictionary by store*/
-            public void sortByStore(){
-                var sortedDict = from entry in invoices orderby entry.Value.Store_id ascending select entry;
-                //copyDictionary(sortedDict);
+            /*Sort invoice Dictionary by store ascending*/
+            public void sortByStore(string order){
+                Dictionary<string, Invoice> newDict = new Dictionary<string, Invoice>();
+                if(order == "ascending"){
+                    var sortedDict = from entry in invoices orderby entry.Value.Store_id ascending select entry;
+                    foreach (KeyValuePair<string, Invoice> entry in sortedDict)
+                    {
+                        newDict.Add(entry.Key, entry.Value);
+                    }
+                }
+                else if(order == "descending"){
+                    var sortedDict = from entry in invoices orderby entry.Value.Store_id descending select entry;
+                    foreach (KeyValuePair<string, Invoice> entry in sortedDict)
+                    {
+                        newDict.Add(entry.Key, entry.Value);
+                    }
+                }
+                copyDictionary(newDict);
             }
 
-            /*Sort Invoice Dictionary by Customer*/
-            public void sortByCustomer(){
-
-                //var sortedDict = from entry in invoices orderby entry.Value.Cust_id ascending select entry;
-                //copyDictionary(sortedDict);
+            /*Sort Invoice Dictionary by Customer ascending*/
+            public void sortByCustomer(string order){
+                Dictionary<string, Invoice> newDict = new Dictionary<string, Invoice>();
+                if (order == "ascending")
+                {
+                    var sortedDict = from entry in invoices orderby entry.Value.Cust_id ascending select entry;
+                    foreach (KeyValuePair<string, Invoice> entry in sortedDict)
+                    {
+                        newDict.Add(entry.Key, entry.Value);
+                    }
+                }
+                else if (order == "descending")
+                {
+                    var sortedDict = from entry in invoices orderby entry.Value.Cust_id descending select entry;
+                    foreach (KeyValuePair<string, Invoice> entry in sortedDict)
+                    {
+                        newDict.Add(entry.Key, entry.Value);
+                    }
+                }         
+                copyDictionary(newDict);
             }
 
-            /*Sort Invoice Dictionary by Date*/
-            public void sortByDate(){
-                //var sortedDict = from entry in invoices orderby entry.Value.Date ascending select entry; //*************Date needs to be changed from the format of 01281999
-                //copyDictionary(sortedDict);
+            /*Sort Invoice Dictionary by Date ascending*/
+            public void sortByDate(string order){
+                Dictionary<string, Invoice> newDict = new Dictionary<string, Invoice>();
+                if (order == "ascending")
+                {
+                    var sortedDict = from entry in invoices orderby entry.Value.Date ascending select entry; //*************Date needs to be changed from the format of 01281999
+                    foreach (KeyValuePair<string, Invoice> entry in sortedDict)
+                    {
+                        newDict.Add(entry.Key, entry.Value);
+                    }
+                }
+                else if (order == "descending")
+                {
+                    var sortedDict = from entry in invoices orderby entry.Value.Date descending select entry; //*************Date needs to be changed from the format of 01281999
+                    foreach (KeyValuePair<string, Invoice> entry in sortedDict)
+                    {
+                        newDict.Add(entry.Key, entry.Value);
+                    }
+                }
+
+                copyDictionary(newDict);
             }
 
             /*Implement Ienumerable for invoices*/
