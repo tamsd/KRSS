@@ -35,8 +35,12 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PPG.AC.NA.SS.SSUtilities">
+      <HintPath>..\Libraries\PPG.AC.NA.SS.SSUtilities.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,6 +57,7 @@
     <Compile Include="MainPage.Designer.cs">
       <DependentUpon>MainPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source Files\Exporter.cs" />
     <Compile Include="Source Files\Results.cs" />
     <Compile Include="Source Files\Invoice.cs" />
     <Compile Include="Source Files\Search.cs" />

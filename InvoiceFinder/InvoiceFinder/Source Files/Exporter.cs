@@ -18,42 +18,43 @@ namespace InvoiceFinder
         {
             private string output_path;
             private int output_type;
-
+            private Results results;
+            private Settings settings;
             public Exporter() { }
-            public Exporter(ref Settings settings)
+            public Exporter(ref Settings sett, ref Results r)
             {
-                output_path = settings.getOutputPath();
-                output_type = settings.getOutputType();
+                settings = sett;
+                results = r;
             }
 
-            public void export(List<Invoice> results)//call Settings accessor for output type
+            public string export()//call Settings accessor for output type
             {
+                string export_path = "";
+                output_path = settings.getOutputPath();
+                output_type = settings.getOutputType();
                 if (output_type == 0)//Separate PDFs
                 {
-                    //PDFUtility _pdfUtility = new PDFUtility();
-                    //List<string> pdfFileNames = new List<string>();
-                    //pdfFileNames.Add("C:\\Sample1.PDF");
-                    //pdfFileNames.Add("C:\\Sample2.PDF");
-
-                    for (int i = 0; i < results.Count; i++)
+                    foreach (Invoice inv in results)
                     {
-                        string output = output_path + results[i].File_name;
-                        File.Copy(results[i].Final_destination + results[i].File_name, output);
+                        string output = output_path + "\\" + inv.File_name;
+                        try{
+                            File.Copy(inv.Final_destination, output);
+                        }
+                        catch{
+                        }
+                        export_path = output;
                     }
-
                 }
                 else if (output_type == 1)//Concatenated PDF
                 {
                     PDFUtility _pdfUtility = new PDFUtility();
 
                     List<string> pdfFileNames = new List<string>();
-
-                    for (int i = 0; i < results.Count; i++)
-                    {
-                        pdfFileNames.Add(results[i].Final_destination + results[i].File_name);
+                    foreach(Invoice inv in results){
+                        pdfFileNames.Add(inv.Final_destination);
                     }
-
-                    _pdfUtility.ConcatenateFiles(pdfFileNames.ToArray(), output_path + @"\concatenated.pdf");
+                    _pdfUtility.ConcatenateFiles(pdfFileNames.ToArray(), output_path + @"\concatenated.pdf"); //****add dynamic name to output file in settings
+                    export_path = output_path + @"\concatenated.pdf";
                 }
                 else//Zip folder
                 {
@@ -63,22 +64,27 @@ namespace InvoiceFinder
                     //destinationArchiveFileName: The path of the archive to be created, specified as a relative or absolute path. 
                     //                            A relative path is interpreted as relative to the current working directory.
 
-                    string folder_location = results[0].Final_destination + @"\temp_holders\temp_holder_1";
+                    string folder_location = @"C:\zip"; //*******chanegd to some folder local to where the program is being run
                     Console.WriteLine(folder_location);
-
-                    for (int i = 0; i < results.Count; i++)
+                    foreach (Invoice inv in results)
                     {
-                        string output = folder_location + results[i].File_name;
-                        File.Copy(results[i].Final_destination + results[i].File_name, output);
+                        string output = folder_location + "\\" + inv.File_name;
+                        try{
+                            File.Copy(inv.Final_destination, output);
+                        }
+                        catch{
+                        }
                     }
-
                     string sourceDirectoryName = folder_location;
-                    string destinationArchiveFileName = output_path + @"\output.zip";
-                    ZipFile.CreateFromDirectory(sourceDirectoryName, destinationArchiveFileName);
-
-                    
-                    
+                    string destinationArchiveFileName = output_path + @"\output.zip";//****add dynamic name to output file in settings
+                    try{
+                        ZipFile.CreateFromDirectory(sourceDirectoryName, destinationArchiveFileName);
+                    }
+                    catch{
+                    }
+                    export_path = destinationArchiveFileName;
                 }
+                return export_path;
             }
         }
     }

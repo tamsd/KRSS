@@ -71,14 +71,16 @@ namespace InvoiceFinder
                         inv.Cust_id = invoice_attributes[3];
                         inv.Date = invoice_attributes[4];
                         if(f != stores_folder + "\\" + inv.Store_id){ //files parent is not a store folder aka final destination folder
-                            if (f == archive_1 || f == archive_2) //parent is an archive folder
-                            {
-                                //try to copy the folder to its corresponding folder, if the file already exists in the store older then do not copy
+                            try{
+                                string dest = stores_folder + "\\" + inv.Store_id +"\\"+ inv.File_name;
+                                File.Copy(p, dest);
+                                inv.Final_destination = dest;
                             }
-                            else{ //parent is n "other folder"
-                                //try to copy to store, catch duplicate errors and other errors
-                                //try to move to archive, catch duplicate error and other errors
+                            catch (Exception e){
                             }
+                        }
+                        else{
+                            inv.Final_destination = inv.Discovered_path;
                         }
                         return true;
                     }
@@ -87,6 +89,7 @@ namespace InvoiceFinder
                     }
                 }
                 catch (Exception e) {
+                    inv.Discovered = false;
                     Console.WriteLine(e);
                     return false;
                 }
@@ -122,7 +125,7 @@ namespace InvoiceFinder
                     string parent = stores_folder + "\\" + currentSearch.StoreID;
                     path = construct_search_path(ref currentSearch, parent);
                     Invoice currentInvoice = new Invoice();
-                    if (search(path, ref currentInvoice, stores_folder))
+                    if (search(path, ref currentInvoice, parent))
                     {
                         try {
                             results.Add(currentInvoice.File_name, currentInvoice);

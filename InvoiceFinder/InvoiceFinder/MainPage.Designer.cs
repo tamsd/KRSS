@@ -47,6 +47,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.Export = new System.Windows.Forms.Button();
             this.ResultsTable = new System.Windows.Forms.TableLayoutPanel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -104,6 +105,7 @@
             this.RemoveSearch.TabIndex = 32;
             this.RemoveSearch.Text = "Remove";
             this.RemoveSearch.UseVisualStyleBackColor = true;
+            this.RemoveSearch.Click += new System.EventHandler(this.RemoveSearch_Click);
             // 
             // Add
             // 
@@ -113,6 +115,7 @@
             this.Add.TabIndex = 23;
             this.Add.Text = "Add";
             this.Add.UseVisualStyleBackColor = true;
+            this.Add.Click += new System.EventHandler(this.Add_Click_1);
             // 
             // Invoice_Queue
             // 
@@ -230,6 +233,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.Export);
             this.tabPage2.Controls.Add(this.ResultsTable);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -239,20 +243,29 @@
             this.tabPage2.Text = "Results";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // Export
+            // 
+            this.Export.Location = new System.Drawing.Point(472, 426);
+            this.Export.Name = "Export";
+            this.Export.Size = new System.Drawing.Size(75, 23);
+            this.Export.TabIndex = 1;
+            this.Export.Text = "Export";
+            this.Export.UseVisualStyleBackColor = true;
+            this.Export.Click += new System.EventHandler(this.Export_Click_1);
+            // 
             // ResultsTable
             // 
             this.ResultsTable.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.ResultsTable.ColumnCount = 6;
-            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.53192F));
-            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.76596F));
-            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.76596F));
-            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.2766F));
-            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.2766F));
-            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.382979F));
+            this.ResultsTable.ColumnCount = 5;
+            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.05442F));
+            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.98639F));
+            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.98639F));
+            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.98639F));
+            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.98639F));
             this.ResultsTable.Location = new System.Drawing.Point(6, 6);
             this.ResultsTable.Name = "ResultsTable";
             this.ResultsTable.RowCount = 1;
-            this.ResultsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.ResultsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 81F));
             this.ResultsTable.Size = new System.Drawing.Size(661, 32);
             this.ResultsTable.TabIndex = 0;
             // 
@@ -315,7 +328,7 @@
             this.ClientSize = new System.Drawing.Size(705, 685);
             this.Controls.Add(this.tabControl1);
             this.Name = "MainPage";
-            this.Text = "Form1";
+            this.Text = "Invoice Finder";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -327,11 +340,17 @@
         }
 
         #endregion
-
+        /*tab control*/
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+
+        /*results tab*/
         private System.Windows.Forms.TableLayoutPanel ResultsTable;
+        private System.Windows.Forms.Button Export;
+
+        /*Search tab*/
         private System.Windows.Forms.Button RemoveSearch;
         private System.Windows.Forms.Button Add;
         private System.Windows.Forms.ListBox Invoice_Queue;
@@ -348,7 +367,8 @@
         private System.Windows.Forms.TextBox Region_ID;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabPage tabPage3;
+
+        /*settings tab*/
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.CheckBox ZipFolder;
         private System.Windows.Forms.CheckBox ConcPDF;

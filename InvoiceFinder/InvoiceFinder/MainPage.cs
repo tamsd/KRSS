@@ -14,13 +14,14 @@ namespace InvoiceFinder
     public partial class MainPage : Form
     {
         /***************General Variables and Cosntructor***************/
-        public Results results;
-        public SearchQueue searchQueue;
-        public Settings set;
-        public Finder find;
+        private Results results;
+        private SearchQueue searchQueue;
+        private Settings set;
+        private Finder find;
+        private Exporter exporter;
         int index_of_selected;
 
-        public MainPage(ref Results r, ref SearchQueue sQueue, ref Settings st, ref Finder finder)
+        public MainPage(ref Results r, ref SearchQueue sQueue, ref Settings st, ref Finder finder, ref Exporter exp)
         {
             InitializeComponent();
 
@@ -28,6 +29,7 @@ namespace InvoiceFinder
             set = st;
             find = finder;
             results = r;
+            exporter = exp;
             index_of_selected = 0;
 
             CreateResultsTable();
@@ -68,19 +70,12 @@ namespace InvoiceFinder
             Date_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             ResultsTable.Controls.Add(Date_label, 3, 0);
 
-            //path header
-            Label Path_Label = new Label();
-            Path_Label.Dock = DockStyle.Fill;
-            Path_Label.Text = "Path";
-            Path_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            ResultsTable.Controls.Add(Path_Label, 4, 0);
-
             //radio button export header
             Label Export_Label = new Label();
             Export_Label.Dock = DockStyle.Fill;
             Export_Label.Text = "Export";
             Export_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            ResultsTable.Controls.Add(Export_Label, 5, 0);
+            ResultsTable.Controls.Add(Export_Label, 4, 0);
 
             //table settings
             this.ResultsTable.AutoSize = true;
@@ -115,11 +110,6 @@ namespace InvoiceFinder
                 date.Text = i.Date;
                 date.TextAlign = ContentAlignment.MiddleLeft;
 
-                Label parent = new Label();
-                parent.Dock = DockStyle.Fill;
-                parent.Text = i.Parent; //needs to be changed to final destination*****************
-                parent.TextAlign = ContentAlignment.MiddleLeft;
-
                 RadioButton radio_button = new RadioButton();
                 radio_button.Dock = DockStyle.Fill;
                 radio_button.CheckAlign = ContentAlignment.MiddleCenter;
@@ -129,15 +119,25 @@ namespace InvoiceFinder
                 ResultsTable.Controls.Add(store, 1,row);
                 ResultsTable.Controls.Add(customer, 2,row);
                 ResultsTable.Controls.Add(date, 3,row);
-                ResultsTable.Controls.Add(parent, 4, row);
-                ResultsTable.Controls.Add(radio_button, 5, row);
+                ResultsTable.Controls.Add(radio_button, 4, row);
                 row++;
             }
+        }
+
+        /*Event handler for clicking export button*/
+        private void Export_Click_1(object sender, EventArgs e)
+        {
+            string export_location = exporter.export();
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Multiselect = true;
+            fileDialog.InitialDirectory = set.getOutputPath();
+            fileDialog.ShowDialog();
+            //**********add a setting that prevents the dialog from popping up everytime
         }
         /***************End Results Tab***************/
 
         /***************Search Tab***************/
-        private void Add_Click(object sender, EventArgs e)
+        private void Add_Click_1(object sender, EventArgs e)
         {
             string temp_s = Store_ID.Text + "." +
                             Region_ID.Text + "." +
@@ -154,7 +154,7 @@ namespace InvoiceFinder
             End_Date.Clear();
         }
 
-        private void AddSearch_Load(object sender, EventArgs e)
+        private void RemoveSearch_Click(object sender, EventArgs e)
         {
 
         }
