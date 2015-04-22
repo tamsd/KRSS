@@ -100,9 +100,9 @@ if($response -eq 'y'){
             #file already exists in store folder
         }
         else{
-            $copy_dest = $user_root + "\stores\" + $store_id;
+           # $copy_dest = $user_root + "\stores\" + $store_id;
             New-item $file_path -type file;
-            Copy-Item $file_path $copy_dest;
+           # Copy-Item $file_path $copy_dest;
         }
     }
 

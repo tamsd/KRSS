@@ -7,6 +7,18 @@ namespace InvoiceFinder
     {
         public class Invoice
         {
+            private string file_name;
+            public string File_name
+            {
+                get
+                {
+                    return file_name;
+                }
+                set
+                {
+                    file_name = value;
+                }
+            }
             private string date;  //the date of the transaction
             public string Date {
                 get {
@@ -66,6 +78,11 @@ namespace InvoiceFinder
                     discovered_path = value;
                 }
             }
+            private string parent;
+            public string Parent{
+                get { return parent; }
+                set { parent = value;}
+            }
             private string final_destination;   //if it is in the final destination or not
             public string Final_destination {
                 get {
@@ -86,6 +103,7 @@ namespace InvoiceFinder
             }
             //def constructor
             public Invoice() {
+                file_name = null;
                 discovered = false;
                 final_destination = null;
                 copied_to_final_destination = false;
@@ -99,9 +117,9 @@ namespace InvoiceFinder
             //single arg constructor
             public Invoice(
                 string rg_id = null, string dt = null, string cst_id = null, string trns_id = null, string dscvrd_pth = null, 
-                bool dscvrd = false, bool cpd_to_fnl_dstntn = false, string fnl_dstntn = null, string str_id = null
-            ) {
+                bool dscvrd = false, bool cpd_to_fnl_dstntn = false, string fnl_dstntn = null, string str_id = null, string f_name = null) {
                 reg_id = rg_id;
+                file_name = f_name;
                 discovered = dscvrd;
                 final_destination = fnl_dstntn;
                 copied_to_final_destination = cpd_to_fnl_dstntn;
@@ -118,6 +136,7 @@ namespace InvoiceFinder
                 string s = "transID: " + trans_id + "\n";
                 s += "custID: " + cust_id + "\n";
                 s += "storeID: " + store_id + "\n";
+                s += "current location: " + discovered_path + "\n";
                 //s += "regID: " + regID + "\n";
                 //s += "sDate: " + sDate + "\n";
                // s += "eDate: " + eDate + "\n";

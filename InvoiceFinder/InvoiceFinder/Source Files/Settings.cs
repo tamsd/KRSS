@@ -12,6 +12,7 @@ namespace InvoiceFinder
         //note: when ordering the input file pathes, lower keys are higher priority for the search, and it begins with 0.
         public class Settings
         {
+
             //constructor for the settings class, initializes the private variables
             public Settings()
             {
@@ -93,6 +94,11 @@ namespace InvoiceFinder
             //set the output type
             public void setOutputType(int type) {
                 output_type = type;
+            }
+            //set the output type
+            public int getOutputType()
+            {
+                return output_type;
             }
 
             //for tests
