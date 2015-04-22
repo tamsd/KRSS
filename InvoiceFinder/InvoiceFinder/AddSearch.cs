@@ -15,11 +15,14 @@ namespace InvoiceFinder
     {
         public SearchQueue searchQueue;
         public Settings set;
+        int index_of_selected;
         public AddSearch(ref SearchQueue sQueue, ref Settings st)
         {
             InitializeComponent();
             searchQueue = sQueue;
             set = st;
+            index_of_selected = 0;
+
         }
 
         private void Add_Click(object sender, EventArgs e)
@@ -37,6 +40,29 @@ namespace InvoiceFinder
             Cust_ID.Clear();
             Start_Date.Clear();
             End_Date.Clear();
+        }
+
+        private void AddSearch_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RemoveSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Invoice_Queue_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void update_GUI_queue() 
+        { 
+            //for(int i=0; i<; i++){
+            //    Invoice_Queue.SelectedIndex = i;
+            //}
+            //send all the searches to the 
         }
 
     }
