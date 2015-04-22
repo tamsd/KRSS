@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace InvoiceFinder
 {
     namespace BackEnd{
-        public class Results
+        public class Results : IEnumerable<Invoice>
         {
             private int size;
             private Dictionary<string, Invoice> invoices;
@@ -28,13 +28,27 @@ namespace InvoiceFinder
                 this.size = invoices.Count;
             }
 
-
+            /*displays each entry in the invoice dictionary to the console*/
             public void displayInvoices(){
                 foreach(KeyValuePair<string, Invoice> entry in invoices){
                     Console.WriteLine(entry.Value);
                 }
             }
 
+            /*copies contents of dictionary into invoices, whatever invoices used to contain is gone*/
+            public void copyDictionary(Dictionary<string, Invoice> dict){
+                invoices = new Dictionary<string, Invoice>(dict);
+            }
+
+            public IEnumerator<Invoice> GetEnumerator()
+            {
+                return invoices.Values.GetEnumerator();
+            }
+
+            System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
         }
     }
 }

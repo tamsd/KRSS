@@ -139,7 +139,7 @@ namespace InvoiceFinder
                     currentSearch = searchQ.getSearch(i);
                     path = construct_search_path(ref currentSearch, archive_1);
                     Invoice currentInvoice = new Invoice();
-                    if (search(path, ref currentInvoice, archive_1)) /****************adding duplicates if we found in sores and arachive*/
+                    if (search(path, ref currentInvoice, archive_1))
                     {
                         try
                         {
@@ -185,7 +185,7 @@ namespace InvoiceFinder
                             }
                             catch (Exception e)
                             {
-                                //key is either null or key laredy exists
+                                //key is either null or key already exists
                             }
                         }
                     }
