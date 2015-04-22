@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using InvoiceFinder.BackEnd;
 
 using PPG.AC.NA.SS.SSUtilities; //Add reference to PPG DLL PPG.AC.NA.SS.SSUtilities.DLL
-using System.IO.Compression;    //Add reference to .NET Assempbly System.IO.Compression and System.IO.Compression.FileSystem
+    //Add reference to .NET Assempbly System.IO.Compression and System.IO.Compression.FileSystem
 
 namespace InvoiceFinder
 {
@@ -38,9 +38,8 @@ namespace InvoiceFinder
                     for (int i = 0; i < results.Count; i++)
                     {
                         string output = output_path + results[i].File_name;
-                        File.Copy(results[i].Final_destination, output);
+                        File.Copy(results[i].Final_destination + results[i].File_name, output);
                     }
-
 
                 }
                 else if (output_type == 1)//Concatenated PDF
@@ -51,10 +50,10 @@ namespace InvoiceFinder
 
                     for (int i = 0; i < results.Count; i++)
                     {
-                        pdfFileNames.Add(results[i].Final_destination);
+                        pdfFileNames.Add(results[i].Final_destination + results[i].File_name);
                     }
 
-                    _pdfUtility.ConcatenateFiles(pdfFileNames.ToArray(), output_path);
+                    _pdfUtility.ConcatenateFiles(pdfFileNames.ToArray(), output_path + @"\concatenated.pdf");
                 }
                 else//Zip folder
                 {
@@ -64,22 +63,23 @@ namespace InvoiceFinder
                     //destinationArchiveFileName: The path of the archive to be created, specified as a relative or absolute path. 
                     //                            A relative path is interpreted as relative to the current working directory.
 
-                    string folder_location = output_path + "temp'\'";
+                    string folder_location = results[0].Final_destination + @"\temp_holders\temp_holder_1";
                     Console.WriteLine(folder_location);
+
                     for (int i = 0; i < results.Count; i++)
                     {
                         string output = folder_location + results[i].File_name;
-                        File.Copy(results[i].Final_destination, output);
+                        File.Copy(results[i].Final_destination + results[i].File_name, output);
                     }
 
                     string sourceDirectoryName = folder_location;
-                    string destinationArchiveFileName = output_path + "output.zip";
+                    string destinationArchiveFileName = output_path + @"\output.zip";
                     ZipFile.CreateFromDirectory(sourceDirectoryName, destinationArchiveFileName);
+
+                    
+                    
                 }
             }
-
         }
     }
 }
-
-
