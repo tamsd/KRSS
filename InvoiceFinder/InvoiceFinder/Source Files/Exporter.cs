@@ -53,7 +53,12 @@ namespace InvoiceFinder
                     foreach(Invoice inv in results){
                         pdfFileNames.Add(inv.Final_destination);
                     }
+                    try{
                     _pdfUtility.ConcatenateFiles(pdfFileNames.ToArray(), output_path + @"\concatenated.pdf"); //****add dynamic name to output file in settings
+                    }
+                    catch{
+                        //popup error deu to corrupt files
+                    }
                     export_path = output_path + @"\concatenated.pdf";
                 }
                 else//Zip folder

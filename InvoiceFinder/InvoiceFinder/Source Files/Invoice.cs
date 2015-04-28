@@ -7,6 +7,18 @@ namespace InvoiceFinder
     {
         public class Invoice
         {
+            private string string_date; //stores the string literal from the file name
+            public string String_Date{
+                get { return string_date; }
+                set { string_date = value; }
+            }
+
+            private DateTime date_time_date;
+            public DateTime Date_Time_Date{
+                get { return date_time_date;}
+                set { date_time_date = value;}
+            }
+
             private string file_name;
             public string File_name
             {

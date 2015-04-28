@@ -30,41 +30,31 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.RemoveSearch = new System.Windows.Forms.Button();
-            this.Add = new System.Windows.Forms.Button();
-            this.Invoice_Queue = new System.Windows.Forms.ListBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.Cust_ID = new System.Windows.Forms.TextBox();
-            this.Start_Date = new System.Windows.Forms.TextBox();
-            this.End_Date = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.Store_ID = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.Transaction_ID = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.Region_ID = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ResultsTab = new System.Windows.Forms.TabPage();
+            this.ResultsTable = new System.Windows.Forms.DataGridView();
+            this.File_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Store_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Customer_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Export_DGV = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Export = new System.Windows.Forms.Button();
-            this.ResultsTable = new System.Windows.Forms.TableLayoutPanel();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.ZipFolder = new System.Windows.Forms.CheckBox();
-            this.ConcPDF = new System.Windows.Forms.CheckBox();
-            this.List = new System.Windows.Forms.CheckBox();
+            this.SettingsTab = new System.Windows.Forms.TabPage();
+            this.checkedListBox_Output_Type = new System.Windows.Forms.CheckedListBox();
+            this.Edit_Output_Location_Settings = new System.Windows.Forms.Button();
+            this.Export_Location = new System.Windows.Forms.TextBox();
+            this.File_Export_Loc_Label = new System.Windows.Forms.Label();
+            this.Output_Type_Settings = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.ResultsTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ResultsTable)).BeginInit();
+            this.SettingsTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.ResultsTab);
+            this.tabControl1.Controls.Add(this.SettingsTab);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -73,22 +63,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.RemoveSearch);
-            this.tabPage1.Controls.Add(this.Add);
-            this.tabPage1.Controls.Add(this.Invoice_Queue);
-            this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.Cust_ID);
-            this.tabPage1.Controls.Add(this.Start_Date);
-            this.tabPage1.Controls.Add(this.End_Date);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.Store_ID);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.Transaction_ID);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.Region_ID);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -97,155 +71,83 @@
             this.tabPage1.Text = "Search";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // RemoveSearch
+            // ResultsTab
             // 
-            this.RemoveSearch.Location = new System.Drawing.Point(281, 17);
-            this.RemoveSearch.Name = "RemoveSearch";
-            this.RemoveSearch.Size = new System.Drawing.Size(75, 23);
-            this.RemoveSearch.TabIndex = 32;
-            this.RemoveSearch.Text = "Remove";
-            this.RemoveSearch.UseVisualStyleBackColor = true;
-            this.RemoveSearch.Click += new System.EventHandler(this.RemoveSearch_Click);
+            this.ResultsTab.Controls.Add(this.ResultsTable);
+            this.ResultsTab.Controls.Add(this.Export);
+            this.ResultsTab.Location = new System.Drawing.Point(4, 22);
+            this.ResultsTab.Name = "ResultsTab";
+            this.ResultsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ResultsTab.Size = new System.Drawing.Size(673, 635);
+            this.ResultsTab.TabIndex = 1;
+            this.ResultsTab.Text = "Results";
+            this.ResultsTab.UseVisualStyleBackColor = true;
             // 
-            // Add
+            // ResultsTable
             // 
-            this.Add.Location = new System.Drawing.Point(200, 17);
-            this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(75, 23);
-            this.Add.TabIndex = 23;
-            this.Add.Text = "Add";
-            this.Add.UseVisualStyleBackColor = true;
-            this.Add.Click += new System.EventHandler(this.Add_Click_1);
+            this.ResultsTable.AllowUserToAddRows = false;
+            this.ResultsTable.AllowUserToDeleteRows = false;
+            this.ResultsTable.AllowUserToResizeColumns = false;
+            this.ResultsTable.AllowUserToResizeRows = false;
+            this.ResultsTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.ResultsTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.ResultsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ResultsTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.File_Name,
+            this.Store_Id_DGV,
+            this.Customer_Id_DGV,
+            this.Date_DGV,
+            this.Export_DGV});
+            this.ResultsTable.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ResultsTable.Location = new System.Drawing.Point(3, 3);
+            this.ResultsTable.Name = "ResultsTable";
+            this.ResultsTable.Size = new System.Drawing.Size(559, 629);
+            this.ResultsTable.TabIndex = 2;
             // 
-            // Invoice_Queue
+            // File_Name
             // 
-            this.Invoice_Queue.FormattingEnabled = true;
-            this.Invoice_Queue.Location = new System.Drawing.Point(200, 46);
-            this.Invoice_Queue.Name = "Invoice_Queue";
-            this.Invoice_Queue.Size = new System.Drawing.Size(368, 225);
-            this.Invoice_Queue.TabIndex = 31;
+            this.File_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.File_Name.HeaderText = "File Name";
+            this.File_Name.Name = "File_Name";
+            this.File_Name.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.File_Name.Width = 79;
             // 
-            // label7
+            // Store_Id_DGV
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(57, 22);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(116, 13);
-            this.label7.TabIndex = 30;
-            this.label7.Text = "Edit Search Details";
+            this.Store_Id_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Store_Id_DGV.HeaderText = "Store ID";
+            this.Store_Id_DGV.Name = "Store_Id_DGV";
+            this.Store_Id_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Store_Id_DGV.Width = 71;
             // 
-            // label2
+            // Customer_Id_DGV
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 168);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 13);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "Region ID";
+            this.Customer_Id_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Customer_Id_DGV.HeaderText = "Customer ID";
+            this.Customer_Id_DGV.Name = "Customer_Id_DGV";
+            this.Customer_Id_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Customer_Id_DGV.Width = 90;
             // 
-            // Cust_ID
+            // Date_DGV
             // 
-            this.Cust_ID.Location = new System.Drawing.Point(94, 46);
-            this.Cust_ID.Name = "Cust_ID";
-            this.Cust_ID.Size = new System.Drawing.Size(100, 20);
-            this.Cust_ID.TabIndex = 17;
+            this.Date_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Date_DGV.HeaderText = "Date";
+            this.Date_DGV.Name = "Date_DGV";
+            this.Date_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Date_DGV.Width = 55;
             // 
-            // Start_Date
+            // Export_DGV
             // 
-            this.Start_Date.Location = new System.Drawing.Point(94, 69);
-            this.Start_Date.Name = "Start_Date";
-            this.Start_Date.Size = new System.Drawing.Size(100, 20);
-            this.Start_Date.TabIndex = 18;
-            // 
-            // End_Date
-            // 
-            this.End_Date.Location = new System.Drawing.Point(94, 92);
-            this.End_Date.Name = "End_Date";
-            this.End_Date.Size = new System.Drawing.Size(100, 20);
-            this.End_Date.TabIndex = 22;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 145);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 13);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "Transaction ID";
-            // 
-            // Store_ID
-            // 
-            this.Store_ID.Location = new System.Drawing.Point(94, 115);
-            this.Store_ID.Name = "Store_ID";
-            this.Store_ID.Size = new System.Drawing.Size(100, 20);
-            this.Store_ID.TabIndex = 21;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(46, 122);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 13);
-            this.label4.TabIndex = 27;
-            this.label4.Text = "Store ID";
-            // 
-            // Transaction_ID
-            // 
-            this.Transaction_ID.Location = new System.Drawing.Point(94, 138);
-            this.Transaction_ID.Name = "Transaction_ID";
-            this.Transaction_ID.Size = new System.Drawing.Size(100, 20);
-            this.Transaction_ID.TabIndex = 20;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(40, 99);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 13);
-            this.label5.TabIndex = 28;
-            this.label5.Text = "End Date";
-            // 
-            // Region_ID
-            // 
-            this.Region_ID.Location = new System.Drawing.Point(94, 161);
-            this.Region_ID.Name = "Region_ID";
-            this.Region_ID.Size = new System.Drawing.Size(100, 20);
-            this.Region_ID.TabIndex = 19;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(37, 76);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 13);
-            this.label6.TabIndex = 29;
-            this.label6.Text = "Start Date";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 53);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "Customer ID";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.Export);
-            this.tabPage2.Controls.Add(this.ResultsTable);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(673, 635);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Results";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.Export_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Export_DGV.DataPropertyName = "toBeExported";
+            this.Export_DGV.FalseValue = "NoExport";
+            this.Export_DGV.HeaderText = "Export";
+            this.Export_DGV.Name = "Export_DGV";
+            this.Export_DGV.TrueValue = "Export";
             // 
             // Export
             // 
-            this.Export.Location = new System.Drawing.Point(472, 426);
+            this.Export.Location = new System.Drawing.Point(592, 606);
             this.Export.Name = "Export";
             this.Export.Size = new System.Drawing.Size(75, 23);
             this.Export.TabIndex = 1;
@@ -253,73 +155,69 @@
             this.Export.UseVisualStyleBackColor = true;
             this.Export.Click += new System.EventHandler(this.Export_Click_1);
             // 
-            // ResultsTable
+            // SettingsTab
             // 
-            this.ResultsTable.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.ResultsTable.ColumnCount = 5;
-            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.05442F));
-            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.98639F));
-            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.98639F));
-            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.98639F));
-            this.ResultsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.98639F));
-            this.ResultsTable.Location = new System.Drawing.Point(6, 6);
-            this.ResultsTable.Name = "ResultsTable";
-            this.ResultsTable.RowCount = 1;
-            this.ResultsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 81F));
-            this.ResultsTable.Size = new System.Drawing.Size(661, 32);
-            this.ResultsTable.TabIndex = 0;
+            this.SettingsTab.Controls.Add(this.checkedListBox_Output_Type);
+            this.SettingsTab.Controls.Add(this.Edit_Output_Location_Settings);
+            this.SettingsTab.Controls.Add(this.Export_Location);
+            this.SettingsTab.Controls.Add(this.File_Export_Loc_Label);
+            this.SettingsTab.Controls.Add(this.Output_Type_Settings);
+            this.SettingsTab.Location = new System.Drawing.Point(4, 22);
+            this.SettingsTab.Name = "SettingsTab";
+            this.SettingsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.SettingsTab.Size = new System.Drawing.Size(673, 635);
+            this.SettingsTab.TabIndex = 2;
+            this.SettingsTab.Text = "Settings";
+            this.SettingsTab.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // checkedListBox_Output_Type
             // 
-            this.tabPage3.Controls.Add(this.textBox1);
-            this.tabPage3.Controls.Add(this.ZipFolder);
-            this.tabPage3.Controls.Add(this.ConcPDF);
-            this.tabPage3.Controls.Add(this.List);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(673, 635);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Settings";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.checkedListBox_Output_Type.AllowDrop = true;
+            this.checkedListBox_Output_Type.CausesValidation = false;
+            this.checkedListBox_Output_Type.FormattingEnabled = true;
+            this.checkedListBox_Output_Type.Items.AddRange(new object[] {
+            "List",
+            "Concatenated PDF File",
+            "Zip Folder"});
+            this.checkedListBox_Output_Type.Location = new System.Drawing.Point(21, 45);
+            this.checkedListBox_Output_Type.Name = "checkedListBox_Output_Type";
+            this.checkedListBox_Output_Type.Size = new System.Drawing.Size(118, 49);
+            this.checkedListBox_Output_Type.TabIndex = 0;
+            this.checkedListBox_Output_Type.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
-            // textBox1
+            // Edit_Output_Location_Settings
             // 
-            this.textBox1.Location = new System.Drawing.Point(66, 43);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.Text = "Output Type";
+            this.Edit_Output_Location_Settings.Location = new System.Drawing.Point(127, 149);
+            this.Edit_Output_Location_Settings.Name = "Edit_Output_Location_Settings";
+            this.Edit_Output_Location_Settings.Size = new System.Drawing.Size(75, 23);
+            this.Edit_Output_Location_Settings.TabIndex = 6;
+            this.Edit_Output_Location_Settings.Text = "Change";
+            this.Edit_Output_Location_Settings.UseVisualStyleBackColor = true;
             // 
-            // ZipFolder
+            // Export_Location
             // 
-            this.ZipFolder.AutoSize = true;
-            this.ZipFolder.Location = new System.Drawing.Point(86, 173);
-            this.ZipFolder.Name = "ZipFolder";
-            this.ZipFolder.Size = new System.Drawing.Size(70, 17);
-            this.ZipFolder.TabIndex = 6;
-            this.ZipFolder.Text = "ZipFolder";
-            this.ZipFolder.UseVisualStyleBackColor = true;
+            this.Export_Location.Location = new System.Drawing.Point(21, 151);
+            this.Export_Location.Name = "Export_Location";
+            this.Export_Location.Size = new System.Drawing.Size(100, 20);
+            this.Export_Location.TabIndex = 5;
             // 
-            // ConcPDF
+            // File_Export_Loc_Label
             // 
-            this.ConcPDF.AutoSize = true;
-            this.ConcPDF.Location = new System.Drawing.Point(86, 129);
-            this.ConcPDF.Name = "ConcPDF";
-            this.ConcPDF.Size = new System.Drawing.Size(136, 17);
-            this.ConcPDF.TabIndex = 5;
-            this.ConcPDF.Text = "Concatenated PDF File";
-            this.ConcPDF.UseVisualStyleBackColor = true;
+            this.File_Export_Loc_Label.AutoSize = true;
+            this.File_Export_Loc_Label.Location = new System.Drawing.Point(18, 135);
+            this.File_Export_Loc_Label.Name = "File_Export_Loc_Label";
+            this.File_Export_Loc_Label.Size = new System.Drawing.Size(100, 13);
+            this.File_Export_Loc_Label.TabIndex = 4;
+            this.File_Export_Loc_Label.Text = "File Export Location";
             // 
-            // List
+            // Output_Type_Settings
             // 
-            this.List.AutoSize = true;
-            this.List.Location = new System.Drawing.Point(86, 91);
-            this.List.Name = "List";
-            this.List.Size = new System.Drawing.Size(42, 17);
-            this.List.TabIndex = 4;
-            this.List.Text = "List";
-            this.List.UseVisualStyleBackColor = true;
+            this.Output_Type_Settings.AutoSize = true;
+            this.Output_Type_Settings.Location = new System.Drawing.Point(18, 28);
+            this.Output_Type_Settings.Name = "Output_Type_Settings";
+            this.Output_Type_Settings.Size = new System.Drawing.Size(66, 13);
+            this.Output_Type_Settings.TabIndex = 0;
+            this.Output_Type_Settings.Text = "Output Type";
             // 
             // MainPage
             // 
@@ -330,11 +228,10 @@
             this.Name = "MainPage";
             this.Text = "Invoice Finder";
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.ResultsTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ResultsTable)).EndInit();
+            this.SettingsTab.ResumeLayout(false);
+            this.SettingsTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -343,36 +240,26 @@
         /*tab control*/
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage ResultsTab;
+        private System.Windows.Forms.TabPage SettingsTab;
 
         /*results tab*/
-        private System.Windows.Forms.TableLayoutPanel ResultsTable;
         private System.Windows.Forms.Button Export;
 
         /*Search tab*/
-        private System.Windows.Forms.Button RemoveSearch;
-        private System.Windows.Forms.Button Add;
-        private System.Windows.Forms.ListBox Invoice_Queue;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox Cust_ID;
-        private System.Windows.Forms.TextBox Start_Date;
-        private System.Windows.Forms.TextBox End_Date;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox Store_ID;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox Transaction_ID;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox Region_ID;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label1;
 
         /*settings tab*/
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.CheckBox ZipFolder;
-        private System.Windows.Forms.CheckBox ConcPDF;
-        private System.Windows.Forms.CheckBox List;
+        private System.Windows.Forms.DataGridView ResultsTable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn File_Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Store_Id_DGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Id_DGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date_DGV;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Export_DGV;
+        private System.Windows.Forms.Button Edit_Output_Location_Settings;
+        private System.Windows.Forms.TextBox Export_Location;
+        private System.Windows.Forms.Label File_Export_Loc_Label;
+        private System.Windows.Forms.Label Output_Type_Settings;
+        private System.Windows.Forms.CheckedListBox checkedListBox_Output_Type;
     }
 }
 

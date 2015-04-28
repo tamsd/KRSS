@@ -43,6 +43,29 @@ namespace InvoiceFinder
                 
             }
 
+            private DateTime convertStringDate(string d){
+                string month = "";
+                string day = "";
+                string year = "";
+                //MMDDYYYY
+                for(int i = 0; i < d.Length; i++){
+                    if(i < 2){
+                        month += d[i];
+                    }
+                    else if(i < 4){
+                        day += d[i];
+                    }
+                    else if(i < 8){
+                        year += d[i];
+                    }
+                }
+                int mo = Convert.ToInt32(month);
+                int da = Convert.ToInt32(day);
+                int yr = Convert.ToInt32(year);
+                DateTime dt = new DateTime(yr, mo, da);
+                return dt;
+            }
+
             private void getFoldersFromSettings(){
                 stores_folder = sett.getFinalDestination();
                 archive_1 = sett.getArchiveA();
@@ -70,6 +93,8 @@ namespace InvoiceFinder
                         inv.Trans_id = invoice_attributes[2];
                         inv.Cust_id = invoice_attributes[3];
                         inv.Date = invoice_attributes[4];
+                        inv.String_Date = invoice_attributes[4];
+                        inv.Date_Time_Date = convertStringDate(invoice_attributes[4]);
                         if(f != stores_folder + "\\" + inv.Store_id){ //files parent is not a store folder aka final destination folder
                             try{
                                 string dest = stores_folder + "\\" + inv.Store_id +"\\"+ inv.File_name;
