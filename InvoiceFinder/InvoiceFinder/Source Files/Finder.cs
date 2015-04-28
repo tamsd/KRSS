@@ -118,19 +118,11 @@ namespace InvoiceFinder
                 }
             }
 
-            private string construct_search_path(ref Search searchObj, string folder) {
+            private string construct_search_path(string partial_filename, string folder) {
                 string path = "";
                 path += folder;
                 path += "\\";
-                path += searchObj.StoreID;
-                path += ".";
-                path += searchObj.RegID;
-                path += ".";
-                path += searchObj.TransID;
-                path += ".";
-                path += searchObj.CustID;
-                path += ".";
-                path += searchObj.SDate; //needs to be fixed
+                path += partial_filename;
                 path += ".pdf";
                 return path;
             }
@@ -140,20 +132,26 @@ namespace InvoiceFinder
                 //update all the search paths
                 getFoldersFromSettings();
                 string path = "";
+                List<string> file_names;
                 Search currentSearch = null;
                     //search the final destination first
                 for (int i = 0; i < searchQ.searchCount(); i++) {
                     currentSearch = searchQ.getSearch(i);
-                    string parent = stores_folder + "\\" + currentSearch.StoreID;
-                    path = construct_search_path(ref currentSearch, parent);
-                    Invoice currentInvoice = new Invoice();
-                    if (search(path, ref currentInvoice, parent))
-                    {
-                        try {
-                            results.Add(currentInvoice.File_name, currentInvoice);
-                        }
-                        catch (Exception e){
-                            //key is either null or key laredy exists
+                    file_names = currentSearch.get_filenames_list();
+                    foreach(String s in file_names){
+                        string parent = stores_folder + "\\" + currentSearch.StoreID; //what if the user doesnt know the store id? do we demand it?
+                        path = construct_search_path(s, parent);
+                        Invoice currentInvoice = new Invoice();
+                        if (search(path, ref currentInvoice, parent))
+                        {
+                            try
+                            {
+                                results.Add(currentInvoice.File_name, currentInvoice);
+                            }
+                            catch (Exception e)
+                            {
+                                //key is either null or key laredy exists
+                            }
                         }
                     }
                 }
@@ -161,34 +159,42 @@ namespace InvoiceFinder
                 for (int i = 0; i < searchQ.searchCount(); i++)
                 {
                     currentSearch = searchQ.getSearch(i);
-                    path = construct_search_path(ref currentSearch, archive_1);
-                    Invoice currentInvoice = new Invoice();
-                    if (search(path, ref currentInvoice, archive_1))
+                    file_names = currentSearch.get_filenames_list();
+                    foreach (String s in file_names)
                     {
-                        try
+                        path = construct_search_path(s, archive_1);
+                        Invoice currentInvoice = new Invoice();
+                        if (search(path, ref currentInvoice, archive_1))
                         {
-                            results.Add(currentInvoice.File_name, currentInvoice);
-                        }
-                        catch (Exception e)
-                        {
-                            //key is either null or key laredy exists
+                            try
+                            {
+                                results.Add(currentInvoice.File_name, currentInvoice);
+                            }
+                            catch (Exception e)
+                            {
+                                //key is either null or key laredy exists
+                            }
                         }
                     }
                 }
                 for (int i = 0; i < searchQ.searchCount(); i++)
                 {
                     currentSearch = searchQ.getSearch(i);
-                    path = construct_search_path(ref currentSearch, archive_2);
-                    Invoice currentInvoice = new Invoice();
-                    if (search(path, ref currentInvoice, archive_2))
+                    file_names = currentSearch.get_filenames_list();
+                    foreach (String s in file_names)
                     {
-                        try
+                        path = construct_search_path(s, archive_2);
+                        Invoice currentInvoice = new Invoice();
+                        if (search(path, ref currentInvoice, archive_2))
                         {
-                            results.Add(currentInvoice.File_name, currentInvoice);
-                        }
-                        catch (Exception e)
-                        {
-                            //key is either null or key laredy exists
+                            try
+                            {
+                                results.Add(currentInvoice.File_name, currentInvoice);
+                            }
+                            catch (Exception e)
+                            {
+                                //key is either null or key laredy exists
+                            }
                         }
                     }
                 }
@@ -199,17 +205,21 @@ namespace InvoiceFinder
                     for (int i = 0; i < searchQ.searchCount(); i++)
                     {
                         currentSearch = searchQ.getSearch(i);
-                        path = construct_search_path(ref currentSearch, other_folders[k]);
-                        Invoice currentInvoice = new Invoice();
-                        if (search(path, ref currentInvoice, other_folders[k]))
+                        file_names = currentSearch.get_filenames_list();
+                        foreach (String s in file_names)
                         {
-                            try
+                            path = construct_search_path(s, other_folders[k]);
+                            Invoice currentInvoice = new Invoice();
+                            if (search(path, ref currentInvoice, other_folders[k]))
                             {
-                                results.Add(currentInvoice.File_name, currentInvoice);
-                            }
-                            catch (Exception e)
-                            {
-                                //key is either null or key already exists
+                                try
+                                {
+                                    results.Add(currentInvoice.File_name, currentInvoice);
+                                }
+                                catch (Exception e)
+                                {
+                                    //key is either null or key laredy exists
+                                }
                             }
                         }
                     }

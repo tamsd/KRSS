@@ -71,6 +71,21 @@ namespace InvoiceFinder
                 }
             }
 
+            private DateTime dt_sDate;
+            public DateTime Dt_sDate{
+                get { return dt_sDate; }
+                set { dt_sDate = value; }
+            }
+
+            private DateTime dt_eDate;
+            public DateTime Dt_eDate
+            {
+                get { return dt_eDate; }
+                set { dt_eDate = value; }
+            }
+
+            List<string> file_names;
+
             //Default constructor
             public Search() {
                 transID = null;
@@ -79,10 +94,12 @@ namespace InvoiceFinder
                 regID = null;
                 sDate = null;
                 eDate = null;
+                List<string> file_names = new List<string>();
             }
 
             //Single Args cosntructor
             public Search(string s) {
+                file_names = new List<string>();
                 char[] delims = {'.'};
                 string[] parts = s.Split(delims);
                 storeID = parts[0];
@@ -91,6 +108,25 @@ namespace InvoiceFinder
                 custID = parts[3];
                 sDate = parts[4];
                 eDate = parts[5];
+                dt_sDate = convertStringDate(sDate);
+                dt_eDate = convertStringDate(eDate);
+
+                /*Based on input create all possible filenames that need to be searched for*/
+                string filename = storeID + "." + regID + "." + transID + "." + custID + "."; //does not have date or extension yet
+                if(eDate != "*"){
+                    DateTime d = dt_sDate;
+                    string string_date = "";
+                    while(d <= dt_eDate){
+                        string_date = convertDateTimeDate(d);
+                        string temp_filename = filename + string_date; //adds date
+                        file_names.Add(temp_filename);
+                        d = d.AddDays(1);
+                    }
+                }
+                else{
+                    filename = filename + sDate; //adds date
+                    file_names.Add(filename);
+                }
             }
 
             //Optional Parameter instructor, must name parameters entered
@@ -101,8 +137,44 @@ namespace InvoiceFinder
                 regID = register;
                 sDate = start;
                 eDate = end;
+                file_names = new List<string>();
             }
 
+            private DateTime convertStringDate(string d){
+                if(d == "*"){
+                    return new DateTime();
+                }
+                string month = "";
+                string day = "";
+                string year = "";
+                //MMDDYYYY
+                for(int i = 0; i < d.Length; i++){
+                    if(i < 2){
+                        month += d[i];
+                    }
+                    else if(i < 4){
+                        day += d[i];
+                    }
+                    else if(i < 8){
+                        year += d[i];
+                    }
+                }
+                int mo = Convert.ToInt32(month);
+                int da = Convert.ToInt32(day);
+                int yr = Convert.ToInt32(year);
+                DateTime dt = new DateTime(yr, mo, da);
+                return dt;
+            }
+
+            private string convertDateTimeDate(DateTime d){
+                string string_date = d.ToString("MMddyyyy");
+                return string_date;
+            }
+
+            public List<string> get_filenames_list(){
+                List<string> l = new List<string>(file_names);
+                return l;
+            }
             //ToString override
             public override string ToString() {
                 string s = "transID: " + transID + "\n";
