@@ -116,6 +116,9 @@ namespace InvoiceFinder
             private string archive_b;
             private string output_file_path;
             private int output_type;
+            //list of other folders
+            //lsit of srchive folders
+            //list of temp folders (red boxes)
         }
     }
 }

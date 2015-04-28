@@ -11,19 +11,20 @@ namespace InvoiceFinder
         {
             private string archive_1;
             private string archive_2;
-            private List<string> other_folders; 
+            private List<string> other_folders;
             private string stores_folder;
             private Dictionary<string, Invoice> results;  //List containing Invoice Objects created based on found path names
             private SearchQueue searchQ; //Work order of seach objects
             private Settings sett; //file paths
             private List<string> search_paths;
             /*default constructor*/
-            public Finder(){
+            public Finder()
+            {
                 searchQ = new SearchQueue();
                 results = new Dictionary<string, Invoice>();
                 other_folders = new List<string>();
                 search_paths = new List<string>();
-                    //these do not need to be set for now.
+                //these do not need to be set for now.
                 //archive_1 = @"C:\PPG\archives\archive_1"; //need to change these to get info from setting object
                 //archive_2 = @"C:\PPG\archives\archive_2";
                 //temp_folder1 = @"C:\PPG\temp_holders\temp_holder_1";
@@ -32,27 +33,33 @@ namespace InvoiceFinder
             }
 
             /*double arg constructor*/
-            public Finder(ref SearchQueue sq, ref Settings st) {
+            public Finder(ref SearchQueue sq, ref Settings st)
+            {
                 searchQ = sq;
                 sett = st;
                 results = new Dictionary<string, Invoice>();
                 other_folders = new List<string>();
-                search_paths = new List<string>();                
+                search_paths = new List<string>();
             }
 
-            private DateTime convertStringDate(string d){
+            public static DateTime convertStringDate(string d)
+            {
                 string month = "";
                 string day = "";
                 string year = "";
                 //MMDDYYYY
-                for(int i = 0; i < d.Length; i++){
-                    if(i < 2){
+                for (int i = 0; i < d.Length; i++)
+                {
+                    if (i < 2)
+                    {
                         month += d[i];
                     }
-                    else if(i < 4){
+                    else if (i < 4)
+                    {
                         day += d[i];
                     }
-                    else if(i < 8){
+                    else if (i < 8)
+                    {
                         year += d[i];
                     }
                 }
@@ -63,11 +70,13 @@ namespace InvoiceFinder
                 return dt;
             }
 
-            private void getFoldersFromSettings(){
+            private void getFoldersFromSettings()
+            {
                 stores_folder = sett.getFinalDestination();
                 archive_1 = sett.getArchiveA();
                 archive_2 = sett.getArchiveB();
-                for(int i=0; i<sett.otherPathCount(); i++){
+                for (int i = 0; i < sett.otherPathCount(); i++)
+                {
                     other_folders.Add(sett.getOtherPath(i));
                 }
             }
@@ -76,11 +85,13 @@ namespace InvoiceFinder
             //If the the file is found the invoice object's attributes are set and the function returns true signaling success 
             private bool search(string p, ref Invoice inv, string f)
             {
-                try {
-                    if(File.Exists(p)){
+                try
+                {
+                    if (File.Exists(p))
+                    {
                         inv.Discovered_path = p;
                         inv.Discovered = true;
-                        inv.Parent = f;                        
+                        inv.Parent = f;
                         string[] slash_split = p.Split(new Char[] { '\\' });
                         string filename = slash_split[slash_split.Length - 1];
                         inv.File_name = filename;
@@ -93,32 +104,39 @@ namespace InvoiceFinder
                         inv.String_Date = invoice_attributes[4];
                         inv.Date_Time_Date = convertStringDate(invoice_attributes[4]);
                         //check if in search range
-                        if(f != stores_folder + "\\" + inv.Store_id){ //files parent is not a store folder aka final destination folder
-                            try{
-                                string dest = stores_folder + "\\" + inv.Store_id +"\\"+ inv.File_name;
+                        if (f != stores_folder + "\\" + inv.Store_id)
+                        { //files parent is not a store folder aka final destination folder
+                            try
+                            {
+                                string dest = stores_folder + "\\" + inv.Store_id + "\\" + inv.File_name;
                                 File.Copy(p, dest);
                                 inv.Final_destination = dest;
                             }
-                            catch (Exception e){
+                            catch (Exception e)
+                            {
                             }
                         }
-                        else{
+                        else
+                        {
                             inv.Final_destination = inv.Discovered_path;
                         }
                         return true;
                     }
-                    else{
+                    else
+                    {
                         return false;
                     }
                 }
-                catch (Exception e) {
+                catch (Exception e)
+                {
                     inv.Discovered = false;
                     Console.WriteLine(e);
                     return false;
                 }
             }
 
-            private string construct_search_path(string partial_filename, string folder) {
+            private string construct_search_path(string partial_filename, string folder)
+            {
                 string path = "";
                 path += folder;
                 path += "\\";
@@ -128,17 +146,20 @@ namespace InvoiceFinder
             }
 
             /*iterates through searchQ and executes each search object*/
-            public Dictionary<string, Invoice> execute() {
+            public Dictionary<string, Invoice> execute()
+            {
                 //update all the search paths
                 getFoldersFromSettings();
                 string path = "";
                 List<string> file_names;
                 Search currentSearch = null;
-                    //search the final destination first
-                for (int i = 0; i < searchQ.searchCount(); i++) {
+                //search the final destination first
+                for (int i = 0; i < searchQ.searchCount(); i++)
+                {
                     currentSearch = searchQ.getSearch(i);
                     file_names = currentSearch.get_filenames_list();
-                    foreach(String s in file_names){
+                    foreach (String s in file_names)
+                    {
                         string parent = stores_folder + "\\" + currentSearch.StoreID; //what if the user doesnt know the store id? do we demand it?
                         path = construct_search_path(s, parent);
                         Invoice currentInvoice = new Invoice();
@@ -155,7 +176,7 @@ namespace InvoiceFinder
                         }
                     }
                 }
-                    //search the two archives
+                //search the two archives
                 for (int i = 0; i < searchQ.searchCount(); i++)
                 {
                     currentSearch = searchQ.getSearch(i);
