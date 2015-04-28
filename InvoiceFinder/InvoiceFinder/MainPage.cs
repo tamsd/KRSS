@@ -57,22 +57,30 @@ namespace InvoiceFinder
 
         private void Add_Single_Click_1(object sender, EventArgs e)
         {
-            string temp_s = Store_ID.Text + "." +
-                            Region_ID.Text + "." +
-                            Trans_ID.Text + "." +
-                            Cust_ID.Text + "." +
-                            Start_Date.Text + "." +
-                            End_Date.Text;
-            searchQueue.addSearch(temp_s);
+            //check that start and end dates are valid
+            if (isValidDate(Start_Date.Text) && (isValidDate(End_Date.Text) || End_Date.Text.Length == 0))
+            {
+                string temp_s = ((Store_ID.Text == "") ? "*" : Store_ID.Text) + "." +
+                                ((Region_ID.Text == "") ? "*" : Region_ID.Text) + "." +
+                                ((Trans_ID.Text == "") ? "*" : Trans_ID.Text) + "." +
+                                ((Cust_ID.Text == "") ? "*" : Cust_ID.Text) + "." +
+                                Start_Date.Text + "." +
+                                ((End_Date.Text == "") ? "*" : End_Date.Text);
+                searchQueue.addSearch(temp_s);
 
-            End_Date.Clear();
-            Cust_ID.Clear();
-            Start_Date.Clear();
-            Store_ID.Clear();
-            Trans_ID.Clear();
-            Region_ID.Clear();
+                End_Date.Clear();
+                Cust_ID.Clear();
+                Start_Date.Clear();
+                Store_ID.Clear();
+                Trans_ID.Clear();
+                Region_ID.Clear();
 
-            update_GUI_queue();
+                update_GUI_queue();
+            }
+            else
+            {
+                Date_Entry_Error_Label.Visible = true;
+            }
 
         }
 
@@ -107,6 +115,16 @@ namespace InvoiceFinder
 
                 update_GUI_queue();
             }
+        }
+
+        private void Start_Date_TextChanged(object sender, EventArgs e)
+        {
+            Date_Entry_Error_Label.Visible = false;
+        }
+
+        private void End_Date_TextChanged(object sender, EventArgs e)
+        {
+            Date_Entry_Error_Label.Visible = false;
         }
 
         private void Multiple_Entry_Text_Box_TextChanged(object sender, EventArgs e)
@@ -179,6 +197,7 @@ namespace InvoiceFinder
         {
             if (searchQueue.searchCount() > 0)
             {
+
                 int index = dataGridView1.CurrentRow.Index;
                 EditSearchDialogue dialog = new EditSearchDialogue();
                 dialog.Edit_Cust_ID_in = searchQueue.getSearch(index).CustID;
@@ -192,11 +211,11 @@ namespace InvoiceFinder
                 {
                     searchQueue.deleteSearch(index);
                     searchQueue.addSearch(dialog.Edit_Store_ID_in + "." +
-                                          dialog.Edit_Region_ID_in + "." +
-                                          dialog.Edit_Trans_ID_in + "." +
-                                          dialog.Edit_Cust_ID_in + "." +
-                                          dialog.Edit_Start_Date_in + "." +
-                                          dialog.Edit_End_Date_in);
+                                            dialog.Edit_Region_ID_in + "." +
+                                            dialog.Edit_Trans_ID_in + "." +
+                                            dialog.Edit_Cust_ID_in + "." +
+                                            dialog.Edit_Start_Date_in + "." +
+                                            dialog.Edit_End_Date_in);
                     searchQueue.moveSearch(searchQueue.searchCount() - 1, index);
 
                 }
@@ -217,6 +236,30 @@ namespace InvoiceFinder
             }
         }
 
+        public static bool isValidDate(string s)
+        {
+            if (s.Length != 8)
+            {
+                return false;
+            }
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (!Char.IsDigit(s[i]))
+                {
+                    return false;
+                }
+            }
+            try
+            {
+                Finder.convertStringDate(s);
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+
         private void Search_Button_Click(object sender, EventArgs e)
         {
             find.execute();
@@ -232,7 +275,6 @@ namespace InvoiceFinder
         {
 
         }
-
         /***************End Search Tab***************/
 
         /***************Settings Tab***************/
@@ -257,7 +299,7 @@ namespace InvoiceFinder
                     break;
             }
         }
-               
+  
 
         /***************End Settings Tab***************/
     }

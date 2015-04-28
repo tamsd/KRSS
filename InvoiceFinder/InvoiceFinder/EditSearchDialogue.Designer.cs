@@ -42,6 +42,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.Date_Entry_Error_Label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Edit_Region_ID
@@ -79,7 +80,7 @@
             // Save_And_Close_Button
             // 
             this.Save_And_Close_Button.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.Save_And_Close_Button.Location = new System.Drawing.Point(57, 166);
+            this.Save_And_Close_Button.Location = new System.Drawing.Point(92, 166);
             this.Save_And_Close_Button.Name = "Save_And_Close_Button";
             this.Save_And_Close_Button.Size = new System.Drawing.Size(94, 22);
             this.Save_And_Close_Button.TabIndex = 57;
@@ -110,6 +111,7 @@
             this.Edit_Start_Date.Name = "Edit_Start_Date";
             this.Edit_Start_Date.Size = new System.Drawing.Size(100, 20);
             this.Edit_Start_Date.TabIndex = 52;
+            this.Edit_Start_Date.TextChanged += new System.EventHandler(this.Edit_Start_Date_TextChanged);
             // 
             // Edit_Store_ID
             // 
@@ -124,6 +126,7 @@
             this.Edit_End_Date.Name = "Edit_End_Date";
             this.Edit_End_Date.Size = new System.Drawing.Size(100, 20);
             this.Edit_End_Date.TabIndex = 53;
+            this.Edit_End_Date.TextChanged += new System.EventHandler(this.Edit_End_Date_TextChanged);
             // 
             // label4
             // 
@@ -161,11 +164,22 @@
             this.label1.TabIndex = 56;
             this.label1.Text = "Customer ID";
             // 
+            // Date_Entry_Error_Label
+            // 
+            this.Date_Entry_Error_Label.AutoSize = true;
+            this.Date_Entry_Error_Label.Location = new System.Drawing.Point(33, 170);
+            this.Date_Entry_Error_Label.Name = "Date_Entry_Error_Label";
+            this.Date_Entry_Error_Label.Size = new System.Drawing.Size(58, 13);
+            this.Date_Entry_Error_Label.TabIndex = 66;
+            this.Date_Entry_Error_Label.Text = "Date Error!";
+            this.Date_Entry_Error_Label.Visible = false;
+            // 
             // EditSearchDialogue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(197, 194);
+            this.Controls.Add(this.Date_Entry_Error_Label);
             this.Controls.Add(this.Edit_Region_ID);
             this.Controls.Add(this.Edit_Trans_ID);
             this.Controls.Add(this.Region_ID_Label);
@@ -204,5 +218,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Date_Entry_Error_Label;
     }
 }

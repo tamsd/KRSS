@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Date_Entry_Error_Label = new System.Windows.Forms.Label();
             this.Region_ID = new System.Windows.Forms.TextBox();
             this.Trans_ID = new System.Windows.Forms.TextBox();
             this.Region_ID_Label = new System.Windows.Forms.Label();
@@ -98,6 +99,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.Date_Entry_Error_Label);
             this.tabPage1.Controls.Add(this.Region_ID);
             this.tabPage1.Controls.Add(this.Trans_ID);
             this.tabPage1.Controls.Add(this.Region_ID_Label);
@@ -132,6 +134,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Search";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // Date_Entry_Error_Label
+            // 
+            this.Date_Entry_Error_Label.AutoSize = true;
+            this.Date_Entry_Error_Label.Location = new System.Drawing.Point(49, 175);
+            this.Date_Entry_Error_Label.Name = "Date_Entry_Error_Label";
+            this.Date_Entry_Error_Label.Size = new System.Drawing.Size(58, 13);
+            this.Date_Entry_Error_Label.TabIndex = 79;
+            this.Date_Entry_Error_Label.Text = "Date Error!";
+            this.Date_Entry_Error_Label.Visible = false;
             // 
             // Region_ID
             // 
@@ -385,6 +397,7 @@
             this.Start_Date.Name = "Start_Date";
             this.Start_Date.Size = new System.Drawing.Size(100, 20);
             this.Start_Date.TabIndex = 52;
+            this.Start_Date.TextChanged += new System.EventHandler(this.Start_Date_TextChanged);
             // 
             // Store_ID
             // 
@@ -399,6 +412,7 @@
             this.End_Date.Name = "End_Date";
             this.End_Date.Size = new System.Drawing.Size(100, 20);
             this.End_Date.TabIndex = 53;
+            this.End_Date.TextChanged += new System.EventHandler(this.End_Date_TextChanged);
             // 
             // label4
             // 
@@ -661,6 +675,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Date_Entry_Error_Label;
     }
 }
 
