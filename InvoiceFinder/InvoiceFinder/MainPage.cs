@@ -53,6 +53,9 @@ namespace InvoiceFinder
                 fileDialog.ShowDialog();
                 //**********add a setting that prevents the dialog from popping up everytime
             }
+            else{
+                MessageBox.Show("In order to export, you must set a File Export Destination in the Settings Tab");
+            }
         }
         /***************End Results Tab***************/
 
@@ -285,14 +288,7 @@ namespace InvoiceFinder
             folderDialog.ShowDialog();
             set.setOutputPath(folderDialog.SelectedPath);
             Export_Location.Text = set.getOutputPath();
-        }
-
-        private void Export_Location_TextChanged(object sender, EventArgs e)
-        {
-            //nothing
-        }
-
-               
+        }              
 
         /***************End Settings Tab***************/
     }

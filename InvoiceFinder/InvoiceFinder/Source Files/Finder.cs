@@ -16,14 +16,13 @@ namespace InvoiceFinder
             private Dictionary<string, Invoice> results;  //List containing Invoice Objects created based on found path names
             private SearchQueue searchQ; //Work order of seach objects
             private Settings sett; //file paths
-
-
+            private List<string> search_paths;
             /*default constructor*/
-            public Finder()
-            {
+            public Finder(){
                 searchQ = new SearchQueue();
                 results = new Dictionary<string, Invoice>();
                 other_folders = new List<string>();
+                search_paths = new List<string>();
                     //these do not need to be set for now.
                 //archive_1 = @"C:\PPG\archives\archive_1"; //need to change these to get info from setting object
                 //archive_2 = @"C:\PPG\archives\archive_2";
@@ -33,14 +32,12 @@ namespace InvoiceFinder
             }
 
             /*double arg constructor*/
-            public Finder(ref SearchQueue sq, ref Settings st)
-            {
+            public Finder(ref SearchQueue sq, ref Settings st) {
                 searchQ = sq;
                 sett = st;
                 results = new Dictionary<string, Invoice>();
                 other_folders = new List<string>();
-               // getFoldersFromSettings(); *redundant call unless we implement a dictioranry for the "other_folders"
-                
+                search_paths = new List<string>();                
             }
 
             private DateTime convertStringDate(string d){
@@ -142,9 +139,8 @@ namespace InvoiceFinder
             public Dictionary<string, Invoice> execute() {
                 //update all the search paths
                 getFoldersFromSettings();
-
-                Search currentSearch = null;
                 string path = "";
+                Search currentSearch = null;
                     //search the final destination first
                 for (int i = 0; i < searchQ.searchCount(); i++) {
                     currentSearch = searchQ.getSearch(i);
@@ -161,7 +157,6 @@ namespace InvoiceFinder
                         }
                     }
                 }
-          
                     //search the two archives
                 for (int i = 0; i < searchQ.searchCount(); i++)
                 {

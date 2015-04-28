@@ -564,7 +564,6 @@
             this.Export_Location.Size = new System.Drawing.Size(292, 20);
             this.Export_Location.TabIndex = 5;
             this.Export_Location.WordWrap = false;
-            this.Export_Location.TextChanged += new System.EventHandler(this.Export_Location_TextChanged);
             // 
             // File_Export_Loc_Label
             // 
