@@ -95,6 +95,7 @@ namespace InvoiceFinder
                         inv.Date = invoice_attributes[4];
                         inv.String_Date = invoice_attributes[4];
                         inv.Date_Time_Date = convertStringDate(invoice_attributes[4]);
+                        //check if in search range
                         if(f != stores_folder + "\\" + inv.Store_id){ //files parent is not a store folder aka final destination folder
                             try{
                                 string dest = stores_folder + "\\" + inv.Store_id +"\\"+ inv.File_name;

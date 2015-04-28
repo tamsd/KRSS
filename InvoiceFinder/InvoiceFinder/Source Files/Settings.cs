@@ -21,7 +21,7 @@ namespace InvoiceFinder
                 archive_a = "";
                 archive_b = "";
                 output_file_path = "";
-                output_type = 1; //needs to be changed
+                output_type = 2; //default
             }
             //sets the final destination path
             public void setFinalDestination(string file_path)

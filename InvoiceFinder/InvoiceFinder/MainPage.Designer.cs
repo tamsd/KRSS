@@ -72,11 +72,12 @@
             this.Export_DGV = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Export = new System.Windows.Forms.Button();
             this.SettingsTab = new System.Windows.Forms.TabPage();
-            this.checkedListBox_Output_Type = new System.Windows.Forms.CheckedListBox();
+            this.output_type_comboBox = new System.Windows.Forms.ComboBox();
             this.Edit_Output_Location_Settings = new System.Windows.Forms.Button();
             this.Export_Location = new System.Windows.Forms.TextBox();
             this.File_Export_Loc_Label = new System.Windows.Forms.Label();
             this.Output_Type_Settings = new System.Windows.Forms.Label();
+            this.ResultsTable_Label = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -438,6 +439,7 @@
             // 
             // ResultsTab
             // 
+            this.ResultsTab.Controls.Add(this.ResultsTable_Label);
             this.ResultsTab.Controls.Add(this.ResultsTable);
             this.ResultsTab.Controls.Add(this.Export);
             this.ResultsTab.Location = new System.Drawing.Point(4, 22);
@@ -463,10 +465,9 @@
             this.Customer_Id_DGV,
             this.Date_DGV,
             this.Export_DGV});
-            this.ResultsTable.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ResultsTable.Location = new System.Drawing.Point(3, 3);
+            this.ResultsTable.Location = new System.Drawing.Point(9, 19);
             this.ResultsTable.Name = "ResultsTable";
-            this.ResultsTable.Size = new System.Drawing.Size(559, 629);
+            this.ResultsTable.Size = new System.Drawing.Size(468, 629);
             this.ResultsTable.TabIndex = 2;
             // 
             // File_Name
@@ -522,7 +523,7 @@
             // 
             // SettingsTab
             // 
-            this.SettingsTab.Controls.Add(this.checkedListBox_Output_Type);
+            this.SettingsTab.Controls.Add(this.output_type_comboBox);
             this.SettingsTab.Controls.Add(this.Edit_Output_Location_Settings);
             this.SettingsTab.Controls.Add(this.Export_Location);
             this.SettingsTab.Controls.Add(this.File_Export_Loc_Label);
@@ -535,41 +536,40 @@
             this.SettingsTab.Text = "Settings";
             this.SettingsTab.UseVisualStyleBackColor = true;
             // 
-            // checkedListBox_Output_Type
+            // output_type_comboBox
             // 
-            this.checkedListBox_Output_Type.AllowDrop = true;
-            this.checkedListBox_Output_Type.CausesValidation = false;
-            this.checkedListBox_Output_Type.FormattingEnabled = true;
-            this.checkedListBox_Output_Type.Items.AddRange(new object[] {
-            "List",
-            "Concatenated PDF File",
-            "Zip Folder"});
-            this.checkedListBox_Output_Type.Location = new System.Drawing.Point(21, 45);
-            this.checkedListBox_Output_Type.Name = "checkedListBox_Output_Type";
-            this.checkedListBox_Output_Type.Size = new System.Drawing.Size(118, 49);
-            this.checkedListBox_Output_Type.TabIndex = 0;
-            this.checkedListBox_Output_Type.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            this.output_type_comboBox.FormattingEnabled = true;
+            this.output_type_comboBox.Location = new System.Drawing.Point(21, 45);
+            this.output_type_comboBox.Name = "output_type_comboBox";
+            this.output_type_comboBox.Size = new System.Drawing.Size(181, 21);
+            this.output_type_comboBox.TabIndex = 7;
+            this.output_type_comboBox.SelectedIndexChanged += new System.EventHandler(this.output_type_comboBox_SelectedIndexChanged);
             // 
             // Edit_Output_Location_Settings
             // 
-            this.Edit_Output_Location_Settings.Location = new System.Drawing.Point(127, 149);
+            this.Edit_Output_Location_Settings.Location = new System.Drawing.Point(21, 175);
             this.Edit_Output_Location_Settings.Name = "Edit_Output_Location_Settings";
             this.Edit_Output_Location_Settings.Size = new System.Drawing.Size(75, 23);
             this.Edit_Output_Location_Settings.TabIndex = 6;
-            this.Edit_Output_Location_Settings.Text = "Change";
+            this.Edit_Output_Location_Settings.Text = "Select";
             this.Edit_Output_Location_Settings.UseVisualStyleBackColor = true;
+            this.Edit_Output_Location_Settings.Click += new System.EventHandler(this.Edit_Output_Location_Settings_Click);
             // 
             // Export_Location
             // 
-            this.Export_Location.Location = new System.Drawing.Point(21, 151);
+            this.Export_Location.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Export_Location.Location = new System.Drawing.Point(21, 149);
             this.Export_Location.Name = "Export_Location";
-            this.Export_Location.Size = new System.Drawing.Size(100, 20);
+            this.Export_Location.ReadOnly = true;
+            this.Export_Location.Size = new System.Drawing.Size(292, 20);
             this.Export_Location.TabIndex = 5;
+            this.Export_Location.WordWrap = false;
+            this.Export_Location.TextChanged += new System.EventHandler(this.Export_Location_TextChanged);
             // 
             // File_Export_Loc_Label
             // 
             this.File_Export_Loc_Label.AutoSize = true;
-            this.File_Export_Loc_Label.Location = new System.Drawing.Point(18, 135);
+            this.File_Export_Loc_Label.Location = new System.Drawing.Point(18, 133);
             this.File_Export_Loc_Label.Name = "File_Export_Loc_Label";
             this.File_Export_Loc_Label.Size = new System.Drawing.Size(100, 13);
             this.File_Export_Loc_Label.TabIndex = 4;
@@ -584,6 +584,16 @@
             this.Output_Type_Settings.TabIndex = 0;
             this.Output_Type_Settings.Text = "Output Type";
             // 
+            // ResultsTable_Label
+            // 
+            this.ResultsTable_Label.AutoSize = true;
+            this.ResultsTable_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResultsTable_Label.Location = new System.Drawing.Point(6, 3);
+            this.ResultsTable_Label.Name = "ResultsTable_Label";
+            this.ResultsTable_Label.Size = new System.Drawing.Size(85, 13);
+            this.ResultsTable_Label.TabIndex = 3;
+            this.ResultsTable_Label.Text = "Results Table";
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -597,6 +607,7 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResultsTab.ResumeLayout(false);
+            this.ResultsTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ResultsTable)).EndInit();
             this.SettingsTab.ResumeLayout(false);
             this.SettingsTab.PerformLayout();
@@ -618,16 +629,10 @@
 
         /*settings tab*/
         private System.Windows.Forms.DataGridView ResultsTable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn File_Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Store_Id_DGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Id_DGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date_DGV;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Export_DGV;
         private System.Windows.Forms.Button Edit_Output_Location_Settings;
         private System.Windows.Forms.TextBox Export_Location;
         private System.Windows.Forms.Label File_Export_Loc_Label;
         private System.Windows.Forms.Label Output_Type_Settings;
-        private System.Windows.Forms.CheckedListBox checkedListBox_Output_Type;
         private System.Windows.Forms.TextBox Region_ID;
         private System.Windows.Forms.TextBox Trans_ID;
         private System.Windows.Forms.Label Region_ID_Label;
@@ -661,6 +666,13 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox output_type_comboBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn File_Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Store_Id_DGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Id_DGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date_DGV;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Export_DGV;
+        private System.Windows.Forms.Label ResultsTable_Label;
     }
 }
 
