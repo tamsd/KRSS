@@ -22,13 +22,13 @@ namespace InvoiceFinder
         public MainPage(ref Results r, ref SearchQueue sQueue, ref Settings st, ref Finder finder, ref Exporter exp)
         {
             InitializeComponent();
+
             searchQueue = sQueue;
             set = st;
             find = finder;
             results = r;
             exporter = exp;
             FillTable();
-            init_settings_tab();
         }
         /***************End General Variables and Cosntructor***************/
 
@@ -36,26 +36,20 @@ namespace InvoiceFinder
         /*Fills the table with the results passed in*/
         public void FillTable(){
             //int row = 1;
-            ResultsTable.Rows.Clear();
             foreach(Invoice i in results){
-                ResultsTable.Rows.Add(i.File_name,i.Store_id, i.Cust_id, i.Date_Time_Date.ToString("d"), true);
+                ResultsTable.Rows.Add(i.File_name,i.Store_id, i.Cust_id, i.Date_Time_Date.ToString(), true);
             }
         }
 
         /*Event handler for clicking export button*/
         private void Export_Click_1(object sender, EventArgs e)
         {
-            if(set.getOutputPath() != ""){
-                string export_location = exporter.export();
-                OpenFileDialog fileDialog = new OpenFileDialog();
-                fileDialog.Multiselect = true;
-                fileDialog.InitialDirectory = set.getOutputPath();
-                fileDialog.ShowDialog();
-                //**********add a setting that prevents the dialog from popping up everytime
-            }
-            else{
-                MessageBox.Show("In order to export, you must set a File Export Destination in the Settings Tab");
-            }
+            string export_location = exporter.export();
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Multiselect = true;
+            fileDialog.InitialDirectory = set.getOutputPath();
+            fileDialog.ShowDialog();
+            //**********add a setting that prevents the dialog from popping up everytime
         }
         /***************End Results Tab***************/
 
@@ -225,9 +219,7 @@ namespace InvoiceFinder
 
         private void Search_Button_Click(object sender, EventArgs e)
         {
-            Dictionary<string, Invoice> r = find.execute();
-            results.copyDictionary(r);
-            FillTable();
+            find.execute();
             tabControl1.SelectedIndex = (tabControl1.SelectedIndex + 1 < tabControl1.TabCount) ? tabControl1.SelectedIndex + 1 : tabControl1.SelectedIndex;
         }
 
@@ -244,51 +236,28 @@ namespace InvoiceFinder
         /***************End Search Tab***************/
 
         /***************Settings Tab***************/
-        private void init_settings_tab()
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            output_type_comboBox.Items.Insert(0, "List");
-            output_type_comboBox.Items.Insert(1, "Concatenated PDF File");
-            output_type_comboBox.Items.Insert(2, "Zip Folder");
-            switch(set.getOutputType()){
+            switch (checkedListBox_Output_Type.SelectedIndex)
+            {
                 case 0:
-                    output_type_comboBox.Text = "List";
+                    System.Windows.Forms.MessageBox.Show("0");
+                    set.setOutputType(0);
                     break;
                 case 1:
-                    output_type_comboBox.Text = "Concatenated PDF File";
+                    System.Windows.Forms.MessageBox.Show("1");
+                    set.setOutputType(1);
                     break;
                 case 2:
-                    output_type_comboBox.Text = "Zip Folder";
+                    System.Windows.Forms.MessageBox.Show("2");
+                    set.setOutputType(2);
                     break;
                 default:
+                    set.setOutputType(2);
                     break;
             }
-            if(set.getOutputPath() == ""){
-                Export_Location.Text = "(SELECT A FOLDER TO SAVE EXPORTS TO)";
-            }
-            else{
-                Export_Location.Text = set.getOutputPath();
-            }
         }
-
-        private void output_type_comboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            set.setOutputType(output_type_comboBox.SelectedIndex);
-        }
-
-        private void Edit_Output_Location_Settings_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
-            if(set.getOutputPath() != ""){
-                try{
-                    folderDialog.SelectedPath = set.getOutputPath();
-                }
-                catch{
-                }
-            }
-            folderDialog.ShowDialog();
-            set.setOutputPath(folderDialog.SelectedPath);
-            Export_Location.Text = set.getOutputPath();
-        }              
+               
 
         /***************End Settings Tab***************/
     }
