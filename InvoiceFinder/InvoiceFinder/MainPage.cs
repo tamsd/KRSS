@@ -42,9 +42,12 @@ namespace InvoiceFinder
             }
         }
 
+        
+
         /*Event handler for clicking export button*/
         private void Export_Click_1(object sender, EventArgs e)
         {
+            //update invoices to refelct export check boxes
             if (set.getOutputPath() != "")
             {
                 string export_location = exporter.export();

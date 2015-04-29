@@ -113,6 +113,13 @@ namespace InvoiceFinder
                     copied_to_final_destination = value;
                 }
             }
+
+            private bool export;
+            public bool Export{
+                get { return export; }
+                set { export = value; }
+            }
+
             //def constructor
             public Invoice() {
                 file_name = null;
