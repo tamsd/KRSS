@@ -29,26 +29,35 @@ namespace InvoiceFinder
             results = r;
             exporter = exp;
             FillTable();
+            init_settings_tab();
         }
         /***************End General Variables and Cosntructor***************/
 
         /***************Results Tab***************/
         /*Fills the table with the results passed in*/
         public void FillTable(){
-            //int row = 1;
+            ResultsTable.Rows.Clear();
             foreach(Invoice i in results){
-                ResultsTable.Rows.Add(i.File_name,i.Store_id, i.Cust_id, i.Date_Time_Date.ToString(), true);
+                ResultsTable.Rows.Add(i.File_name,i.Store_id, i.Cust_id, i.Date_Time_Date.ToString("d"), true);
             }
         }
 
         /*Event handler for clicking export button*/
         private void Export_Click_1(object sender, EventArgs e)
         {
-            string export_location = exporter.export();
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Multiselect = true;
-            fileDialog.InitialDirectory = set.getOutputPath();
-            fileDialog.ShowDialog();
+            if (set.getOutputPath() != "")
+            {
+                string export_location = exporter.export();
+                OpenFileDialog fileDialog = new OpenFileDialog();
+                fileDialog.Multiselect = true;
+                fileDialog.InitialDirectory = set.getOutputPath();
+                fileDialog.ShowDialog();
+                //**********add a setting that prevents the dialog from popping up everytime
+            }
+            else
+            {
+                MessageBox.Show("In order to export, you must set a File Export Destination in the Settings Tab");
+            }
             //**********add a setting that prevents the dialog from popping up everytime
         }
         /***************End Results Tab***************/
@@ -262,45 +271,60 @@ namespace InvoiceFinder
 
         private void Search_Button_Click(object sender, EventArgs e)
         {
-            find.execute();
+            Dictionary<string, Invoice> r = find.execute();
+            results.copyDictionary(r);
+            FillTable();
             tabControl1.SelectedIndex = (tabControl1.SelectedIndex + 1 < tabControl1.TabCount) ? tabControl1.SelectedIndex + 1 : tabControl1.SelectedIndex;
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
         }
         /***************End Search Tab***************/
 
         /***************Settings Tab***************/
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void init_settings_tab()
         {
-            switch (checkedListBox_Output_Type.SelectedIndex)
-            {
+            output_type_comboBox.Items.Insert(0, "List");
+            output_type_comboBox.Items.Insert(1, "Concatenated PDF File");
+            output_type_comboBox.Items.Insert(2, "Zip Folder");
+            switch(set.getOutputType()){
                 case 0:
-                    System.Windows.Forms.MessageBox.Show("0");
-                    set.setOutputType(0);
+                    output_type_comboBox.Text = "List";
                     break;
                 case 1:
-                    System.Windows.Forms.MessageBox.Show("1");
-                    set.setOutputType(1);
+                    output_type_comboBox.Text = "Concatenated PDF File";
                     break;
                 case 2:
-                    System.Windows.Forms.MessageBox.Show("2");
-                    set.setOutputType(2);
+                    output_type_comboBox.Text = "Zip Folder";
                     break;
                 default:
-                    set.setOutputType(2);
                     break;
+            } 
+            if(set.getOutputPath() == ""){
+                export_location_textBox.Text = "Select a folder to save exports to...";
+            }
+            else{
+                export_location_textBox.Text = set.getOutputPath();
             }
         }
-  
+        private void output_type_comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            set.setOutputType(output_type_comboBox.SelectedIndex);
+        }
 
+        private void export_select_button_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            if(set.getOutputPath() != ""){
+                try{
+                    folderDialog.SelectedPath = set.getOutputPath();
+                }
+                catch{
+                }
+            }
+            folderDialog.ShowDialog();
+            if(folderDialog.SelectedPath != ""){
+                set.setOutputPath(folderDialog.SelectedPath);
+                export_location_textBox.Text = set.getOutputPath();
+            }
+        }
         /***************End Settings Tab***************/
     }
 }

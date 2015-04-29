@@ -73,11 +73,11 @@
             this.Export_DGV = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Export = new System.Windows.Forms.Button();
             this.SettingsTab = new System.Windows.Forms.TabPage();
-            this.checkedListBox_Output_Type = new System.Windows.Forms.CheckedListBox();
-            this.Edit_Output_Location_Settings = new System.Windows.Forms.Button();
-            this.Export_Location = new System.Windows.Forms.TextBox();
-            this.File_Export_Loc_Label = new System.Windows.Forms.Label();
-            this.Output_Type_Settings = new System.Windows.Forms.Label();
+            this.output_type_comboBox = new System.Windows.Forms.ComboBox();
+            this.export_location_label = new System.Windows.Forms.Label();
+            this.export_select_button = new System.Windows.Forms.Button();
+            this.export_location_textBox = new System.Windows.Forms.TextBox();
+            this.export_type_label = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -536,11 +536,11 @@
             // 
             // SettingsTab
             // 
-            this.SettingsTab.Controls.Add(this.checkedListBox_Output_Type);
-            this.SettingsTab.Controls.Add(this.Edit_Output_Location_Settings);
-            this.SettingsTab.Controls.Add(this.Export_Location);
-            this.SettingsTab.Controls.Add(this.File_Export_Loc_Label);
-            this.SettingsTab.Controls.Add(this.Output_Type_Settings);
+            this.SettingsTab.Controls.Add(this.export_type_label);
+            this.SettingsTab.Controls.Add(this.export_location_textBox);
+            this.SettingsTab.Controls.Add(this.export_select_button);
+            this.SettingsTab.Controls.Add(this.export_location_label);
+            this.SettingsTab.Controls.Add(this.output_type_comboBox);
             this.SettingsTab.Location = new System.Drawing.Point(4, 22);
             this.SettingsTab.Name = "SettingsTab";
             this.SettingsTab.Padding = new System.Windows.Forms.Padding(3);
@@ -549,54 +549,53 @@
             this.SettingsTab.Text = "Settings";
             this.SettingsTab.UseVisualStyleBackColor = true;
             // 
-            // checkedListBox_Output_Type
+            // output_type_comboBox
             // 
-            this.checkedListBox_Output_Type.AllowDrop = true;
-            this.checkedListBox_Output_Type.CausesValidation = false;
-            this.checkedListBox_Output_Type.FormattingEnabled = true;
-            this.checkedListBox_Output_Type.Items.AddRange(new object[] {
-            "List",
-            "Concatenated PDF File",
-            "Zip Folder"});
-            this.checkedListBox_Output_Type.Location = new System.Drawing.Point(21, 45);
-            this.checkedListBox_Output_Type.Name = "checkedListBox_Output_Type";
-            this.checkedListBox_Output_Type.Size = new System.Drawing.Size(118, 49);
-            this.checkedListBox_Output_Type.TabIndex = 0;
-            this.checkedListBox_Output_Type.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            this.output_type_comboBox.FormattingEnabled = true;
+            this.output_type_comboBox.Location = new System.Drawing.Point(19, 37);
+            this.output_type_comboBox.Name = "output_type_comboBox";
+            this.output_type_comboBox.Size = new System.Drawing.Size(121, 21);
+            this.output_type_comboBox.TabIndex = 0;
             // 
-            // Edit_Output_Location_Settings
+            // export_location_label
             // 
-            this.Edit_Output_Location_Settings.Location = new System.Drawing.Point(127, 149);
-            this.Edit_Output_Location_Settings.Name = "Edit_Output_Location_Settings";
-            this.Edit_Output_Location_Settings.Size = new System.Drawing.Size(75, 23);
-            this.Edit_Output_Location_Settings.TabIndex = 6;
-            this.Edit_Output_Location_Settings.Text = "Change";
-            this.Edit_Output_Location_Settings.UseVisualStyleBackColor = true;
+            this.export_location_label.AutoSize = true;
+            this.export_location_label.Location = new System.Drawing.Point(16, 70);
+            this.export_location_label.Name = "export_location_label";
+            this.export_location_label.Size = new System.Drawing.Size(81, 13);
+            this.export_location_label.TabIndex = 2;
+            this.export_location_label.Text = "Export Location";
             // 
-            // Export_Location
+            // export_select_button
             // 
-            this.Export_Location.Location = new System.Drawing.Point(21, 151);
-            this.Export_Location.Name = "Export_Location";
-            this.Export_Location.Size = new System.Drawing.Size(100, 20);
-            this.Export_Location.TabIndex = 5;
+            this.export_select_button.Location = new System.Drawing.Point(19, 112);
+            this.export_select_button.Name = "export_select_button";
+            this.export_select_button.Size = new System.Drawing.Size(75, 23);
+            this.export_select_button.TabIndex = 3;
+            this.export_select_button.Text = "Select";
+            this.export_select_button.UseVisualStyleBackColor = true;
+            this.export_select_button.Click += new System.EventHandler(this.export_select_button_Click);
             // 
-            // File_Export_Loc_Label
+            // export_location_textBox
             // 
-            this.File_Export_Loc_Label.AutoSize = true;
-            this.File_Export_Loc_Label.Location = new System.Drawing.Point(18, 135);
-            this.File_Export_Loc_Label.Name = "File_Export_Loc_Label";
-            this.File_Export_Loc_Label.Size = new System.Drawing.Size(100, 13);
-            this.File_Export_Loc_Label.TabIndex = 4;
-            this.File_Export_Loc_Label.Text = "File Export Location";
+            this.export_location_textBox.BackColor = System.Drawing.SystemColors.Menu;
+            this.export_location_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.export_location_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.export_location_textBox.ForeColor = System.Drawing.Color.Gray;
+            this.export_location_textBox.Location = new System.Drawing.Point(19, 86);
+            this.export_location_textBox.Name = "export_location_textBox";
+            this.export_location_textBox.ReadOnly = true;
+            this.export_location_textBox.Size = new System.Drawing.Size(351, 20);
+            this.export_location_textBox.TabIndex = 4;
             // 
-            // Output_Type_Settings
+            // export_type_label
             // 
-            this.Output_Type_Settings.AutoSize = true;
-            this.Output_Type_Settings.Location = new System.Drawing.Point(18, 28);
-            this.Output_Type_Settings.Name = "Output_Type_Settings";
-            this.Output_Type_Settings.Size = new System.Drawing.Size(66, 13);
-            this.Output_Type_Settings.TabIndex = 0;
-            this.Output_Type_Settings.Text = "Output Type";
+            this.export_type_label.AutoSize = true;
+            this.export_type_label.Location = new System.Drawing.Point(16, 21);
+            this.export_type_label.Name = "export_type_label";
+            this.export_type_label.Size = new System.Drawing.Size(64, 13);
+            this.export_type_label.TabIndex = 5;
+            this.export_type_label.Text = "Export Type";
             // 
             // MainPage
             // 
@@ -637,11 +636,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Id_DGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date_DGV;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Export_DGV;
-        private System.Windows.Forms.Button Edit_Output_Location_Settings;
-        private System.Windows.Forms.TextBox Export_Location;
-        private System.Windows.Forms.Label File_Export_Loc_Label;
-        private System.Windows.Forms.Label Output_Type_Settings;
-        private System.Windows.Forms.CheckedListBox checkedListBox_Output_Type;
         private System.Windows.Forms.TextBox Region_ID;
         private System.Windows.Forms.TextBox Trans_ID;
         private System.Windows.Forms.Label Region_ID_Label;
@@ -676,6 +670,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Date_Entry_Error_Label;
+        private System.Windows.Forms.Label export_type_label;
+        private System.Windows.Forms.TextBox export_location_textBox;
+        private System.Windows.Forms.Button export_select_button;
+        private System.Windows.Forms.Label export_location_label;
+        private System.Windows.Forms.ComboBox output_type_comboBox;
     }
 }
 
