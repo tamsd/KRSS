@@ -1,0 +1,27 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.CompilerServices;
+//Just include all VisualBasic namespaces as references
+
+namespace Wildcard_test
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string test = "123456.222435.100900.686545.01021997.pdf";
+            string check = "######.######.222435.######.########.pdf";//should return not found, because 222435 is in the wrong location
+
+            if(Operators.LikeString(test, check, CompareMethod.Text)){
+                Console.WriteLine("Text found.");
+            }
+            else{
+                Console.WriteLine("Not found.");
+            }
+        }
+    }
+}
