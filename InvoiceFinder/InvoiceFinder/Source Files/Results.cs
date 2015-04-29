@@ -35,6 +35,11 @@ namespace InvoiceFinder
                 }
             }
 
+            /*Sets a specific invoices export boolean to either true or false*/
+            public void setInvExportValue(string key, bool b){
+                invoices[key].Export = b;
+            }
+
             /*copies contents of dictionary into invoices, whatever invoices used to contain is gone*/
             public void copyDictionary(Dictionary<string, Invoice> dict){
                 invoices = new Dictionary<string, Invoice>(dict);

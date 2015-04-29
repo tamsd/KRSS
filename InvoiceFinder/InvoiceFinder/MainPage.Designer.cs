@@ -66,18 +66,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ResultsTab = new System.Windows.Forms.TabPage();
             this.ResultsTable = new System.Windows.Forms.DataGridView();
+            this.Export = new System.Windows.Forms.Button();
+            this.SettingsTab = new System.Windows.Forms.TabPage();
+            this.export_type_label = new System.Windows.Forms.Label();
+            this.export_location_textBox = new System.Windows.Forms.TextBox();
+            this.export_select_button = new System.Windows.Forms.Button();
+            this.export_location_label = new System.Windows.Forms.Label();
+            this.output_type_comboBox = new System.Windows.Forms.ComboBox();
             this.File_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Store_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Customer_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Export_DGV = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Export = new System.Windows.Forms.Button();
-            this.SettingsTab = new System.Windows.Forms.TabPage();
-            this.output_type_comboBox = new System.Windows.Forms.ComboBox();
-            this.export_location_label = new System.Windows.Forms.Label();
-            this.export_select_button = new System.Windows.Forms.Button();
-            this.export_location_textBox = new System.Windows.Forms.TextBox();
-            this.export_type_label = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -483,6 +483,79 @@
             this.ResultsTable.Size = new System.Drawing.Size(559, 629);
             this.ResultsTable.TabIndex = 2;
             // 
+            // Export
+            // 
+            this.Export.Location = new System.Drawing.Point(592, 606);
+            this.Export.Name = "Export";
+            this.Export.Size = new System.Drawing.Size(75, 23);
+            this.Export.TabIndex = 1;
+            this.Export.Text = "Export";
+            this.Export.UseVisualStyleBackColor = true;
+            this.Export.Click += new System.EventHandler(this.Export_Click_1);
+            // 
+            // SettingsTab
+            // 
+            this.SettingsTab.Controls.Add(this.export_type_label);
+            this.SettingsTab.Controls.Add(this.export_location_textBox);
+            this.SettingsTab.Controls.Add(this.export_select_button);
+            this.SettingsTab.Controls.Add(this.export_location_label);
+            this.SettingsTab.Controls.Add(this.output_type_comboBox);
+            this.SettingsTab.Location = new System.Drawing.Point(4, 22);
+            this.SettingsTab.Name = "SettingsTab";
+            this.SettingsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.SettingsTab.Size = new System.Drawing.Size(673, 635);
+            this.SettingsTab.TabIndex = 2;
+            this.SettingsTab.Text = "Settings";
+            this.SettingsTab.UseVisualStyleBackColor = true;
+            // 
+            // export_type_label
+            // 
+            this.export_type_label.AutoSize = true;
+            this.export_type_label.Location = new System.Drawing.Point(16, 21);
+            this.export_type_label.Name = "export_type_label";
+            this.export_type_label.Size = new System.Drawing.Size(64, 13);
+            this.export_type_label.TabIndex = 5;
+            this.export_type_label.Text = "Export Type";
+            // 
+            // export_location_textBox
+            // 
+            this.export_location_textBox.BackColor = System.Drawing.SystemColors.Menu;
+            this.export_location_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.export_location_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.export_location_textBox.ForeColor = System.Drawing.Color.Gray;
+            this.export_location_textBox.Location = new System.Drawing.Point(19, 86);
+            this.export_location_textBox.Name = "export_location_textBox";
+            this.export_location_textBox.ReadOnly = true;
+            this.export_location_textBox.Size = new System.Drawing.Size(351, 20);
+            this.export_location_textBox.TabIndex = 4;
+            // 
+            // export_select_button
+            // 
+            this.export_select_button.Location = new System.Drawing.Point(19, 112);
+            this.export_select_button.Name = "export_select_button";
+            this.export_select_button.Size = new System.Drawing.Size(75, 23);
+            this.export_select_button.TabIndex = 3;
+            this.export_select_button.Text = "Select";
+            this.export_select_button.UseVisualStyleBackColor = true;
+            this.export_select_button.Click += new System.EventHandler(this.export_select_button_Click);
+            // 
+            // export_location_label
+            // 
+            this.export_location_label.AutoSize = true;
+            this.export_location_label.Location = new System.Drawing.Point(16, 70);
+            this.export_location_label.Name = "export_location_label";
+            this.export_location_label.Size = new System.Drawing.Size(81, 13);
+            this.export_location_label.TabIndex = 2;
+            this.export_location_label.Text = "Export Location";
+            // 
+            // output_type_comboBox
+            // 
+            this.output_type_comboBox.FormattingEnabled = true;
+            this.output_type_comboBox.Location = new System.Drawing.Point(19, 37);
+            this.output_type_comboBox.Name = "output_type_comboBox";
+            this.output_type_comboBox.Size = new System.Drawing.Size(121, 21);
+            this.output_type_comboBox.TabIndex = 0;
+            // 
             // File_Name
             // 
             this.File_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -518,84 +591,11 @@
             // Export_DGV
             // 
             this.Export_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Export_DGV.DataPropertyName = "toBeExported";
-            this.Export_DGV.FalseValue = "NoExport";
+            this.Export_DGV.FalseValue = "No";
             this.Export_DGV.HeaderText = "Export";
+            this.Export_DGV.IndeterminateValue = "Maybe";
             this.Export_DGV.Name = "Export_DGV";
-            this.Export_DGV.TrueValue = "Export";
-            // 
-            // Export
-            // 
-            this.Export.Location = new System.Drawing.Point(592, 606);
-            this.Export.Name = "Export";
-            this.Export.Size = new System.Drawing.Size(75, 23);
-            this.Export.TabIndex = 1;
-            this.Export.Text = "Export";
-            this.Export.UseVisualStyleBackColor = true;
-            this.Export.Click += new System.EventHandler(this.Export_Click_1);
-            // 
-            // SettingsTab
-            // 
-            this.SettingsTab.Controls.Add(this.export_type_label);
-            this.SettingsTab.Controls.Add(this.export_location_textBox);
-            this.SettingsTab.Controls.Add(this.export_select_button);
-            this.SettingsTab.Controls.Add(this.export_location_label);
-            this.SettingsTab.Controls.Add(this.output_type_comboBox);
-            this.SettingsTab.Location = new System.Drawing.Point(4, 22);
-            this.SettingsTab.Name = "SettingsTab";
-            this.SettingsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.SettingsTab.Size = new System.Drawing.Size(673, 635);
-            this.SettingsTab.TabIndex = 2;
-            this.SettingsTab.Text = "Settings";
-            this.SettingsTab.UseVisualStyleBackColor = true;
-            // 
-            // output_type_comboBox
-            // 
-            this.output_type_comboBox.FormattingEnabled = true;
-            this.output_type_comboBox.Location = new System.Drawing.Point(19, 37);
-            this.output_type_comboBox.Name = "output_type_comboBox";
-            this.output_type_comboBox.Size = new System.Drawing.Size(121, 21);
-            this.output_type_comboBox.TabIndex = 0;
-            // 
-            // export_location_label
-            // 
-            this.export_location_label.AutoSize = true;
-            this.export_location_label.Location = new System.Drawing.Point(16, 70);
-            this.export_location_label.Name = "export_location_label";
-            this.export_location_label.Size = new System.Drawing.Size(81, 13);
-            this.export_location_label.TabIndex = 2;
-            this.export_location_label.Text = "Export Location";
-            // 
-            // export_select_button
-            // 
-            this.export_select_button.Location = new System.Drawing.Point(19, 112);
-            this.export_select_button.Name = "export_select_button";
-            this.export_select_button.Size = new System.Drawing.Size(75, 23);
-            this.export_select_button.TabIndex = 3;
-            this.export_select_button.Text = "Select";
-            this.export_select_button.UseVisualStyleBackColor = true;
-            this.export_select_button.Click += new System.EventHandler(this.export_select_button_Click);
-            // 
-            // export_location_textBox
-            // 
-            this.export_location_textBox.BackColor = System.Drawing.SystemColors.Menu;
-            this.export_location_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.export_location_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.export_location_textBox.ForeColor = System.Drawing.Color.Gray;
-            this.export_location_textBox.Location = new System.Drawing.Point(19, 86);
-            this.export_location_textBox.Name = "export_location_textBox";
-            this.export_location_textBox.ReadOnly = true;
-            this.export_location_textBox.Size = new System.Drawing.Size(351, 20);
-            this.export_location_textBox.TabIndex = 4;
-            // 
-            // export_type_label
-            // 
-            this.export_type_label.AutoSize = true;
-            this.export_type_label.Location = new System.Drawing.Point(16, 21);
-            this.export_type_label.Name = "export_type_label";
-            this.export_type_label.Size = new System.Drawing.Size(64, 13);
-            this.export_type_label.TabIndex = 5;
-            this.export_type_label.Text = "Export Type";
+            this.Export_DGV.TrueValue = "Yes";
             // 
             // MainPage
             // 
@@ -631,11 +631,6 @@
 
         /*settings tab*/
         private System.Windows.Forms.DataGridView ResultsTable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn File_Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Store_Id_DGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Id_DGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date_DGV;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Export_DGV;
         private System.Windows.Forms.TextBox Region_ID;
         private System.Windows.Forms.TextBox Trans_ID;
         private System.Windows.Forms.Label Region_ID_Label;
@@ -675,6 +670,11 @@
         private System.Windows.Forms.Button export_select_button;
         private System.Windows.Forms.Label export_location_label;
         private System.Windows.Forms.ComboBox output_type_comboBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn File_Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Store_Id_DGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Id_DGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date_DGV;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Export_DGV;
     }
 }
 

@@ -38,7 +38,7 @@ namespace InvoiceFinder
         public void FillTable(){
             ResultsTable.Rows.Clear();
             foreach(Invoice i in results){
-                ResultsTable.Rows.Add(i.File_name,i.Store_id, i.Cust_id, i.Date_Time_Date.ToString("d"), true);
+                ResultsTable.Rows.Add(i.File_name,i.Store_id, i.Cust_id, i.Date_Time_Date.ToString("d"), "Yes");
             }
         }
 
@@ -47,15 +47,29 @@ namespace InvoiceFinder
         /*Event handler for clicking export button*/
         private void Export_Click_1(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow row in ResultsTable.Rows)
+            {
+                row.Cells["Export_DGV"].ValueType = typeof(string);
+                if ((string)row.Cells["Export_DGV"].Value == "Yes")
+                {
+                    string fn = row.Cells["File_Name"].Value.ToString();
+                    results.setInvExportValue(fn, true);
+                }
+                else{
+                    string fn = row.Cells["File_Name"].Value.ToString();
+                    results.setInvExportValue(fn, false);
+                }
+
+            }
             //update invoices to refelct export check boxes
             if (set.getOutputPath() != "")
             {
                 string export_location = exporter.export();
                 OpenFileDialog fileDialog = new OpenFileDialog();
                 fileDialog.Multiselect = true;
+                fileDialog.Filter = "Zip Files (*.zip)|*.zip|PDF Files (*.Pdf)|*.Pdf";
                 fileDialog.InitialDirectory = set.getOutputPath();
                 fileDialog.ShowDialog();
-                //**********add a setting that prevents the dialog from popping up everytime
             }
             else
             {

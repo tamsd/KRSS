@@ -29,6 +29,7 @@ namespace InvoiceFinder
 
             public string export()//call Settings accessor for output type
             {
+                DateTime today = DateTime.Now;
                 string export_path = "";
                 output_path = settings.getOutputPath();
                 output_type = settings.getOutputType();
@@ -36,13 +37,17 @@ namespace InvoiceFinder
                 {
                     foreach (Invoice inv in results)
                     {
-                        string output = output_path + "\\" + inv.File_name;
-                        try{
-                            File.Copy(inv.Final_destination, output);
+                        if(inv.Export){
+                            string output = output_path + "\\" + inv.File_name;
+                            try
+                            {
+                                File.Copy(inv.Final_destination, output);
+                            }
+                            catch
+                            {
+                            }
+                            export_path = output;
                         }
-                        catch{
-                        }
-                        export_path = output;
                     }
                 }
                 else if (output_type == 1)//Concatenated PDF
@@ -51,10 +56,12 @@ namespace InvoiceFinder
 
                     List<string> pdfFileNames = new List<string>();
                     foreach(Invoice inv in results){
-                        pdfFileNames.Add(inv.Final_destination);
+                        if(inv.Export){
+                            pdfFileNames.Add(inv.Final_destination);
+                        }
                     }
                     try{
-                    _pdfUtility.ConcatenateFiles(pdfFileNames.ToArray(), output_path + @"\concatenated.pdf"); //****add dynamic name to output file in settings
+                        _pdfUtility.ConcatenateFiles(pdfFileNames.ToArray(), output_path + @"\" + today.ToString("Hmmss.MMddyyyy") + ".export.pdf"); //****add dynamic name to output file in settings
                     }
                     catch{
                         //popup error deu to corrupt files
@@ -69,21 +76,31 @@ namespace InvoiceFinder
                     //destinationArchiveFileName: The path of the archive to be created, specified as a relative or absolute path. 
                     //                            A relative path is interpreted as relative to the current working directory.
 
-                    string folder_location = @"C:\zip"; //*******chanegd to some folder local to where the program is being run
-                    Console.WriteLine(folder_location);
+                    string temp_folder_location = settings.getOutputPath() + @"\zip"; //*******chanegd to some folder local to where the program is being run
+                    try{
+                        Directory.CreateDirectory(temp_folder_location);
+                    }
+                    catch{
+                    }
                     foreach (Invoice inv in results)
                     {
-                        string output = folder_location + "\\" + inv.File_name;
-                        try{
-                            File.Copy(inv.Final_destination, output);
-                        }
-                        catch{
+                        if(inv.Export){
+                            string output = temp_folder_location + "\\" + inv.File_name;
+                            try{
+                                File.Copy(inv.Final_destination, output);
+                            }
+                            catch{
+                            }
                         }
                     }
-                    string sourceDirectoryName = folder_location;
-                    string destinationArchiveFileName = output_path + @"\output.zip";//****add dynamic name to output file in settings
+                    string destinationArchiveFileName = output_path + @"\" + today.ToString("Hmmss.MMddyyyy") + ".export.zip";//****add dynamic name to output file in settings
                     try{
-                        ZipFile.CreateFromDirectory(sourceDirectoryName, destinationArchiveFileName);
+                        ZipFile.CreateFromDirectory(temp_folder_location, destinationArchiveFileName);
+                    }
+                    catch{
+                    }
+                    try{
+                        Directory.Delete(temp_folder_location, true);
                     }
                     catch{
                     }
