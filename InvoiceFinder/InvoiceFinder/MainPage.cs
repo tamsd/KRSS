@@ -35,6 +35,7 @@ namespace InvoiceFinder
             //Initialize results and settings tab
             FillTable();
             init_settings_tab();
+            init_results_tab();
         }
         /***************End General Variables and Constructor***************/
         /*
@@ -44,12 +45,19 @@ namespace InvoiceFinder
          * 
          */
         /***************Results Tab***************/
+        /*Initializes results tab components*/
+        void init_results_tab(){
+            Export_Notification_Results.Text = "";
+            output_location_valueResults.Text = set.getOutputPath();
+            output_type_valueResults.Text = output_type_comboBox.Text;
+        }
 
         /*Fills the table with the results passed in*/
         public void FillTable(){
+            ResultsTable.Columns[5].DefaultCellStyle.Format = "MM/dd/yyyy";
             ResultsTable.Rows.Clear();
             foreach(Invoice i in results){
-                ResultsTable.Rows.Add(i.File_name,i.Store_id, i.Cust_id, i.Date_Time_Date.ToString("d"), "Yes");
+                ResultsTable.Rows.Add(i.File_name,i.Store_id, i.Reg_id, i.Trans_id, i.Cust_id, i.Date_Time_Date, "Yes");
             }
         }
 
@@ -70,14 +78,36 @@ namespace InvoiceFinder
             //export selected results if output path is set
             if (set.getOutputPath() != ""){
                 string export_location = exporter.export();
-                OpenFileDialog fileDialog = new OpenFileDialog();
-                fileDialog.Multiselect = true;
-                fileDialog.Filter = "Zip Files (*.zip)|*.zip|PDF Files (*.Pdf)|*.Pdf"; //this doesnt seem to work
-                fileDialog.InitialDirectory = set.getOutputPath();
-                fileDialog.ShowDialog();
+                if(export_location != ""){
+                    Export_Notification_Results.Text = "";
+                    OpenFileDialog fileDialog = new OpenFileDialog();
+                    fileDialog.Multiselect = true;
+                    fileDialog.InitialDirectory = set.getOutputPath();
+                    fileDialog.ShowDialog();
+                }
+                else{
+                    Export_Notification_Results.Text = "Nothing Exported!";
+                }
             }
             else{
                 MessageBox.Show("In order to export, you must set a File Export Destination in the Settings Tab"); //notify user that export path is not set
+            }
+        }
+
+        /*Event handler for check all button. Checks off all Export checkboxes*/
+        private void Check_All_Results_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in ResultsTable.Rows){
+                row.Cells["Export_DGV"].Value = "Yes";
+            }
+        }
+
+        /*Event handler for uncheck all button. unchecks all Export checkboxes*/
+        private void Uncheck_All_Results_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in ResultsTable.Rows)
+            {
+                row.Cells["Export_DGV"].Value = "No";
             }
         }
 
@@ -346,6 +376,7 @@ namespace InvoiceFinder
         /* event handler for combobox changed pick */
         private void output_type_comboBox_SelectedIndexChanged_1(object sender, EventArgs e)        {
             set.setOutputType(output_type_comboBox.SelectedIndex);
+            output_type_valueResults.Text = output_type_comboBox.Text;
             return;
         }
 
@@ -364,6 +395,7 @@ namespace InvoiceFinder
             if(folderDialog.SelectedPath != ""){ //set new output path if user picked a new one
                 set.setOutputPath(folderDialog.SelectedPath);
                 export_location_textBox.Text = set.getOutputPath();
+                output_location_valueResults.Text = set.getOutputPath();
             }
             return;
         }

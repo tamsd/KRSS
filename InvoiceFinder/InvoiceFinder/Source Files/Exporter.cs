@@ -9,6 +9,7 @@ using System.IO.Compression;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using System.Threading.Tasks;
 using InvoiceFinder.BackEnd;
 using PPG.AC.NA.SS.SSUtilities;
@@ -50,6 +51,7 @@ namespace InvoiceFinder
                                 File.Copy(inv.Final_destination, output);
                             }
                             catch{
+                                MessageBox.Show("error copying");
                                 //error copying 
                             }
                             export_path = output; //set export_path to last copied file

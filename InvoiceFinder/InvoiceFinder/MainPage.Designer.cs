@@ -1,4 +1,5 @@
-﻿namespace InvoiceFinder
+﻿using System;
+namespace InvoiceFinder
 {
     partial class MainPage
     {
@@ -28,6 +29,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.Date_Entry_Error_Label = new System.Windows.Forms.Label();
@@ -65,9 +70,18 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ResultsTab = new System.Windows.Forms.TabPage();
+            this.output_location_valueResults = new System.Windows.Forms.Label();
+            this.output_type_valueResults = new System.Windows.Forms.Label();
+            this.output_location_resultsLabel = new System.Windows.Forms.Label();
+            this.export_type_resultsLabel = new System.Windows.Forms.Label();
+            this.Export_Notification_Results = new System.Windows.Forms.Label();
+            this.Uncheck_All_Results = new System.Windows.Forms.Button();
+            this.Check_All_Results = new System.Windows.Forms.Button();
             this.ResultsTable = new System.Windows.Forms.DataGridView();
             this.File_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Store_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Region_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Trans_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Customer_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Export_DGV = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -452,6 +466,13 @@
             // 
             // ResultsTab
             // 
+            this.ResultsTab.Controls.Add(this.output_location_valueResults);
+            this.ResultsTab.Controls.Add(this.output_type_valueResults);
+            this.ResultsTab.Controls.Add(this.output_location_resultsLabel);
+            this.ResultsTab.Controls.Add(this.export_type_resultsLabel);
+            this.ResultsTab.Controls.Add(this.Export_Notification_Results);
+            this.ResultsTab.Controls.Add(this.Uncheck_All_Results);
+            this.ResultsTab.Controls.Add(this.Check_All_Results);
             this.ResultsTab.Controls.Add(this.ResultsTable);
             this.ResultsTab.Controls.Add(this.Export);
             this.ResultsTab.Location = new System.Drawing.Point(4, 22);
@@ -462,25 +483,115 @@
             this.ResultsTab.Text = "Results";
             this.ResultsTab.UseVisualStyleBackColor = true;
             // 
+            // output_location_valueResults
+            // 
+            this.output_location_valueResults.AutoSize = true;
+            this.output_location_valueResults.Location = new System.Drawing.Point(93, 590);
+            this.output_location_valueResults.Name = "output_location_valueResults";
+            this.output_location_valueResults.Size = new System.Drawing.Size(12, 13);
+            this.output_location_valueResults.TabIndex = 9;
+            this.output_location_valueResults.Text = "x";
+            // 
+            // output_type_valueResults
+            // 
+            this.output_type_valueResults.AutoSize = true;
+            this.output_type_valueResults.Location = new System.Drawing.Point(93, 577);
+            this.output_type_valueResults.Name = "output_type_valueResults";
+            this.output_type_valueResults.Size = new System.Drawing.Size(12, 13);
+            this.output_type_valueResults.TabIndex = 8;
+            this.output_type_valueResults.Text = "x";
+            // 
+            // output_location_resultsLabel
+            // 
+            this.output_location_resultsLabel.AutoSize = true;
+            this.output_location_resultsLabel.Location = new System.Drawing.Point(6, 590);
+            this.output_location_resultsLabel.Name = "output_location_resultsLabel";
+            this.output_location_resultsLabel.Size = new System.Drawing.Size(86, 13);
+            this.output_location_resultsLabel.TabIndex = 7;
+            this.output_location_resultsLabel.Text = "Output Location:";
+            // 
+            // export_type_resultsLabel
+            // 
+            this.export_type_resultsLabel.AutoSize = true;
+            this.export_type_resultsLabel.Location = new System.Drawing.Point(6, 577);
+            this.export_type_resultsLabel.Name = "export_type_resultsLabel";
+            this.export_type_resultsLabel.Size = new System.Drawing.Size(69, 13);
+            this.export_type_resultsLabel.TabIndex = 6;
+            this.export_type_resultsLabel.Text = "Output Type:";
+            // 
+            // Export_Notification_Results
+            // 
+            this.Export_Notification_Results.AutoSize = true;
+            this.Export_Notification_Results.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Export_Notification_Results.Location = new System.Drawing.Point(105, 611);
+            this.Export_Notification_Results.Name = "Export_Notification_Results";
+            this.Export_Notification_Results.Size = new System.Drawing.Size(0, 13);
+            this.Export_Notification_Results.TabIndex = 5;
+            // 
+            // Uncheck_All_Results
+            // 
+            this.Uncheck_All_Results.Location = new System.Drawing.Point(592, 606);
+            this.Uncheck_All_Results.Name = "Uncheck_All_Results";
+            this.Uncheck_All_Results.Size = new System.Drawing.Size(75, 23);
+            this.Uncheck_All_Results.TabIndex = 4;
+            this.Uncheck_All_Results.Text = "Uncheck All";
+            this.Uncheck_All_Results.UseVisualStyleBackColor = true;
+            this.Uncheck_All_Results.Click += new System.EventHandler(this.Uncheck_All_Results_Click);
+            // 
+            // Check_All_Results
+            // 
+            this.Check_All_Results.Location = new System.Drawing.Point(592, 580);
+            this.Check_All_Results.Name = "Check_All_Results";
+            this.Check_All_Results.Size = new System.Drawing.Size(75, 23);
+            this.Check_All_Results.TabIndex = 3;
+            this.Check_All_Results.Text = "Check All";
+            this.Check_All_Results.UseVisualStyleBackColor = true;
+            this.Check_All_Results.Click += new System.EventHandler(this.Check_All_Results_Click);
+            // 
             // ResultsTable
             // 
             this.ResultsTable.AllowUserToAddRows = false;
             this.ResultsTable.AllowUserToDeleteRows = false;
             this.ResultsTable.AllowUserToResizeColumns = false;
             this.ResultsTable.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ResultsTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.ResultsTable.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ResultsTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.ResultsTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ResultsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.ResultsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ResultsTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.File_Name,
             this.Store_Id_DGV,
+            this.Region_Id_DGV,
+            this.Trans_Id_DGV,
             this.Customer_Id_DGV,
             this.Date_DGV,
             this.Export_DGV});
-            this.ResultsTable.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ResultsTable.Location = new System.Drawing.Point(3, 3);
+            this.ResultsTable.Location = new System.Drawing.Point(6, 6);
             this.ResultsTable.Name = "ResultsTable";
-            this.ResultsTable.Size = new System.Drawing.Size(559, 629);
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ResultsTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.ResultsTable.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.ResultsTable.Size = new System.Drawing.Size(661, 568);
             this.ResultsTable.TabIndex = 2;
             // 
             // File_Name
@@ -488,6 +599,7 @@
             this.File_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.File_Name.HeaderText = "File Name";
             this.File_Name.Name = "File_Name";
+            this.File_Name.ReadOnly = true;
             this.File_Name.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.File_Name.Width = 79;
             // 
@@ -496,14 +608,34 @@
             this.Store_Id_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Store_Id_DGV.HeaderText = "Store ID";
             this.Store_Id_DGV.Name = "Store_Id_DGV";
+            this.Store_Id_DGV.ReadOnly = true;
             this.Store_Id_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Store_Id_DGV.Width = 71;
+            // 
+            // Region_Id_DGV
+            // 
+            this.Region_Id_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Region_Id_DGV.HeaderText = "Region ID";
+            this.Region_Id_DGV.Name = "Region_Id_DGV";
+            this.Region_Id_DGV.ReadOnly = true;
+            this.Region_Id_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Region_Id_DGV.Width = 80;
+            // 
+            // Trans_Id_DGV
+            // 
+            this.Trans_Id_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Trans_Id_DGV.HeaderText = "Transaction ID";
+            this.Trans_Id_DGV.Name = "Trans_Id_DGV";
+            this.Trans_Id_DGV.ReadOnly = true;
+            this.Trans_Id_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Trans_Id_DGV.Width = 102;
             // 
             // Customer_Id_DGV
             // 
             this.Customer_Id_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Customer_Id_DGV.HeaderText = "Customer ID";
             this.Customer_Id_DGV.Name = "Customer_Id_DGV";
+            this.Customer_Id_DGV.ReadOnly = true;
             this.Customer_Id_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Customer_Id_DGV.Width = 90;
             // 
@@ -512,6 +644,7 @@
             this.Date_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Date_DGV.HeaderText = "Date";
             this.Date_DGV.Name = "Date_DGV";
+            this.Date_DGV.ReadOnly = true;
             this.Date_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Date_DGV.Width = 55;
             // 
@@ -526,9 +659,9 @@
             // 
             // Export
             // 
-            this.Export.Location = new System.Drawing.Point(592, 606);
+            this.Export.Location = new System.Drawing.Point(6, 606);
             this.Export.Name = "Export";
-            this.Export.Size = new System.Drawing.Size(75, 23);
+            this.Export.Size = new System.Drawing.Size(93, 23);
             this.Export.TabIndex = 1;
             this.Export.Text = "Export";
             this.Export.UseVisualStyleBackColor = true;
@@ -594,7 +727,7 @@
             this.output_type_comboBox.FormattingEnabled = true;
             this.output_type_comboBox.Location = new System.Drawing.Point(19, 37);
             this.output_type_comboBox.Name = "output_type_comboBox";
-            this.output_type_comboBox.Size = new System.Drawing.Size(121, 21);
+            this.output_type_comboBox.Size = new System.Drawing.Size(200, 21);
             this.output_type_comboBox.TabIndex = 0;
             this.output_type_comboBox.SelectedIndexChanged += new System.EventHandler(this.output_type_comboBox_SelectedIndexChanged_1);
             // 
@@ -611,6 +744,7 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResultsTab.ResumeLayout(false);
+            this.ResultsTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ResultsTable)).EndInit();
             this.SettingsTab.ResumeLayout(false);
             this.SettingsTab.PerformLayout();
@@ -673,9 +807,18 @@
         private System.Windows.Forms.ComboBox output_type_comboBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn File_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Store_Id_DGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Region_Id_DGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Trans_Id_DGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Id_DGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date_DGV;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Export_DGV;
+        private System.Windows.Forms.Button Uncheck_All_Results;
+        private System.Windows.Forms.Button Check_All_Results;
+        private System.Windows.Forms.Label Export_Notification_Results;
+        private System.Windows.Forms.Label output_location_valueResults;
+        private System.Windows.Forms.Label output_type_valueResults;
+        private System.Windows.Forms.Label output_location_resultsLabel;
+        private System.Windows.Forms.Label export_type_resultsLabel;
     }
 }
 
