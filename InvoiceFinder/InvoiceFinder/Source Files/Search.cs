@@ -83,9 +83,8 @@ namespace InvoiceFinder
                 get { return dt_eDate; }
                 set { dt_eDate = value; }
             }
-
             List<string> file_names;
-            //Dictionary<string, string> file_names; //key=>value >> filename=>regex pattern
+
             //Default constructor
             public Search() {
                 transID = null;
