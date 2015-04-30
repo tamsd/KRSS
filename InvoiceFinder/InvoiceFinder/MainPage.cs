@@ -101,7 +101,7 @@ namespace InvoiceFinder
                                 ((Trans_ID.Text == "") ? "*" : Trans_ID.Text) + "." +
                                 ((Cust_ID.Text == "") ? "*" : Cust_ID.Text) + "." +
                                 Start_Date.Text + "." +
-                                ((End_Date.Text == "") ? "*" : End_Date.Text);
+                                ((End_Date.Text == "" || End_Date.Text == "pdf") ? "*" : End_Date.Text);
                 searchQueue.addSearch(temp_s);
 
                 End_Date.Clear();
@@ -268,7 +268,8 @@ namespace InvoiceFinder
             for (int i = 0; i < searchQueue.searchCount(); i++)
             {
                 Search s = searchQueue.getSearch(i);
-                dataGridView1.Rows.Add(s.CustID, s.SDate, s.EDate, s.StoreID, s.TransID, s.RegID);
+                //(End_Date.Text == "") ? "*" : End_Date.Text);
+                dataGridView1.Rows.Add(s.CustID, s.Dt_sDate.ToString("d"), (s.EDate == "") ? s.EDate : s.Dt_eDate.ToString("d"), s.StoreID, s.TransID, s.RegID);
             }
         }
 

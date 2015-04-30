@@ -1,5 +1,11 @@
-﻿using System;
+﻿/*
+ * Author(s):
+ * Date:
+ * Description:
+*/
+using System;
 using System.IO;
+using System.Globalization;
 using System.Collections.Generic;
 using InvoiceFinder.BackEnd;
 
@@ -9,64 +15,43 @@ namespace InvoiceFinder
     {
         public class Finder
         {
-            private string archive_1;
-            private string archive_2;
-            private List<string> other_folders;
-            private string stores_folder;
-            private Dictionary<string, Invoice> results;  //List containing Invoice Objects created based on found path names
-            private SearchQueue searchQ; //Work order of seach objects
-            private Settings sett; //file paths
-            private List<string> search_paths;
-            /*default constructor*/
-            public Finder()
-            {
-                searchQ = new SearchQueue();
-                results = new Dictionary<string, Invoice>();
-                other_folders = new List<string>();
-                search_paths = new List<string>();
-                //these do not need to be set for now.
-                //archive_1 = @"C:\PPG\archives\archive_1"; //need to change these to get info from setting object
-                //archive_2 = @"C:\PPG\archives\archive_2";
-                //temp_folder1 = @"C:\PPG\temp_holders\temp_holder_1";
-                //temp_folder2 = @"C:\PPG\temp_holders\temp_holder_2";
-                //stores_folder = @"C:\PPG\stores";
-            }
+            private string archive_1;   //needs to be removed
+            private string archive_2;   //needs to be removed
+            private List<string> archives;                  //List of paths to archvies loaded in from settings - search folder
+            private List<string> temp_14days_folders;       //List of paths to folders that store last 14 days of invoices - search folder
+            private List<string> other_folders;             //list of folders that do not fall under category of archives, stores, or Last 14 Days folder - search folder
+            private string stores_folder;                   //Parent folder of all the store folders - search folder
+            private Dictionary<string, Invoice> results;    //Dictionay of found files key=>value is filename.pdf=>invObj 
+            private SearchQueue searchQ;                    //The Work order of seach objects
+            private Settings sett;                          //Used to get search folders
+            private List<string> search_paths;              //Stores all the possible search paths that each search object represents. main use is for date range handling
 
-            /*double arg constructor*/
+            /* default constructor intentionally empty and unused */
+            public Finder(){ }
+
+            /* double arg constructor */
             public Finder(ref SearchQueue sq, ref Settings st)
             {
                 searchQ = sq;
                 sett = st;
-                results = new Dictionary<string, Invoice>();
-                other_folders = new List<string>();
-                search_paths = new List<string>();
+                results = new Dictionary<string, Invoice>();    //will be edited by execute()
+                search_paths = new List<string>();              //will be edited by execute()
+                archives = new List<string>();                  //will be updated at start of execute()
+                temp_14days_folders = new List<string>();       //will be updated at start of execute()
+                other_folders = new List<string>();             //will be updated at start of execute()
+                stores_folder = "";                             //will be updated at start of execute()
             }
 
-            public static DateTime convertStringDate(string d)
-            {
-                string month = "";
-                string day = "";
-                string year = "";
-                //MMDDYYYY
-                for (int i = 0; i < d.Length; i++)
-                {
-                    if (i < 2)
-                    {
-                        month += d[i];
-                    }
-                    else if (i < 4)
-                    {
-                        day += d[i];
-                    }
-                    else if (i < 8)
-                    {
-                        year += d[i];
-                    }
+            /* function used to convert a string MMddyyyy to returns 01/01/0001 if error*/
+            public static DateTime convertStringDate(string d){
+                DateTime dt = new DateTime();
+                try{
+                    dt = DateTime.ParseExact(d, "MMddyyyy", new CultureInfo("en-US"));
                 }
-                int mo = Convert.ToInt32(month);
-                int da = Convert.ToInt32(day);
-                int yr = Convert.ToInt32(year);
-                DateTime dt = new DateTime(yr, mo, da);
+                catch (FormatException){
+                    //error with passed in string, not sure if we should popup msg here
+                }
+
                 return dt;
             }
 

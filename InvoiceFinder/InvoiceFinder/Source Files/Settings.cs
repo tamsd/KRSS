@@ -20,8 +20,8 @@ namespace InvoiceFinder
                 final_destination = "";
                 archive_a = "";
                 archive_b = "";
-                output_file_path = "";
-                output_type = 2; //defauilt to zip
+                output_file_path = InvoiceFinder.Properties.Settings.Default.Output_Path_Persistent;    //default on first is ""
+                output_type = InvoiceFinder.Properties.Settings.Default.Output_Type_Persistent;         //default on first load is zip
             }
             //sets the final destination path
             public void setFinalDestination(string file_path)
@@ -85,6 +85,8 @@ namespace InvoiceFinder
             
             //sets and Edits the output_file_path
             public void setOutputPath(string file_path) {
+                InvoiceFinder.Properties.Settings.Default.Output_Path_Persistent = file_path;
+                InvoiceFinder.Properties.Settings.Default.Save();
                 output_file_path = file_path;
             }
             //gets the output file path
@@ -93,6 +95,8 @@ namespace InvoiceFinder
             }
             //set the output type
             public void setOutputType(int type) {
+                InvoiceFinder.Properties.Settings.Default.Output_Type_Persistent = type;
+                InvoiceFinder.Properties.Settings.Default.Save();
                 output_type = type;
             }
             //set the output type

@@ -107,10 +107,10 @@ namespace InvoiceFinder
                 transID = parts[2];
                 custID = parts[3];
                 sDate = parts[4];
-                dt_sDate = convertStringDate(sDate);
+                dt_sDate = Finder.convertStringDate(sDate);
                 if (parts[5] != "pdf" && parts.Length > 5){
                     eDate = parts[5];
-                    dt_eDate = convertStringDate(eDate);
+                    dt_eDate = Finder.convertStringDate(eDate);
                 }
                 else{
                     eDate = "";
@@ -180,32 +180,6 @@ namespace InvoiceFinder
                 sDate = start;
                 eDate = end;
                 file_names = new List<string>();
-            }
-
-            private DateTime convertStringDate(string d){
-                if(d == "*"){
-                    return new DateTime();
-                }
-                string month = "";
-                string day = "";
-                string year = "";
-                //MMDDYYYY
-                for(int i = 0; i < d.Length; i++){
-                    if(i < 2){
-                        month += d[i];
-                    }
-                    else if(i < 4){
-                        day += d[i];
-                    }
-                    else if(i < 8){
-                        year += d[i];
-                    }
-                }
-                int mo = Convert.ToInt32(month);
-                int da = Convert.ToInt32(day);
-                int yr = Convert.ToInt32(year);
-                DateTime dt = new DateTime(yr, mo, da);
-                return dt;
             }
 
             private string convertDateTimeDate(DateTime d){
