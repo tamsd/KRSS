@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * Author(s):
+ * Date:
+ * Description:
+*/
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,26 +19,32 @@ namespace InvoiceFinder
     public partial class MainPage : Form
     {
         /***************General Variables and Cosntructor***************/
-        private Results results;
-        private SearchQueue searchQueue;
-        private Settings set;
-        private Finder find;
-        private Exporter exporter;
-        public MainPage(ref Results r, ref SearchQueue sQueue, ref Settings st, ref Finder finder, ref Exporter exp)
-        {
+        private Results results;            //references results generated after search runs
+        private SearchQueue searchQueue;    //references the search q
+        private Settings set;               //references settings
+        private Finder find;                //references finder
+        private Exporter exporter;          //references exporter
+        public MainPage(ref Results r, ref SearchQueue sQueue, ref Settings st, ref Finder finder, ref Exporter exp){ //cosntructor for MainPage form
             InitializeComponent();
-
+            //intialize Invoice Finder objects
             searchQueue = sQueue;
             set = st;
             find = finder;
             results = r;
             exporter = exp;
+            //Initialize results and settings tab
             FillTable();
             init_settings_tab();
         }
-        /***************End General Variables and Cosntructor***************/
-
+        /***************End General Variables and Constructor***************/
+        /*
+         * 
+         * 
+         * 
+         * 
+         */
         /***************Results Tab***************/
+
         /*Fills the table with the results passed in*/
         public void FillTable(){
             ResultsTable.Rows.Clear();
@@ -42,16 +53,12 @@ namespace InvoiceFinder
             }
         }
 
-        
-
         /*Event handler for clicking export button*/
-        private void Export_Click_1(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow row in ResultsTable.Rows)
-            {
+        private void Export_Click_1(object sender, EventArgs e){
+            //iterate over results and update inv.Export member variable because user may have changed check mark
+            foreach (DataGridViewRow row in ResultsTable.Rows){
                 row.Cells["Export_DGV"].ValueType = typeof(string);
-                if ((string)row.Cells["Export_DGV"].Value == "Yes")
-                {
+                if ((string)row.Cells["Export_DGV"].Value == "Yes"){
                     string fn = row.Cells["File_Name"].Value.ToString();
                     results.setInvExportValue(fn, true);
                 }
@@ -59,26 +66,29 @@ namespace InvoiceFinder
                     string fn = row.Cells["File_Name"].Value.ToString();
                     results.setInvExportValue(fn, false);
                 }
-
             }
-            //update invoices to refelct export check boxes
-            if (set.getOutputPath() != "")
-            {
+            //export selected results if output path is set
+            if (set.getOutputPath() != ""){
                 string export_location = exporter.export();
                 OpenFileDialog fileDialog = new OpenFileDialog();
                 fileDialog.Multiselect = true;
-                fileDialog.Filter = "Zip Files (*.zip)|*.zip|PDF Files (*.Pdf)|*.Pdf";
+                fileDialog.Filter = "Zip Files (*.zip)|*.zip|PDF Files (*.Pdf)|*.Pdf"; //this doesnt seem to work
                 fileDialog.InitialDirectory = set.getOutputPath();
                 fileDialog.ShowDialog();
             }
-            else
-            {
-                MessageBox.Show("In order to export, you must set a File Export Destination in the Settings Tab");
+            else{
+                MessageBox.Show("In order to export, you must set a File Export Destination in the Settings Tab"); //notify user that export path is not set
             }
-            //**********add a setting that prevents the dialog from popping up everytime
         }
-        /***************End Results Tab***************/
 
+        /***************End Results Tab***************/
+        /*
+         * 
+         * 
+         * 
+         * 
+         *         
+        /
         /***************Search Tab***************/
 
         private void Add_Single_Click_1(object sender, EventArgs e)
@@ -294,16 +304,24 @@ namespace InvoiceFinder
             tabControl1.SelectedIndex = (tabControl1.SelectedIndex + 1 < tabControl1.TabCount) ? tabControl1.SelectedIndex + 1 : tabControl1.SelectedIndex;
         }
         /***************End Search Tab***************/
-
+        /*
+         * 
+         * 
+         * 
+         * 
+         *         
+        /
         /***************Settings Tab***************/
-        private void init_settings_tab()
-        {
-            output_type_comboBox.Items.Insert(0, "List");
-            output_type_comboBox.Items.Insert(1, "Concatenated PDF File");
-            output_type_comboBox.Items.Insert(2, "Zip Folder");
-            switch(set.getOutputType()){
+
+        /* function intializes settings tab at startup */
+        private void init_settings_tab(){
+            output_type_comboBox.Items.Insert(0, "Seperate PDFs");          //Add option to combobox
+            output_type_comboBox.Items.Insert(1, "Concatenated PDF File");  //Add option to combobox
+            output_type_comboBox.Items.Insert(2, "Zip Folder");             //Add option to combobox
+
+            switch(set.getOutputType()){ //Initialize the text showing in combobox
                 case 0:
-                    output_type_comboBox.Text = "List";
+                    output_type_comboBox.Text = "Seperate PDFs";
                     break;
                 case 1:
                     output_type_comboBox.Text = "Concatenated PDF File";
@@ -314,34 +332,41 @@ namespace InvoiceFinder
                 default:
                     break;
             } 
-            if(set.getOutputPath() == ""){
+
+            if(set.getOutputPath() == ""){ //intialize the textbox showing output path
                 export_location_textBox.Text = "Select a folder to save exports to...";
             }
             else{
                 export_location_textBox.Text = set.getOutputPath();
             }
-        }
-        private void output_type_comboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            set.setOutputType(output_type_comboBox.SelectedIndex);
+            return;
         }
 
+        /* event handler for combobox changed pick */
+        private void output_type_comboBox_SelectedIndexChanged_1(object sender, EventArgs e)        {
+            set.setOutputType(output_type_comboBox.SelectedIndex);
+            return;
+        }
+
+        /* event handler for select button click */
         private void export_select_button_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            FolderBrowserDialog folderDialog = new FolderBrowserDialog(); //folder broswer dialog for pivking export save location
             if(set.getOutputPath() != ""){
-                try{
+                try{ //try to set SelectedPath to waht has already been selected just in case getOutputPath returns invalid path
                     folderDialog.SelectedPath = set.getOutputPath();
                 }
                 catch{
                 }
             }
             folderDialog.ShowDialog();
-            if(folderDialog.SelectedPath != ""){
+            if(folderDialog.SelectedPath != ""){ //set new output path if user picked a new one
                 set.setOutputPath(folderDialog.SelectedPath);
                 export_location_textBox.Text = set.getOutputPath();
             }
+            return;
         }
+
         /***************End Settings Tab***************/
     }
 }
