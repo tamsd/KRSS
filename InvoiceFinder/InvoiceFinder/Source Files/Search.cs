@@ -11,64 +11,38 @@ namespace InvoiceFinder
             //Accessors and Mutators
             private string transID;
             public string TransID {
-                set {
-                    transID = value;
-                }
-                get {
-                    return transID;
-                }
+                set { transID = value; }
+                get { return transID; }
             }
 
             private string custID;
             public string CustID {
-                set {
-                    custID = value;
-                }
-                get {
-                    return custID;
-                }
+                set { custID = value; }
+                get { return custID; }
             }
 
             private string storeID;
             public string StoreID {
-                set {
-                    storeID = value;
-                }
-                get {
-                    return storeID;
-                }
+                set {storeID = value;}
+                get {return storeID;}
             }
 
             private string regID;
             public string RegID {
-                set {
-                    regID = value;
-                }
-                get {
-                    return regID;
-                }
+                set { regID = value; }
+                get { return regID; }
             }
 
             private string sDate;
             public string SDate {
-                set
-                {
-                    sDate = value;
-                }
-                get
-                {
-                    return sDate;
-                }
+                set { sDate = value; }
+                get { return sDate; }
             }
 
             private string eDate;
             public string EDate {
-                set {
-                    eDate = value;
-                }
-                get {
-                    return eDate;
-                }
+                set { eDate = value; }
+                get { return eDate; }
             }
 
             private DateTime dt_sDate;
