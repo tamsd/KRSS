@@ -20,12 +20,21 @@ namespace InvoiceFinder
             Finder myF = new Finder(ref sQueue, ref st);
             Results myR = new Results();
             Exporter myE = new Exporter(ref st, ref myR);
-
-            st.setArchiveA(ConfigurationManager.AppSettings["Archive_a"]);
-            st.setArchiveB(ConfigurationManager.AppSettings["Archive_b"]);
-            st.setFinalDestination(ConfigurationManager.AppSettings["Store1"]);
-            st.addOtherPath(ConfigurationManager.AppSettings["temp_folder"]);
-            st.addOtherPath(ConfigurationManager.AppSettings["temp_folder2"]);
+            char[] delims = {' ', '\n', '\t', ','};
+            List<string> archives = new List<string>(ConfigurationManager.AppSettings["Archive_Folders"].Split(delims));
+            foreach(string path in archives){
+                st.addArchive_Folder(path);
+            }
+            List<string> temps = new List<string>(ConfigurationManager.AppSettings["Temp_Folders"].Split(delims));
+            foreach(string path in temps){
+                st.addArchive_Folder(path);
+            }
+            List<string> others = new List<string>(ConfigurationManager.AppSettings["Other_folders"].Split(delims));
+            foreach(string path in others){
+                st.addArchive_Folder(path);
+            }
+            st.setFinalDestination(ConfigurationManager.AppSettings["Final_Destination"]);
+            
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

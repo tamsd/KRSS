@@ -78,13 +78,6 @@ namespace InvoiceFinder
             this.Uncheck_All_Results = new System.Windows.Forms.Button();
             this.Check_All_Results = new System.Windows.Forms.Button();
             this.ResultsTable = new System.Windows.Forms.DataGridView();
-            this.File_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Store_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Region_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Trans_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Customer_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Export_DGV = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Export = new System.Windows.Forms.Button();
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.export_type_label = new System.Windows.Forms.Label();
@@ -92,6 +85,13 @@ namespace InvoiceFinder
             this.export_select_button = new System.Windows.Forms.Button();
             this.export_location_label = new System.Windows.Forms.Label();
             this.output_type_comboBox = new System.Windows.Forms.ComboBox();
+            this.File_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Store_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Region_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Trans_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Customer_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Export_DGV = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -593,69 +593,7 @@ namespace InvoiceFinder
             this.ResultsTable.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.ResultsTable.Size = new System.Drawing.Size(661, 568);
             this.ResultsTable.TabIndex = 2;
-            // 
-            // File_Name
-            // 
-            this.File_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.File_Name.HeaderText = "File Name";
-            this.File_Name.Name = "File_Name";
-            this.File_Name.ReadOnly = true;
-            this.File_Name.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.File_Name.Width = 79;
-            // 
-            // Store_Id_DGV
-            // 
-            this.Store_Id_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Store_Id_DGV.HeaderText = "Store ID";
-            this.Store_Id_DGV.Name = "Store_Id_DGV";
-            this.Store_Id_DGV.ReadOnly = true;
-            this.Store_Id_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Store_Id_DGV.Width = 71;
-            // 
-            // Region_Id_DGV
-            // 
-            this.Region_Id_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Region_Id_DGV.HeaderText = "Region ID";
-            this.Region_Id_DGV.Name = "Region_Id_DGV";
-            this.Region_Id_DGV.ReadOnly = true;
-            this.Region_Id_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Region_Id_DGV.Width = 80;
-            // 
-            // Trans_Id_DGV
-            // 
-            this.Trans_Id_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Trans_Id_DGV.HeaderText = "Transaction ID";
-            this.Trans_Id_DGV.Name = "Trans_Id_DGV";
-            this.Trans_Id_DGV.ReadOnly = true;
-            this.Trans_Id_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Trans_Id_DGV.Width = 102;
-            // 
-            // Customer_Id_DGV
-            // 
-            this.Customer_Id_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Customer_Id_DGV.HeaderText = "Customer ID";
-            this.Customer_Id_DGV.Name = "Customer_Id_DGV";
-            this.Customer_Id_DGV.ReadOnly = true;
-            this.Customer_Id_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Customer_Id_DGV.Width = 90;
-            // 
-            // Date_DGV
-            // 
-            this.Date_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Date_DGV.HeaderText = "Date";
-            this.Date_DGV.Name = "Date_DGV";
-            this.Date_DGV.ReadOnly = true;
-            this.Date_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Date_DGV.Width = 55;
-            // 
-            // Export_DGV
-            // 
-            this.Export_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Export_DGV.FalseValue = "No";
-            this.Export_DGV.HeaderText = "Export";
-            this.Export_DGV.IndeterminateValue = "Maybe";
-            this.Export_DGV.Name = "Export_DGV";
-            this.Export_DGV.TrueValue = "Yes";
+            this.ResultsTable.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.ResultsTable_CellFormatting);
             // 
             // Export
             // 
@@ -731,6 +669,70 @@ namespace InvoiceFinder
             this.output_type_comboBox.TabIndex = 0;
             this.output_type_comboBox.SelectedIndexChanged += new System.EventHandler(this.output_type_comboBox_SelectedIndexChanged_1);
             // 
+            // File_Name
+            // 
+            this.File_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.File_Name.HeaderText = "File Name";
+            this.File_Name.Name = "File_Name";
+            this.File_Name.ReadOnly = true;
+            this.File_Name.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.File_Name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.File_Name.Width = 60;
+            // 
+            // Store_Id_DGV
+            // 
+            this.Store_Id_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Store_Id_DGV.HeaderText = "Store ID";
+            this.Store_Id_DGV.Name = "Store_Id_DGV";
+            this.Store_Id_DGV.ReadOnly = true;
+            this.Store_Id_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Store_Id_DGV.Width = 71;
+            // 
+            // Region_Id_DGV
+            // 
+            this.Region_Id_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Region_Id_DGV.HeaderText = "Region ID";
+            this.Region_Id_DGV.Name = "Region_Id_DGV";
+            this.Region_Id_DGV.ReadOnly = true;
+            this.Region_Id_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Region_Id_DGV.Width = 80;
+            // 
+            // Trans_Id_DGV
+            // 
+            this.Trans_Id_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Trans_Id_DGV.HeaderText = "Transaction ID";
+            this.Trans_Id_DGV.Name = "Trans_Id_DGV";
+            this.Trans_Id_DGV.ReadOnly = true;
+            this.Trans_Id_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Trans_Id_DGV.Width = 102;
+            // 
+            // Customer_Id_DGV
+            // 
+            this.Customer_Id_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Customer_Id_DGV.HeaderText = "Customer ID";
+            this.Customer_Id_DGV.Name = "Customer_Id_DGV";
+            this.Customer_Id_DGV.ReadOnly = true;
+            this.Customer_Id_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Customer_Id_DGV.Width = 90;
+            // 
+            // Date_DGV
+            // 
+            this.Date_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Date_DGV.HeaderText = "Date";
+            this.Date_DGV.Name = "Date_DGV";
+            this.Date_DGV.ReadOnly = true;
+            this.Date_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Date_DGV.Width = 55;
+            // 
+            // Export_DGV
+            // 
+            this.Export_DGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Export_DGV.FalseValue = "No";
+            this.Export_DGV.HeaderText = "Export";
+            this.Export_DGV.IndeterminateValue = "Maybe";
+            this.Export_DGV.Name = "Export_DGV";
+            this.Export_DGV.TrueValue = "Yes";
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -805,13 +807,6 @@ namespace InvoiceFinder
         private System.Windows.Forms.Button export_select_button;
         private System.Windows.Forms.Label export_location_label;
         private System.Windows.Forms.ComboBox output_type_comboBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn File_Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Store_Id_DGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Region_Id_DGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Trans_Id_DGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Id_DGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date_DGV;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Export_DGV;
         private System.Windows.Forms.Button Uncheck_All_Results;
         private System.Windows.Forms.Button Check_All_Results;
         private System.Windows.Forms.Label Export_Notification_Results;
@@ -819,6 +814,13 @@ namespace InvoiceFinder
         private System.Windows.Forms.Label output_type_valueResults;
         private System.Windows.Forms.Label output_location_resultsLabel;
         private System.Windows.Forms.Label export_type_resultsLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn File_Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Store_Id_DGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Region_Id_DGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Trans_Id_DGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Id_DGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date_DGV;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Export_DGV;
     }
 }
 

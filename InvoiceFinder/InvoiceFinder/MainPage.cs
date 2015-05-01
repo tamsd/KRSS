@@ -57,7 +57,8 @@ namespace InvoiceFinder
             ResultsTable.Columns[5].DefaultCellStyle.Format = "MM/dd/yyyy";
             ResultsTable.Rows.Clear();
             foreach(Invoice i in results){
-                ResultsTable.Rows.Add(i.File_name,i.Store_id, i.Reg_id, i.Trans_id, i.Cust_id, i.Date_Time_Date, "Yes");
+                //ResultsTable.Rows.Add(i.File_name,i.Store_id, i.Reg_id, i.Trans_id, i.Cust_id, i.Date_Time_Date, "Yes");
+                ResultsTable.Rows.Add(i.File_name,Convert.ToInt32(i.Store_id), Convert.ToInt32(i.Reg_id), Convert.ToInt32(i.Trans_id), Convert.ToInt32(i.Cust_id), i.Date_Time_Date, "Yes");
             }
         }
 
@@ -111,6 +112,27 @@ namespace InvoiceFinder
             }
         }
 
+        /*Event handler for when data is painted to cells. Used fro formatting data with paddings*/
+        private void ResultsTable_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e){
+            int v = -1;
+            string display = "";
+            switch(this.ResultsTable.Columns[e.ColumnIndex].Name){
+                case "Store_Id_DGV":
+                    v = (int)e.Value;
+                    display = v.ToString("0000");
+                    e.Value = display;
+                    e.FormattingApplied = true;
+                    break;
+                case "Trans_Id_DGV":
+                    break;
+                case "Customer_Id_DGV":
+                    v = (int)e.Value;
+                    display = v.ToString("000000000000");
+                    e.Value = display;
+                    e.FormattingApplied = true;
+                    break;
+            }
+        }
         /***************End Results Tab***************/
         /*
          * 

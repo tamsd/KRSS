@@ -16,9 +16,9 @@ namespace InvoiceFinder
             //constructor for the settings class, initializes the private variables
             public Settings()
             {
-                Temp_Folder = new List<string>();
-                Archive_Folder = new List<string>();
-                Other_Folder = new List<string>();
+                Temp_Folders = new List<string>();
+                Archive_Folders = new List<string>();
+                Other_Folders = new List<string>();
                 final_destination = "";
                 output_file_path = InvoiceFinder.Properties.Settings.Default.Output_Path_Persistent;    //default on first is ""
                 output_type = InvoiceFinder.Properties.Settings.Default.Output_Type_Persistent;         //default on first load is zip
@@ -32,99 +32,99 @@ namespace InvoiceFinder
             public string getFinalDestination() {
                 return final_destination;
             }
-           /*Temp_Folder*/
+           /*Temp_Folders*/
             //adds another search path
             public void addTempFolder(string file_path) {
-                Temp_Folder.Add(file_path);
+                Temp_Folders.Add(file_path);
             }
             //edits index-th other search path
             public void editTempFolder(int index, string file_path)
             {
-                if (index < Temp_Folder.Count)
+                if (index < Temp_Folders.Count)
                 {
-                    Temp_Folder[index] = file_path;
+                    Temp_Folders[index] = file_path;
                 }
             }
             //deletes the index-th other path
             public void deleteTempFolder(int index)
             {
-                if (index < Temp_Folder.Count)
+                if (index < Temp_Folders.Count)
                 {
-                    Temp_Folder.RemoveAt(index);
+                    Temp_Folders.RemoveAt(index);
                 }
             }
             //gets the other path a index
             public string getTempFolder(int index) {
-                return Temp_Folder[index];
+                return Temp_Folders[index];
             }
             //return the number of other paths
-            public int Temp_FolderCount() {
-                return Temp_Folder.Count;
+            public int Temp_FoldersCount() {
+                return Temp_Folders.Count;
             }
-            /*Archive_Folder*/
+            /*Archive_Folders*/
             //adds another search path
             public void addArchive_Folder(string file_path)
             {
-                Archive_Folder.Add(file_path);
+                Archive_Folders.Add(file_path);
             }
             //edits index-th other search path
             public void editArchive_Folder(int index, string file_path)
             {
-                if (index < Archive_Folder.Count)
+                if (index < Archive_Folders.Count)
                 {
-                    Archive_Folder[index] = file_path;
+                    Archive_Folders[index] = file_path;
                 }
             }
             //deletes the index-th other path
             public void deleteArchive_Folder(int index)
             {
-                if (index < Archive_Folder.Count)
+                if (index < Archive_Folders.Count)
                 {
-                    Archive_Folder.RemoveAt(index);
+                    Archive_Folders.RemoveAt(index);
                 }
             }
             //gets the other path a index
             public string getArchive_Folder(int index)
             {
-                return Archive_Folder[index];
+                return Archive_Folders[index];
             }
             //return the number of other paths
-            public int Archive_FolderCount()
+            public int Archive_FoldersCount()
             {
-                return Archive_Folder.Count;
+                return Archive_Folders.Count;
             }
 
-            /*Other_Folder*/
+            /*Other_Folders*/
             //adds another search path
             public void addOther_Folder(string file_path)
             {
-                Other_Folder.Add(file_path);
+                Other_Folders.Add(file_path);
             }
             //edits index-th other search path
             public void editOther_Folder(int index, string file_path)
             {
-                if (index < Other_Folder.Count)
+                if (index < Other_Folders.Count)
                 {
-                    Other_Folder[index] = file_path;
+                    Other_Folders[index] = file_path;
                 }
             }
             //deletes the index-th other path
             public void deleteOther_Folder(int index)
             {
-                if (index < Other_Folder.Count)
+                if (index < Other_Folders.Count)
                 {
-                    Other_Folder.RemoveAt(index);
+                    Other_Folders.RemoveAt(index);
                 }
             }
             //gets the other path a index
             public string getOther_Folder(int index)
             {
-                return Other_Folder[index];
+                return Other_Folders[index];
             }
             //return the number of other paths
             public int Other_FolderCount()
             {
-                return Other_Folder.Count;
+                return Other_Folders.Count;
             }
 
             
@@ -165,13 +165,9 @@ namespace InvoiceFinder
             private string archive_b;
             private string output_file_path;
             private int output_type;
-            private List<string> Temp_Folder;
-            private List<string> Archive_Folder;
-            private List<string> Other_Folder;
-
-            //list of other folders
-            //lsit of srchive folders
-            //list of temp folders (red boxes)
+            private List<string> Temp_Folders;
+            private List<string> Archive_Folders;
+            private List<string> Other_Folders;
         }
     }
 }
