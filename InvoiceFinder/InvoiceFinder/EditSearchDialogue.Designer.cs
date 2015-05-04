@@ -79,7 +79,6 @@
             // 
             // Save_And_Close_Button
             // 
-            this.Save_And_Close_Button.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Save_And_Close_Button.Location = new System.Drawing.Point(92, 166);
             this.Save_And_Close_Button.Name = "Save_And_Close_Button";
             this.Save_And_Close_Button.Size = new System.Drawing.Size(94, 22);

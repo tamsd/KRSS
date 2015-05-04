@@ -143,17 +143,21 @@ namespace InvoiceFinder
         /
         /***************Search Tab***************/
 
+        //button click for adding all the information in the single entry text boxes to the searchQueue
         private void Add_Single_Click_1(object sender, EventArgs e)
         {
             //check that start and end dates are valid
-            if (isValidDate(Start_Date.Text) && (isValidDate(End_Date.Text) || End_Date.Text.Length == 0))
+            if (isValidDate(Start_Date.Text) && (isValidDate(End_Date.Text) || End_Date.Text.Length == 0) && ((Finder.convertStringDate(End_Date.Text) > Finder.convertStringDate(Start_Date.Text)) || End_Date.Text == "") && Store_ID.Text != "" &&
+                    Region_ID.Text != "" &&
+                    Trans_ID.Text != "" &&
+                    Cust_ID.Text != "")
             {
-                string temp_s = ((Store_ID.Text == "") ? "*" : Store_ID.Text) + "." +
-                                ((Region_ID.Text == "") ? "*" : Region_ID.Text) + "." +
-                                ((Trans_ID.Text == "") ? "*" : Trans_ID.Text) + "." +
-                                ((Cust_ID.Text == "") ? "*" : Cust_ID.Text) + "." +
+                string temp_s = ((Store_ID.Text == "") ? "" : Store_ID.Text) + "." +
+                                ((Region_ID.Text == "") ? "" : Region_ID.Text) + "." +
+                                ((Trans_ID.Text == "") ? "" : Trans_ID.Text) + "." +
+                                ((Cust_ID.Text == "") ? "" : Cust_ID.Text) + "." +
                                 Start_Date.Text + "." +
-                                ((End_Date.Text == "" || End_Date.Text == "pdf") ? "*" : End_Date.Text);
+                                ((End_Date.Text == "" || End_Date.Text == "pdf") ? "" : End_Date.Text);
                 searchQueue.addSearch(temp_s);
 
                 End_Date.Clear();
@@ -165,6 +169,14 @@ namespace InvoiceFinder
 
                 update_GUI_queue();
             }
+            else if (Store_ID.Text == "" ||
+                    Region_ID.Text == "" ||
+                    Trans_ID.Text == "" ||
+                    Cust_ID.Text == "")
+            {
+                Date_Entry_Error_Label.Text = "Fill Error!";
+                Date_Entry_Error_Label.Visible = true;
+            }
             else
             {
                 Date_Entry_Error_Label.Visible = true;
@@ -172,6 +184,7 @@ namespace InvoiceFinder
 
         }
 
+        //button click for adding each individual pdf name in the multiple entry text box to the seachQueue
         private void Add_Multiple_Click(object sender, EventArgs e)
         {
             char[] delims = { '\n' };
@@ -205,21 +218,55 @@ namespace InvoiceFinder
             }
         }
 
+        //when the text is changed in the Start_Date, hide the error message
         private void Start_Date_TextChanged(object sender, EventArgs e)
         {
+            Date_Entry_Error_Label.Text = "Date Error!";
             Date_Entry_Error_Label.Visible = false;
         }
 
+        //when the text is changed in the End_Date, hide the error message
         private void End_Date_TextChanged(object sender, EventArgs e)
         {
+            Date_Entry_Error_Label.Text = "Date Error!";
             Date_Entry_Error_Label.Visible = false;
         }
 
+        //when the text is changed in the Cust_ID, hide the error message
+        private void Cust_ID_TextChanged(object sender, EventArgs e)
+        {
+            Date_Entry_Error_Label.Text = "Date Error!";
+            Date_Entry_Error_Label.Visible = false;
+        }
+
+        //when the text is changed in the Store_ID, hide the error message
+        private void Store_ID_TextChanged(object sender, EventArgs e)
+        {
+            Date_Entry_Error_Label.Text = "Date Error!";
+            Date_Entry_Error_Label.Visible = false;
+        }
+
+        //when the text is changed in the Trans_ID, hide the error message
+        private void Trans_ID_TextChanged(object sender, EventArgs e)
+        {
+            Date_Entry_Error_Label.Text = "Date Error!";
+            Date_Entry_Error_Label.Visible = false;
+        }
+
+        //when the text is changed in the Region_ID, hide the error message
+        private void Region_ID_TextChanged(object sender, EventArgs e)
+        {
+            Date_Entry_Error_Label.Text = "Date Error!";
+            Date_Entry_Error_Label.Visible = false;
+        }
+
+        //when the text is changed in the Multiple Entry Text Box, hide the error message
         private void Multiple_Entry_Text_Box_TextChanged(object sender, EventArgs e)
         {
             Entry_Error_Label.Visible = false;
         }
 
+        //remove the search from the search queue which is currently seleced in the gridView
         private void RemoveSearch_Click(object sender, EventArgs e)
         {
             if (searchQueue.searchCount() > 0)
@@ -237,6 +284,7 @@ namespace InvoiceFinder
             }
         }
 
+        //button which moves the currently selected search in the gridView up one
         private void Move_Up_Button_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count > 0)
@@ -248,6 +296,7 @@ namespace InvoiceFinder
             }
         }
 
+        //button which moves the currently selected search in the gridView down one
         private void Move_Down_Button_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count > 0)
@@ -259,6 +308,7 @@ namespace InvoiceFinder
             }
         }
 
+        //button which moves the currently selected search in the gridView to the bottom
         private void Move_Top_Button_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count > 0)
@@ -270,6 +320,7 @@ namespace InvoiceFinder
             }
         }
 
+        //button which moves the currently selected search in the gridView to the top
         private void Move_Bottom_Button_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count > 0)
@@ -281,6 +332,7 @@ namespace InvoiceFinder
             }
         }
 
+        //Moves all the info from the current selection into a new edit dialog and then opens it
         private void Edit_Button_Click(object sender, EventArgs e)
         {
             if (searchQueue.searchCount() > 0)
@@ -312,6 +364,7 @@ namespace InvoiceFinder
             }
         }
 
+        //updates the gridView with all the seaches from the seachQueue
         private void update_GUI_queue()
         {
             //clear the queue
@@ -325,6 +378,7 @@ namespace InvoiceFinder
             }
         }
 
+        //checks if the string entered is a valid date string
         public static bool isValidDate(string s)
         {
             if (s.Length != 8)
@@ -349,6 +403,7 @@ namespace InvoiceFinder
             return true;
         }
 
+        //button which initiates the search function of the finder object
         private void Search_Button_Click(object sender, EventArgs e)
         {
             Dictionary<string, Invoice> r = find.execute();
