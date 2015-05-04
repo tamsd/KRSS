@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * Author(s): Ron Jenkins, Seth Loew, Kory Stansbury, Stephen Tam
+ * Date: 5/3/2015
+ * Description:  This file implements the Search class for Invoice Finder.
+*/
+
+using System;
 using System.Collections.Generic;
 
 namespace InvoiceFinder
