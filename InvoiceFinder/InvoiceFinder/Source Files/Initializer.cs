@@ -27,11 +27,11 @@ namespace InvoiceFinder
             }
             List<string> temps = new List<string>(ConfigurationManager.AppSettings["Temp_Folders"].Split(delims));
             foreach(string path in temps){
-                st.addArchive_Folder(path);
+                st.addTempFolder(path);
             }
             List<string> others = new List<string>(ConfigurationManager.AppSettings["Other_folders"].Split(delims));
             foreach(string path in others){
-                st.addArchive_Folder(path);
+                st.addOther_Folder(path);
             }
             st.setFinalDestination(ConfigurationManager.AppSettings["Final_Destination"]);
             
