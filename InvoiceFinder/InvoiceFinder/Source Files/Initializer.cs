@@ -7,7 +7,7 @@ using System.Collections.Specialized;
 
 namespace InvoiceFinder
 {
-    static class Program
+    static class Initializer
     {
         /// <summary>
         /// The main entry point for the application.

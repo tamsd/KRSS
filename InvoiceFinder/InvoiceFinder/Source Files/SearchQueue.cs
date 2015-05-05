@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections;
+//using System.Collections;
 
 namespace InvoiceFinder
 {
     namespace BackEnd
     {
-        public class SearchQueue
+        public class SearchQueue : IEnumerable<Search>
         {
             //class constructor
             public SearchQueue()
@@ -65,6 +65,15 @@ namespace InvoiceFinder
             }
             //holds all the searches
             private List<Search> searches;
+            
+
+            /*Implement Ienumerable for searches*/
+            public IEnumerator<Search> GetEnumerator() {
+                return searches.GetEnumerator();
+            }
+            System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+                return this.GetEnumerator();
+            }
 
         }
     }

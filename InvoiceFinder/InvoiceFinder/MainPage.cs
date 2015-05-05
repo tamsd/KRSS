@@ -57,8 +57,20 @@ namespace InvoiceFinder
             ResultsTable.Columns[5].DefaultCellStyle.Format = "MM/dd/yyyy";
             ResultsTable.Rows.Clear();
             foreach(Invoice i in results){
-                //ResultsTable.Rows.Add(i.File_name,i.Store_id, i.Reg_id, i.Trans_id, i.Cust_id, i.Date_Time_Date, "Yes");
                 ResultsTable.Rows.Add(i.File_name,Convert.ToInt32(i.Store_id), Convert.ToInt32(i.Reg_id), Convert.ToInt32(i.Trans_id), Convert.ToInt32(i.Cust_id), i.Date_Time_Date, "Yes");
+            }
+        }
+
+        /*Fills the "search with no results returned" dgv*/
+        public void FillTableFailedSearchDGV(){
+            failed_search_dgv.Columns[1].DefaultCellStyle.Format = "MM/dd/yyyy";
+             failed_search_dgv.Columns[2].DefaultCellStyle.Format = "MM/dd/yyyy";
+            failed_search_dgv.Rows.Clear();
+            foreach(Search s in searchQueue){
+                List<string> filenames = s.get_filenames_list();
+                if(s.No_Matches){
+                    failed_search_dgv.Rows.Add(Convert.ToInt32(s.CustID), s.Dt_sDate, (s.EDate == "") ? "" : s.Dt_eDate.ToString("d"), Convert.ToInt32(s.StoreID), Convert.ToInt32(s.TransID), Convert.ToInt32(s.RegID), (filenames.Count == 1) ? filenames[0] : "multiple");
+                }
             }
         }
 
@@ -109,28 +121,6 @@ namespace InvoiceFinder
             foreach (DataGridViewRow row in ResultsTable.Rows)
             {
                 row.Cells["Export_DGV"].Value = "No";
-            }
-        }
-
-        /*Event handler for when data is painted to cells. Used fro formatting data with paddings*/
-        private void ResultsTable_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e){
-            int v = -1;
-            string display = "";
-            switch(this.ResultsTable.Columns[e.ColumnIndex].Name){
-                case "Store_Id_DGV":
-                    v = (int)e.Value;
-                    display = v.ToString("0000");
-                    e.Value = display;
-                    e.FormattingApplied = true;
-                    break;
-                case "Trans_Id_DGV":
-                    break;
-                case "Customer_Id_DGV":
-                    v = (int)e.Value;
-                    display = v.ToString("000000000000");
-                    e.Value = display;
-                    e.FormattingApplied = true;
-                    break;
             }
         }
         /***************End Results Tab***************/
@@ -407,8 +397,10 @@ namespace InvoiceFinder
         private void Search_Button_Click(object sender, EventArgs e)
         {
             Dictionary<string, Invoice> r = find.execute();
+            results.reset();
             results.copyDictionary(r);
             FillTable();
+            FillTableFailedSearchDGV();
             tabControl1.SelectedIndex = (tabControl1.SelectedIndex + 1 < tabControl1.TabCount) ? tabControl1.SelectedIndex + 1 : tabControl1.SelectedIndex;
         }
         /***************End Search Tab***************/

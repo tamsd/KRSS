@@ -43,17 +43,6 @@ namespace InvoiceFinder
                 return dt;
             }
 
-            //private void getFoldersFromSettings()
-            //{
-            //    stores_folder = sett.getFinalDestination();
-            //    archive_1 = sett.getArchiveA();
-            //    archive_2 = sett.getArchiveB();
-            //    for (int i = 0; i < sett.otherPathCount(); i++)
-            //    {
-            //        other_folders.Add(sett.getOtherPath(i));
-            //    }
-            //}
-
             //Takes a full path p leading to a file, an invoice obj, and f - the parent of p
             //If the the file is found the invoice object's attributes are set and the function returns true signaling success 
             private bool search(string p, ref Invoice inv, string f){
@@ -73,7 +62,6 @@ namespace InvoiceFinder
                         inv.Date = invoice_attributes[4];
                         inv.String_Date = invoice_attributes[4];
                         inv.Date_Time_Date = convertStringDate(invoice_attributes[4]);
-                        //check if in search range
                         if (f != sett.getFinalDestination() + "\\" + inv.Store_id){ //files parent is not a store folder aka final destination folder
                             try{
                                 string dest = sett.getFinalDestination() + "\\" + inv.Store_id + "\\" + inv.File_name;
@@ -111,8 +99,7 @@ namespace InvoiceFinder
 
             /*iterates through searchQ and executes each search object*/
             public Dictionary<string, Invoice> execute(){
-                ////update all the search paths
-                //getFoldersFromSettings();
+                results = new Dictionary<string, Invoice>();
                 string path = "";
                 List<string> file_names;
                 Search currentSearch = null;
@@ -127,6 +114,7 @@ namespace InvoiceFinder
                         if (search(path, ref currentInvoice, parent)){
                             try{
                                 results.Add(currentInvoice.File_name, currentInvoice);
+                                currentSearch.No_Matches = false;
                             }
                             catch (Exception e){
                                 //key is either null or key laredy exists
@@ -145,6 +133,7 @@ namespace InvoiceFinder
                             if (search(path, ref currentInvoice, sett.getArchive_Folder(k))){
                                 try{
                                     results.Add(currentInvoice.File_name, currentInvoice);
+                                    currentSearch.No_Matches = false;
                                 }
                                 catch (Exception e){
                                     //key is either null or key laredy exists
@@ -153,29 +142,6 @@ namespace InvoiceFinder
                         }
                     }
                 }
-                
-                //for (int i = 0; i < searchQ.searchCount(); i++)
-                //{
-                //    currentSearch = searchQ.getSearch(i);
-                //    file_names = currentSearch.get_filenames_list();
-                //    foreach (String s in file_names)
-                //    {
-                //        path = construct_search_path(s, archive_2);
-                //        Invoice currentInvoice = new Invoice();
-                //        if (search(path, ref currentInvoice, archive_2))
-                //        {
-                //            try
-                //            {
-                //                results.Add(currentInvoice.File_name, currentInvoice);
-                //            }
-                //            catch (Exception e)
-                //            {
-                //                //key is either null or key laredy exists
-                //            }
-                //        }
-                //    }
-                //}
-
                 //search the temp folders
                 for (int k = 0; k < sett.Temp_FoldersCount(); k++){
                     for (int i = 0; i < searchQ.searchCount(); i++){
@@ -187,6 +153,7 @@ namespace InvoiceFinder
                             if (search(path, ref currentInvoice, sett.getTempFolder(k))){
                                 try{
                                     results.Add(currentInvoice.File_name, currentInvoice);
+                                    currentSearch.No_Matches = false;
                                 }
                                 catch (Exception e){
                                     //key is either null or key laredy exists
@@ -206,6 +173,7 @@ namespace InvoiceFinder
                             if (search(path, ref currentInvoice, sett.getOther_Folder(k))){
                                 try{
                                     results.Add(currentInvoice.File_name, currentInvoice);
+                                    currentSearch.No_Matches = false;
                                 }
                                 catch (Exception e){
                                     //key is either null or key laredy exists

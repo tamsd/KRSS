@@ -33,6 +33,10 @@ namespace InvoiceFinder
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.Date_Entry_Error_Label = new System.Windows.Forms.Label();
@@ -52,12 +56,6 @@ namespace InvoiceFinder
             this.Multiple_Entry_Text_Box = new System.Windows.Forms.RichTextBox();
             this.Search_Button = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Customer_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Start_Date_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.End_Date_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Store_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Transaction_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Region_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RemoveSearch = new System.Windows.Forms.Button();
             this.Add_Single = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -70,6 +68,9 @@ namespace InvoiceFinder
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ResultsTab = new System.Windows.Forms.TabPage();
+            this.failed_search_dgv = new System.Windows.Forms.DataGridView();
+            this.no_results_label_results = new System.Windows.Forms.Label();
+            this.found_invoices_label_results = new System.Windows.Forms.Label();
             this.output_location_valueResults = new System.Windows.Forms.Label();
             this.output_type_valueResults = new System.Windows.Forms.Label();
             this.output_location_resultsLabel = new System.Windows.Forms.Label();
@@ -78,13 +79,6 @@ namespace InvoiceFinder
             this.Uncheck_All_Results = new System.Windows.Forms.Button();
             this.Check_All_Results = new System.Windows.Forms.Button();
             this.ResultsTable = new System.Windows.Forms.DataGridView();
-            this.Export = new System.Windows.Forms.Button();
-            this.SettingsTab = new System.Windows.Forms.TabPage();
-            this.export_type_label = new System.Windows.Forms.Label();
-            this.export_location_textBox = new System.Windows.Forms.TextBox();
-            this.export_select_button = new System.Windows.Forms.Button();
-            this.export_location_label = new System.Windows.Forms.Label();
-            this.output_type_comboBox = new System.Windows.Forms.ComboBox();
             this.File_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Store_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Region_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,10 +86,31 @@ namespace InvoiceFinder
             this.Customer_Id_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date_DGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Export_DGV = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Export = new System.Windows.Forms.Button();
+            this.SettingsTab = new System.Windows.Forms.TabPage();
+            this.export_type_label = new System.Windows.Forms.Label();
+            this.export_location_textBox = new System.Windows.Forms.TextBox();
+            this.export_select_button = new System.Windows.Forms.Button();
+            this.export_location_label = new System.Windows.Forms.Label();
+            this.output_type_comboBox = new System.Windows.Forms.ComboBox();
+            this.custid_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sdate_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.edate_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.storeid_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.transactionid_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.regionid_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.filename_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Customer_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Start_Date_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.End_Date_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Store_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Transaction_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Region_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.ResultsTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.failed_search_dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ResultsTable)).BeginInit();
             this.SettingsTab.SuspendLayout();
             this.SuspendLayout();
@@ -108,7 +123,7 @@ namespace InvoiceFinder
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(681, 661);
+            this.tabControl1.Size = new System.Drawing.Size(724, 671);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -144,7 +159,7 @@ namespace InvoiceFinder
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(673, 635);
+            this.tabPage1.Size = new System.Drawing.Size(716, 645);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Search";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -306,6 +321,9 @@ namespace InvoiceFinder
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightSteelBlue;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Customer_ID,
@@ -314,59 +332,19 @@ namespace InvoiceFinder
             this.Store_ID_Column,
             this.Transaction_ID_Column,
             this.Region_ID_Column});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(212, 32);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(442, 383);
+            this.dataGridView1.Size = new System.Drawing.Size(498, 383);
             this.dataGridView1.TabIndex = 64;
-            // 
-            // Customer_ID
-            // 
-            this.Customer_ID.HeaderText = "Cust. ID";
-            this.Customer_ID.Name = "Customer_ID";
-            this.Customer_ID.ReadOnly = true;
-            this.Customer_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Customer_ID.Width = 70;
-            // 
-            // Start_Date_Column
-            // 
-            this.Start_Date_Column.HeaderText = "Start Date";
-            this.Start_Date_Column.Name = "Start_Date_Column";
-            this.Start_Date_Column.ReadOnly = true;
-            this.Start_Date_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Start_Date_Column.Width = 70;
-            // 
-            // End_Date_Column
-            // 
-            this.End_Date_Column.HeaderText = "End Date";
-            this.End_Date_Column.Name = "End_Date_Column";
-            this.End_Date_Column.ReadOnly = true;
-            this.End_Date_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.End_Date_Column.Width = 70;
-            // 
-            // Store_ID_Column
-            // 
-            this.Store_ID_Column.HeaderText = "Store ID";
-            this.Store_ID_Column.Name = "Store_ID_Column";
-            this.Store_ID_Column.ReadOnly = true;
-            this.Store_ID_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Store_ID_Column.Width = 70;
-            // 
-            // Transaction_ID_Column
-            // 
-            this.Transaction_ID_Column.HeaderText = "Trans. ID";
-            this.Transaction_ID_Column.Name = "Transaction_ID_Column";
-            this.Transaction_ID_Column.ReadOnly = true;
-            this.Transaction_ID_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Transaction_ID_Column.Width = 70;
-            // 
-            // Region_ID_Column
-            // 
-            this.Region_ID_Column.HeaderText = "Region ID";
-            this.Region_ID_Column.Name = "Region_ID_Column";
-            this.Region_ID_Column.ReadOnly = true;
-            this.Region_ID_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Region_ID_Column.Width = 70;
             // 
             // RemoveSearch
             // 
@@ -466,6 +444,9 @@ namespace InvoiceFinder
             // 
             // ResultsTab
             // 
+            this.ResultsTab.Controls.Add(this.failed_search_dgv);
+            this.ResultsTab.Controls.Add(this.no_results_label_results);
+            this.ResultsTab.Controls.Add(this.found_invoices_label_results);
             this.ResultsTab.Controls.Add(this.output_location_valueResults);
             this.ResultsTab.Controls.Add(this.output_type_valueResults);
             this.ResultsTab.Controls.Add(this.output_location_resultsLabel);
@@ -478,15 +459,69 @@ namespace InvoiceFinder
             this.ResultsTab.Location = new System.Drawing.Point(4, 22);
             this.ResultsTab.Name = "ResultsTab";
             this.ResultsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ResultsTab.Size = new System.Drawing.Size(673, 635);
+            this.ResultsTab.Size = new System.Drawing.Size(716, 645);
             this.ResultsTab.TabIndex = 1;
             this.ResultsTab.Text = "Results";
             this.ResultsTab.UseVisualStyleBackColor = true;
             // 
+            // failed_search_dgv
+            // 
+            this.failed_search_dgv.AllowUserToAddRows = false;
+            this.failed_search_dgv.AllowUserToDeleteRows = false;
+            this.failed_search_dgv.AllowUserToResizeColumns = false;
+            this.failed_search_dgv.AllowUserToResizeRows = false;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Gray;
+            this.failed_search_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.failed_search_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.failed_search_dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.custid_dgv_noresults,
+            this.sdate_dgv_noresults,
+            this.edate_dgv_noresults,
+            this.storeid_dgv_noresults,
+            this.transactionid_dgv_noresults,
+            this.regionid_dgv_noresults,
+            this.filename_dgv_noresults});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.failed_search_dgv.DefaultCellStyle = dataGridViewCellStyle4;
+            this.failed_search_dgv.Location = new System.Drawing.Point(6, 440);
+            this.failed_search_dgv.Name = "failed_search_dgv";
+            this.failed_search_dgv.ReadOnly = true;
+            this.failed_search_dgv.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.failed_search_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.failed_search_dgv.Size = new System.Drawing.Size(704, 199);
+            this.failed_search_dgv.TabIndex = 12;
+            // 
+            // no_results_label_results
+            // 
+            this.no_results_label_results.AutoSize = true;
+            this.no_results_label_results.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.no_results_label_results.Location = new System.Drawing.Point(6, 424);
+            this.no_results_label_results.Name = "no_results_label_results";
+            this.no_results_label_results.Size = new System.Drawing.Size(197, 13);
+            this.no_results_label_results.TabIndex = 11;
+            this.no_results_label_results.Text = "Searches with no results returned";
+            // 
+            // found_invoices_label_results
+            // 
+            this.found_invoices_label_results.AutoSize = true;
+            this.found_invoices_label_results.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.found_invoices_label_results.Location = new System.Drawing.Point(6, 6);
+            this.found_invoices_label_results.Name = "found_invoices_label_results";
+            this.found_invoices_label_results.Size = new System.Drawing.Size(94, 13);
+            this.found_invoices_label_results.TabIndex = 10;
+            this.found_invoices_label_results.Text = "Found Invoices";
+            // 
             // output_location_valueResults
             // 
             this.output_location_valueResults.AutoSize = true;
-            this.output_location_valueResults.Location = new System.Drawing.Point(93, 590);
+            this.output_location_valueResults.Location = new System.Drawing.Point(93, 370);
             this.output_location_valueResults.Name = "output_location_valueResults";
             this.output_location_valueResults.Size = new System.Drawing.Size(12, 13);
             this.output_location_valueResults.TabIndex = 9;
@@ -495,7 +530,7 @@ namespace InvoiceFinder
             // output_type_valueResults
             // 
             this.output_type_valueResults.AutoSize = true;
-            this.output_type_valueResults.Location = new System.Drawing.Point(93, 577);
+            this.output_type_valueResults.Location = new System.Drawing.Point(93, 357);
             this.output_type_valueResults.Name = "output_type_valueResults";
             this.output_type_valueResults.Size = new System.Drawing.Size(12, 13);
             this.output_type_valueResults.TabIndex = 8;
@@ -504,7 +539,7 @@ namespace InvoiceFinder
             // output_location_resultsLabel
             // 
             this.output_location_resultsLabel.AutoSize = true;
-            this.output_location_resultsLabel.Location = new System.Drawing.Point(6, 590);
+            this.output_location_resultsLabel.Location = new System.Drawing.Point(6, 370);
             this.output_location_resultsLabel.Name = "output_location_resultsLabel";
             this.output_location_resultsLabel.Size = new System.Drawing.Size(86, 13);
             this.output_location_resultsLabel.TabIndex = 7;
@@ -513,7 +548,7 @@ namespace InvoiceFinder
             // export_type_resultsLabel
             // 
             this.export_type_resultsLabel.AutoSize = true;
-            this.export_type_resultsLabel.Location = new System.Drawing.Point(6, 577);
+            this.export_type_resultsLabel.Location = new System.Drawing.Point(6, 357);
             this.export_type_resultsLabel.Name = "export_type_resultsLabel";
             this.export_type_resultsLabel.Size = new System.Drawing.Size(69, 13);
             this.export_type_resultsLabel.TabIndex = 6;
@@ -523,14 +558,14 @@ namespace InvoiceFinder
             // 
             this.Export_Notification_Results.AutoSize = true;
             this.Export_Notification_Results.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Export_Notification_Results.Location = new System.Drawing.Point(105, 611);
+            this.Export_Notification_Results.Location = new System.Drawing.Point(153, 391);
             this.Export_Notification_Results.Name = "Export_Notification_Results";
             this.Export_Notification_Results.Size = new System.Drawing.Size(0, 13);
             this.Export_Notification_Results.TabIndex = 5;
             // 
             // Uncheck_All_Results
             // 
-            this.Uncheck_All_Results.Location = new System.Drawing.Point(592, 606);
+            this.Uncheck_All_Results.Location = new System.Drawing.Point(635, 386);
             this.Uncheck_All_Results.Name = "Uncheck_All_Results";
             this.Uncheck_All_Results.Size = new System.Drawing.Size(75, 23);
             this.Uncheck_All_Results.TabIndex = 4;
@@ -540,7 +575,7 @@ namespace InvoiceFinder
             // 
             // Check_All_Results
             // 
-            this.Check_All_Results.Location = new System.Drawing.Point(592, 580);
+            this.Check_All_Results.Location = new System.Drawing.Point(635, 360);
             this.Check_All_Results.Name = "Check_All_Results";
             this.Check_All_Results.Size = new System.Drawing.Size(75, 23);
             this.Check_All_Results.TabIndex = 3;
@@ -554,23 +589,23 @@ namespace InvoiceFinder
             this.ResultsTable.AllowUserToDeleteRows = false;
             this.ResultsTable.AllowUserToResizeColumns = false;
             this.ResultsTable.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ResultsTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ResultsTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.ResultsTable.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ResultsTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.ResultsTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ResultsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.ResultsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ResultsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.ResultsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.ResultsTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.File_Name,
             this.Store_Id_DGV,
@@ -579,95 +614,22 @@ namespace InvoiceFinder
             this.Customer_Id_DGV,
             this.Date_DGV,
             this.Export_DGV});
-            this.ResultsTable.Location = new System.Drawing.Point(6, 6);
+            this.ResultsTable.Location = new System.Drawing.Point(6, 22);
             this.ResultsTable.Name = "ResultsTable";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ResultsTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.ResultsTable.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.ResultsTable.Size = new System.Drawing.Size(661, 568);
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ResultsTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.ResultsTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.ResultsTable.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            this.ResultsTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.ResultsTable.Size = new System.Drawing.Size(704, 332);
             this.ResultsTable.TabIndex = 2;
-            this.ResultsTable.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.ResultsTable_CellFormatting);
-            // 
-            // Export
-            // 
-            this.Export.Location = new System.Drawing.Point(6, 606);
-            this.Export.Name = "Export";
-            this.Export.Size = new System.Drawing.Size(93, 23);
-            this.Export.TabIndex = 1;
-            this.Export.Text = "Export";
-            this.Export.UseVisualStyleBackColor = true;
-            this.Export.Click += new System.EventHandler(this.Export_Click_1);
-            // 
-            // SettingsTab
-            // 
-            this.SettingsTab.Controls.Add(this.export_type_label);
-            this.SettingsTab.Controls.Add(this.export_location_textBox);
-            this.SettingsTab.Controls.Add(this.export_select_button);
-            this.SettingsTab.Controls.Add(this.export_location_label);
-            this.SettingsTab.Controls.Add(this.output_type_comboBox);
-            this.SettingsTab.Location = new System.Drawing.Point(4, 22);
-            this.SettingsTab.Name = "SettingsTab";
-            this.SettingsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.SettingsTab.Size = new System.Drawing.Size(673, 635);
-            this.SettingsTab.TabIndex = 2;
-            this.SettingsTab.Text = "Settings";
-            this.SettingsTab.UseVisualStyleBackColor = true;
-            // 
-            // export_type_label
-            // 
-            this.export_type_label.AutoSize = true;
-            this.export_type_label.Location = new System.Drawing.Point(16, 21);
-            this.export_type_label.Name = "export_type_label";
-            this.export_type_label.Size = new System.Drawing.Size(64, 13);
-            this.export_type_label.TabIndex = 5;
-            this.export_type_label.Text = "Export Type";
-            // 
-            // export_location_textBox
-            // 
-            this.export_location_textBox.BackColor = System.Drawing.SystemColors.Menu;
-            this.export_location_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.export_location_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.export_location_textBox.ForeColor = System.Drawing.Color.Gray;
-            this.export_location_textBox.Location = new System.Drawing.Point(19, 86);
-            this.export_location_textBox.Name = "export_location_textBox";
-            this.export_location_textBox.ReadOnly = true;
-            this.export_location_textBox.Size = new System.Drawing.Size(351, 20);
-            this.export_location_textBox.TabIndex = 4;
-            // 
-            // export_select_button
-            // 
-            this.export_select_button.Location = new System.Drawing.Point(19, 112);
-            this.export_select_button.Name = "export_select_button";
-            this.export_select_button.Size = new System.Drawing.Size(75, 23);
-            this.export_select_button.TabIndex = 3;
-            this.export_select_button.Text = "Select";
-            this.export_select_button.UseVisualStyleBackColor = true;
-            this.export_select_button.Click += new System.EventHandler(this.export_select_button_Click);
-            // 
-            // export_location_label
-            // 
-            this.export_location_label.AutoSize = true;
-            this.export_location_label.Location = new System.Drawing.Point(16, 70);
-            this.export_location_label.Name = "export_location_label";
-            this.export_location_label.Size = new System.Drawing.Size(81, 13);
-            this.export_location_label.TabIndex = 2;
-            this.export_location_label.Text = "Export Location";
-            // 
-            // output_type_comboBox
-            // 
-            this.output_type_comboBox.FormattingEnabled = true;
-            this.output_type_comboBox.Location = new System.Drawing.Point(19, 37);
-            this.output_type_comboBox.Name = "output_type_comboBox";
-            this.output_type_comboBox.Size = new System.Drawing.Size(200, 21);
-            this.output_type_comboBox.TabIndex = 0;
-            this.output_type_comboBox.SelectedIndexChanged += new System.EventHandler(this.output_type_comboBox_SelectedIndexChanged_1);
             // 
             // File_Name
             // 
@@ -733,11 +695,196 @@ namespace InvoiceFinder
             this.Export_DGV.Name = "Export_DGV";
             this.Export_DGV.TrueValue = "Yes";
             // 
+            // Export
+            // 
+            this.Export.Location = new System.Drawing.Point(6, 386);
+            this.Export.Name = "Export";
+            this.Export.Size = new System.Drawing.Size(141, 23);
+            this.Export.TabIndex = 1;
+            this.Export.Text = "Export Found Invoices";
+            this.Export.UseVisualStyleBackColor = true;
+            this.Export.Click += new System.EventHandler(this.Export_Click_1);
+            // 
+            // SettingsTab
+            // 
+            this.SettingsTab.Controls.Add(this.export_type_label);
+            this.SettingsTab.Controls.Add(this.export_location_textBox);
+            this.SettingsTab.Controls.Add(this.export_select_button);
+            this.SettingsTab.Controls.Add(this.export_location_label);
+            this.SettingsTab.Controls.Add(this.output_type_comboBox);
+            this.SettingsTab.Location = new System.Drawing.Point(4, 22);
+            this.SettingsTab.Name = "SettingsTab";
+            this.SettingsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.SettingsTab.Size = new System.Drawing.Size(716, 645);
+            this.SettingsTab.TabIndex = 2;
+            this.SettingsTab.Text = "Settings";
+            this.SettingsTab.UseVisualStyleBackColor = true;
+            // 
+            // export_type_label
+            // 
+            this.export_type_label.AutoSize = true;
+            this.export_type_label.Location = new System.Drawing.Point(16, 21);
+            this.export_type_label.Name = "export_type_label";
+            this.export_type_label.Size = new System.Drawing.Size(64, 13);
+            this.export_type_label.TabIndex = 5;
+            this.export_type_label.Text = "Export Type";
+            // 
+            // export_location_textBox
+            // 
+            this.export_location_textBox.BackColor = System.Drawing.SystemColors.Menu;
+            this.export_location_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.export_location_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.export_location_textBox.ForeColor = System.Drawing.Color.Gray;
+            this.export_location_textBox.Location = new System.Drawing.Point(19, 86);
+            this.export_location_textBox.Name = "export_location_textBox";
+            this.export_location_textBox.ReadOnly = true;
+            this.export_location_textBox.Size = new System.Drawing.Size(351, 20);
+            this.export_location_textBox.TabIndex = 4;
+            // 
+            // export_select_button
+            // 
+            this.export_select_button.Location = new System.Drawing.Point(19, 112);
+            this.export_select_button.Name = "export_select_button";
+            this.export_select_button.Size = new System.Drawing.Size(75, 23);
+            this.export_select_button.TabIndex = 3;
+            this.export_select_button.Text = "Select";
+            this.export_select_button.UseVisualStyleBackColor = true;
+            this.export_select_button.Click += new System.EventHandler(this.export_select_button_Click);
+            // 
+            // export_location_label
+            // 
+            this.export_location_label.AutoSize = true;
+            this.export_location_label.Location = new System.Drawing.Point(16, 70);
+            this.export_location_label.Name = "export_location_label";
+            this.export_location_label.Size = new System.Drawing.Size(81, 13);
+            this.export_location_label.TabIndex = 2;
+            this.export_location_label.Text = "Export Location";
+            // 
+            // output_type_comboBox
+            // 
+            this.output_type_comboBox.FormattingEnabled = true;
+            this.output_type_comboBox.Location = new System.Drawing.Point(19, 37);
+            this.output_type_comboBox.Name = "output_type_comboBox";
+            this.output_type_comboBox.Size = new System.Drawing.Size(200, 21);
+            this.output_type_comboBox.TabIndex = 0;
+            this.output_type_comboBox.SelectedIndexChanged += new System.EventHandler(this.output_type_comboBox_SelectedIndexChanged_1);
+            // 
+            // custid_dgv_noresults
+            // 
+            this.custid_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.custid_dgv_noresults.HeaderText = "Customer ID";
+            this.custid_dgv_noresults.Name = "custid_dgv_noresults";
+            this.custid_dgv_noresults.ReadOnly = true;
+            this.custid_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.custid_dgv_noresults.Width = 90;
+            // 
+            // sdate_dgv_noresults
+            // 
+            this.sdate_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.sdate_dgv_noresults.HeaderText = "Start Date";
+            this.sdate_dgv_noresults.Name = "sdate_dgv_noresults";
+            this.sdate_dgv_noresults.ReadOnly = true;
+            this.sdate_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.sdate_dgv_noresults.Width = 80;
+            // 
+            // edate_dgv_noresults
+            // 
+            this.edate_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.edate_dgv_noresults.HeaderText = "End Date";
+            this.edate_dgv_noresults.Name = "edate_dgv_noresults";
+            this.edate_dgv_noresults.ReadOnly = true;
+            this.edate_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.edate_dgv_noresults.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.edate_dgv_noresults.Width = 58;
+            // 
+            // storeid_dgv_noresults
+            // 
+            this.storeid_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.storeid_dgv_noresults.HeaderText = "Store ID";
+            this.storeid_dgv_noresults.Name = "storeid_dgv_noresults";
+            this.storeid_dgv_noresults.ReadOnly = true;
+            this.storeid_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.storeid_dgv_noresults.Width = 71;
+            // 
+            // transactionid_dgv_noresults
+            // 
+            this.transactionid_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.transactionid_dgv_noresults.HeaderText = "Transaction ID";
+            this.transactionid_dgv_noresults.Name = "transactionid_dgv_noresults";
+            this.transactionid_dgv_noresults.ReadOnly = true;
+            this.transactionid_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.transactionid_dgv_noresults.Width = 102;
+            // 
+            // regionid_dgv_noresults
+            // 
+            this.regionid_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.regionid_dgv_noresults.HeaderText = "Region ID";
+            this.regionid_dgv_noresults.Name = "regionid_dgv_noresults";
+            this.regionid_dgv_noresults.ReadOnly = true;
+            this.regionid_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.regionid_dgv_noresults.Width = 80;
+            // 
+            // filename_dgv_noresults
+            // 
+            this.filename_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.filename_dgv_noresults.HeaderText = "File Name";
+            this.filename_dgv_noresults.Name = "filename_dgv_noresults";
+            this.filename_dgv_noresults.ReadOnly = true;
+            this.filename_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Customer_ID
+            // 
+            this.Customer_ID.HeaderText = "Cust. ID";
+            this.Customer_ID.Name = "Customer_ID";
+            this.Customer_ID.ReadOnly = true;
+            this.Customer_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Customer_ID.Width = 70;
+            // 
+            // Start_Date_Column
+            // 
+            this.Start_Date_Column.HeaderText = "Start Date";
+            this.Start_Date_Column.Name = "Start_Date_Column";
+            this.Start_Date_Column.ReadOnly = true;
+            this.Start_Date_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Start_Date_Column.Width = 70;
+            // 
+            // End_Date_Column
+            // 
+            this.End_Date_Column.HeaderText = "End Date";
+            this.End_Date_Column.Name = "End_Date_Column";
+            this.End_Date_Column.ReadOnly = true;
+            this.End_Date_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.End_Date_Column.Width = 70;
+            // 
+            // Store_ID_Column
+            // 
+            this.Store_ID_Column.HeaderText = "Store ID";
+            this.Store_ID_Column.Name = "Store_ID_Column";
+            this.Store_ID_Column.ReadOnly = true;
+            this.Store_ID_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Store_ID_Column.Width = 70;
+            // 
+            // Transaction_ID_Column
+            // 
+            this.Transaction_ID_Column.HeaderText = "Trans. ID";
+            this.Transaction_ID_Column.Name = "Transaction_ID_Column";
+            this.Transaction_ID_Column.ReadOnly = true;
+            this.Transaction_ID_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Transaction_ID_Column.Width = 70;
+            // 
+            // Region_ID_Column
+            // 
+            this.Region_ID_Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Region_ID_Column.HeaderText = "Region ID";
+            this.Region_ID_Column.Name = "Region_ID_Column";
+            this.Region_ID_Column.ReadOnly = true;
+            this.Region_ID_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(705, 685);
+            this.ClientSize = new System.Drawing.Size(748, 695);
             this.Controls.Add(this.tabControl1);
             this.Name = "MainPage";
             this.Text = "Invoice Finder";
@@ -747,6 +894,7 @@ namespace InvoiceFinder
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResultsTab.ResumeLayout(false);
             this.ResultsTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.failed_search_dgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ResultsTable)).EndInit();
             this.SettingsTab.ResumeLayout(false);
             this.SettingsTab.PerformLayout();
@@ -784,12 +932,6 @@ namespace InvoiceFinder
         private System.Windows.Forms.RichTextBox Multiple_Entry_Text_Box;
         private System.Windows.Forms.Button Search_Button;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Customer_ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Start_Date_Column;
-        private System.Windows.Forms.DataGridViewTextBoxColumn End_Date_Column;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Store_ID_Column;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Transaction_ID_Column;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Region_ID_Column;
         private System.Windows.Forms.Button RemoveSearch;
         private System.Windows.Forms.Button Add_Single;
         private System.Windows.Forms.Label label7;
@@ -821,6 +963,22 @@ namespace InvoiceFinder
         private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Id_DGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date_DGV;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Export_DGV;
+        private System.Windows.Forms.Label found_invoices_label_results;
+        private System.Windows.Forms.DataGridView failed_search_dgv;
+        private System.Windows.Forms.Label no_results_label_results;
+        private System.Windows.Forms.DataGridViewTextBoxColumn custid_dgv_noresults;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sdate_dgv_noresults;
+        private System.Windows.Forms.DataGridViewTextBoxColumn edate_dgv_noresults;
+        private System.Windows.Forms.DataGridViewTextBoxColumn storeid_dgv_noresults;
+        private System.Windows.Forms.DataGridViewTextBoxColumn transactionid_dgv_noresults;
+        private System.Windows.Forms.DataGridViewTextBoxColumn regionid_dgv_noresults;
+        private System.Windows.Forms.DataGridViewTextBoxColumn filename_dgv_noresults;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Customer_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Start_Date_Column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn End_Date_Column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Store_ID_Column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Transaction_ID_Column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Region_ID_Column;
     }
 }
 

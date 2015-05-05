@@ -28,6 +28,11 @@ namespace InvoiceFinder
                 this.size = invoices.Count;
             }
 
+            /*Resets the results dictionary*/
+            public void reset(){
+                invoices = new Dictionary<string, Invoice>();
+            }
+
             /*displays each entry in the invoice dictionary to the console*/
             public void displayInvoices(){
                 foreach(KeyValuePair<string, Invoice> entry in invoices){
