@@ -1,13 +1,13 @@
 ﻿#######################Script to generate pseudo-store folders in the format of 4 digits####################
 
 #Adjustable paramters for script
-$MAX_STORES = 20;
+$MAX_STORES = 10000;
 $MAX_REGIONID = 9;
-$MAX_INVOICEID = 1000;
-$MAX_CUSTOMERID = 50;
+$MAX_INVOICEID = 1000000;
+$MAX_CUSTOMERID = 10000000;
 $MAX_DATEOFFSET = 2555;
-$MAX_ARCHIVEFILES = 1000;
-$MAX_TEMPHOLDERFILES = 500;
+$MAX_ARCHIVEFILES = 100;
+$MAX_TEMPHOLDERFILES = 50;
 
 #Prompt user for base folder to create test environment
 echo "Enter the full path to where the test environment should be created:";
