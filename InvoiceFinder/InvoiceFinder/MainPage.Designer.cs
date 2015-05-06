@@ -56,6 +56,12 @@ namespace InvoiceFinder
             this.Multiple_Entry_Text_Box = new System.Windows.Forms.RichTextBox();
             this.Search_Button = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Customer_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Start_Date_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.End_Date_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Store_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Transaction_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Region_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RemoveSearch = new System.Windows.Forms.Button();
             this.Add_Single = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -69,6 +75,13 @@ namespace InvoiceFinder
             this.label1 = new System.Windows.Forms.Label();
             this.ResultsTab = new System.Windows.Forms.TabPage();
             this.failed_search_dgv = new System.Windows.Forms.DataGridView();
+            this.custid_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sdate_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.edate_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.storeid_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.transactionid_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.regionid_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.filename_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.no_results_label_results = new System.Windows.Forms.Label();
             this.found_invoices_label_results = new System.Windows.Forms.Label();
             this.output_location_valueResults = new System.Windows.Forms.Label();
@@ -93,19 +106,6 @@ namespace InvoiceFinder
             this.export_select_button = new System.Windows.Forms.Button();
             this.export_location_label = new System.Windows.Forms.Label();
             this.output_type_comboBox = new System.Windows.Forms.ComboBox();
-            this.custid_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sdate_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.edate_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.storeid_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.transactionid_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.regionid_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.filename_dgv_noresults = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Customer_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Start_Date_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.End_Date_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Store_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Transaction_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Region_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -346,6 +346,54 @@ namespace InvoiceFinder
             this.dataGridView1.Size = new System.Drawing.Size(498, 383);
             this.dataGridView1.TabIndex = 64;
             // 
+            // Customer_ID
+            // 
+            this.Customer_ID.HeaderText = "Cust. ID";
+            this.Customer_ID.Name = "Customer_ID";
+            this.Customer_ID.ReadOnly = true;
+            this.Customer_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Customer_ID.Width = 70;
+            // 
+            // Start_Date_Column
+            // 
+            this.Start_Date_Column.HeaderText = "Start Date";
+            this.Start_Date_Column.Name = "Start_Date_Column";
+            this.Start_Date_Column.ReadOnly = true;
+            this.Start_Date_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Start_Date_Column.Width = 70;
+            // 
+            // End_Date_Column
+            // 
+            this.End_Date_Column.HeaderText = "End Date";
+            this.End_Date_Column.Name = "End_Date_Column";
+            this.End_Date_Column.ReadOnly = true;
+            this.End_Date_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.End_Date_Column.Width = 70;
+            // 
+            // Store_ID_Column
+            // 
+            this.Store_ID_Column.HeaderText = "Store ID";
+            this.Store_ID_Column.Name = "Store_ID_Column";
+            this.Store_ID_Column.ReadOnly = true;
+            this.Store_ID_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Store_ID_Column.Width = 70;
+            // 
+            // Transaction_ID_Column
+            // 
+            this.Transaction_ID_Column.HeaderText = "Trans. ID";
+            this.Transaction_ID_Column.Name = "Transaction_ID_Column";
+            this.Transaction_ID_Column.ReadOnly = true;
+            this.Transaction_ID_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Transaction_ID_Column.Width = 70;
+            // 
+            // Region_ID_Column
+            // 
+            this.Region_ID_Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Region_ID_Column.HeaderText = "Region ID";
+            this.Region_ID_Column.Name = "Region_ID_Column";
+            this.Region_ID_Column.ReadOnly = true;
+            this.Region_ID_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // RemoveSearch
             // 
             this.RemoveSearch.Location = new System.Drawing.Point(212, 439);
@@ -497,6 +545,69 @@ namespace InvoiceFinder
             this.failed_search_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.failed_search_dgv.Size = new System.Drawing.Size(704, 199);
             this.failed_search_dgv.TabIndex = 12;
+            // 
+            // custid_dgv_noresults
+            // 
+            this.custid_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.custid_dgv_noresults.HeaderText = "Customer ID";
+            this.custid_dgv_noresults.Name = "custid_dgv_noresults";
+            this.custid_dgv_noresults.ReadOnly = true;
+            this.custid_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.custid_dgv_noresults.Width = 90;
+            // 
+            // sdate_dgv_noresults
+            // 
+            this.sdate_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.sdate_dgv_noresults.HeaderText = "Start Date";
+            this.sdate_dgv_noresults.Name = "sdate_dgv_noresults";
+            this.sdate_dgv_noresults.ReadOnly = true;
+            this.sdate_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.sdate_dgv_noresults.Width = 80;
+            // 
+            // edate_dgv_noresults
+            // 
+            this.edate_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.edate_dgv_noresults.HeaderText = "End Date";
+            this.edate_dgv_noresults.Name = "edate_dgv_noresults";
+            this.edate_dgv_noresults.ReadOnly = true;
+            this.edate_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.edate_dgv_noresults.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.edate_dgv_noresults.Width = 58;
+            // 
+            // storeid_dgv_noresults
+            // 
+            this.storeid_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.storeid_dgv_noresults.HeaderText = "Store ID";
+            this.storeid_dgv_noresults.Name = "storeid_dgv_noresults";
+            this.storeid_dgv_noresults.ReadOnly = true;
+            this.storeid_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.storeid_dgv_noresults.Width = 71;
+            // 
+            // transactionid_dgv_noresults
+            // 
+            this.transactionid_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.transactionid_dgv_noresults.HeaderText = "Transaction ID";
+            this.transactionid_dgv_noresults.Name = "transactionid_dgv_noresults";
+            this.transactionid_dgv_noresults.ReadOnly = true;
+            this.transactionid_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.transactionid_dgv_noresults.Width = 102;
+            // 
+            // regionid_dgv_noresults
+            // 
+            this.regionid_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.regionid_dgv_noresults.HeaderText = "Region ID";
+            this.regionid_dgv_noresults.Name = "regionid_dgv_noresults";
+            this.regionid_dgv_noresults.ReadOnly = true;
+            this.regionid_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.regionid_dgv_noresults.Width = 80;
+            // 
+            // filename_dgv_noresults
+            // 
+            this.filename_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.filename_dgv_noresults.HeaderText = "File Name";
+            this.filename_dgv_noresults.Name = "filename_dgv_noresults";
+            this.filename_dgv_noresults.ReadOnly = true;
+            this.filename_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // no_results_label_results
             // 
@@ -762,123 +873,13 @@ namespace InvoiceFinder
             // 
             // output_type_comboBox
             // 
+            this.output_type_comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.output_type_comboBox.FormattingEnabled = true;
             this.output_type_comboBox.Location = new System.Drawing.Point(19, 37);
             this.output_type_comboBox.Name = "output_type_comboBox";
             this.output_type_comboBox.Size = new System.Drawing.Size(200, 21);
             this.output_type_comboBox.TabIndex = 0;
             this.output_type_comboBox.SelectedIndexChanged += new System.EventHandler(this.output_type_comboBox_SelectedIndexChanged_1);
-            // 
-            // custid_dgv_noresults
-            // 
-            this.custid_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.custid_dgv_noresults.HeaderText = "Customer ID";
-            this.custid_dgv_noresults.Name = "custid_dgv_noresults";
-            this.custid_dgv_noresults.ReadOnly = true;
-            this.custid_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.custid_dgv_noresults.Width = 90;
-            // 
-            // sdate_dgv_noresults
-            // 
-            this.sdate_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.sdate_dgv_noresults.HeaderText = "Start Date";
-            this.sdate_dgv_noresults.Name = "sdate_dgv_noresults";
-            this.sdate_dgv_noresults.ReadOnly = true;
-            this.sdate_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.sdate_dgv_noresults.Width = 80;
-            // 
-            // edate_dgv_noresults
-            // 
-            this.edate_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.edate_dgv_noresults.HeaderText = "End Date";
-            this.edate_dgv_noresults.Name = "edate_dgv_noresults";
-            this.edate_dgv_noresults.ReadOnly = true;
-            this.edate_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.edate_dgv_noresults.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.edate_dgv_noresults.Width = 58;
-            // 
-            // storeid_dgv_noresults
-            // 
-            this.storeid_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.storeid_dgv_noresults.HeaderText = "Store ID";
-            this.storeid_dgv_noresults.Name = "storeid_dgv_noresults";
-            this.storeid_dgv_noresults.ReadOnly = true;
-            this.storeid_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.storeid_dgv_noresults.Width = 71;
-            // 
-            // transactionid_dgv_noresults
-            // 
-            this.transactionid_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.transactionid_dgv_noresults.HeaderText = "Transaction ID";
-            this.transactionid_dgv_noresults.Name = "transactionid_dgv_noresults";
-            this.transactionid_dgv_noresults.ReadOnly = true;
-            this.transactionid_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.transactionid_dgv_noresults.Width = 102;
-            // 
-            // regionid_dgv_noresults
-            // 
-            this.regionid_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.regionid_dgv_noresults.HeaderText = "Region ID";
-            this.regionid_dgv_noresults.Name = "regionid_dgv_noresults";
-            this.regionid_dgv_noresults.ReadOnly = true;
-            this.regionid_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.regionid_dgv_noresults.Width = 80;
-            // 
-            // filename_dgv_noresults
-            // 
-            this.filename_dgv_noresults.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.filename_dgv_noresults.HeaderText = "File Name";
-            this.filename_dgv_noresults.Name = "filename_dgv_noresults";
-            this.filename_dgv_noresults.ReadOnly = true;
-            this.filename_dgv_noresults.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Customer_ID
-            // 
-            this.Customer_ID.HeaderText = "Cust. ID";
-            this.Customer_ID.Name = "Customer_ID";
-            this.Customer_ID.ReadOnly = true;
-            this.Customer_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Customer_ID.Width = 70;
-            // 
-            // Start_Date_Column
-            // 
-            this.Start_Date_Column.HeaderText = "Start Date";
-            this.Start_Date_Column.Name = "Start_Date_Column";
-            this.Start_Date_Column.ReadOnly = true;
-            this.Start_Date_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Start_Date_Column.Width = 70;
-            // 
-            // End_Date_Column
-            // 
-            this.End_Date_Column.HeaderText = "End Date";
-            this.End_Date_Column.Name = "End_Date_Column";
-            this.End_Date_Column.ReadOnly = true;
-            this.End_Date_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.End_Date_Column.Width = 70;
-            // 
-            // Store_ID_Column
-            // 
-            this.Store_ID_Column.HeaderText = "Store ID";
-            this.Store_ID_Column.Name = "Store_ID_Column";
-            this.Store_ID_Column.ReadOnly = true;
-            this.Store_ID_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Store_ID_Column.Width = 70;
-            // 
-            // Transaction_ID_Column
-            // 
-            this.Transaction_ID_Column.HeaderText = "Trans. ID";
-            this.Transaction_ID_Column.Name = "Transaction_ID_Column";
-            this.Transaction_ID_Column.ReadOnly = true;
-            this.Transaction_ID_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Transaction_ID_Column.Width = 70;
-            // 
-            // Region_ID_Column
-            // 
-            this.Region_ID_Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Region_ID_Column.HeaderText = "Region ID";
-            this.Region_ID_Column.Name = "Region_ID_Column";
-            this.Region_ID_Column.ReadOnly = true;
-            this.Region_ID_Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // MainPage
             // 

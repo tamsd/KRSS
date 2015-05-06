@@ -116,8 +116,12 @@ namespace InvoiceFinder
                                 results.Add(currentInvoice.File_name, currentInvoice);
                                 currentSearch.No_Matches = false;
                             }
+                            catch (ArgumentException e){
+                                //already ran this search
+                                currentSearch.No_Matches = false;
+                            }
                             catch (Exception e){
-                                //key is either null or key laredy exists
+                                //key is null
                             }
                         }
                     }
@@ -133,6 +137,10 @@ namespace InvoiceFinder
                             if (search(path, ref currentInvoice, sett.getArchive_Folder(k))){
                                 try{
                                     results.Add(currentInvoice.File_name, currentInvoice);
+                                    currentSearch.No_Matches = false;
+                                }
+                                catch (ArgumentException e){
+                                    //already ran this search
                                     currentSearch.No_Matches = false;
                                 }
                                 catch (Exception e){
@@ -155,6 +163,10 @@ namespace InvoiceFinder
                                     results.Add(currentInvoice.File_name, currentInvoice);
                                     currentSearch.No_Matches = false;
                                 }
+                                catch (ArgumentException e){
+                                    //already ran this search
+                                    currentSearch.No_Matches = false;
+                                }
                                 catch (Exception e){
                                     //key is either null or key laredy exists
                                 }
@@ -173,6 +185,10 @@ namespace InvoiceFinder
                             if (search(path, ref currentInvoice, sett.getOther_Folder(k))){
                                 try{
                                     results.Add(currentInvoice.File_name, currentInvoice);
+                                    currentSearch.No_Matches = false;
+                                }
+                                catch (ArgumentException e){
+                                    //already ran this search
                                     currentSearch.No_Matches = false;
                                 }
                                 catch (Exception e){
